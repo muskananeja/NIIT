@@ -1128,149 +1128,6 @@
   .move-v2-body .var { background: rgba(230,0,126,0.12); color: var(--accent-deep); padding:1px 4px; border-radius:2px; font-weight:500; }
   .move-v2-note { padding: 10px 18px; border-top:1px solid var(--grey-200); font-size:11px; color:var(--grey-400); font-style:italic; }
 
-  /* ===== UNIFIED 2-column detail layout ===== */
-  .u-detail-grid { display:grid; grid-template-columns: 1.2fr 1fr; gap: 28px; margin-top: 8px; }
-  @media (max-width: 880px) { .u-detail-grid { grid-template-columns: 1fr; } }
-  .u-detail-block { background: var(--grey-50); border: 1px solid var(--grey-200); padding: 22px 24px; }
-  .u-detail-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--grey-600); text-transform: uppercase; margin-bottom: 14px; }
-  .u-detail-item { margin-bottom: 16px; }
-  .u-detail-item:last-child { margin-bottom: 0; }
-  .u-detail-item h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 4px; letter-spacing: -0.01em; }
-  .u-detail-item p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin: 0; }
-  .u-detail-list { padding-left: 0; list-style: none; counter-reset: ulist; margin: 0; }
-  .u-detail-list li { counter-increment: ulist; font-size: 13px; color: var(--ink-soft); line-height: 1.5; padding-left: 28px; margin-bottom: 12px; position: relative; }
-  .u-detail-list li::before { content: counter(ulist, decimal-leading-zero); position: absolute; left: 0; top: 0; font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; }
-  .u-detail-list li:last-child { margin-bottom: 0; }
-
-  /* Unified buttons */
-  .u-btn-primary {
-    background: var(--accent); color:#fff; border:none;
-    padding: 11px 22px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    cursor: pointer; font-family: inherit; transition: background .15s, transform .1s;
-  }
-  .u-btn-primary:hover { background: var(--accent-deep); transform: translateY(-1px); }
-  .u-btn-secondary {
-    background: #fff; color: var(--ink); border: 1px solid var(--grey-200);
-    padding: 11px 22px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    cursor: pointer; font-family: inherit; transition: border-color .15s;
-  }
-  .u-btn-secondary:hover { border-color: var(--ink); }
-
-  /* ===== UNIFIED CARD SYSTEM — used on tier pages, prep, follow-up ===== */
-  .u-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 4px; }
-  .u-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
-  .u-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .u-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 980px) { .u-grid.cols-4 { grid-template-columns: repeat(2,1fr); } .u-grid.cols-3 { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 600px) { .u-grid, .u-grid.cols-4, .u-grid.cols-3, .u-grid.cols-2 { grid-template-columns: 1fr; } }
-
-  .u-card {
-    background: #fff;
-    border: 1px solid var(--grey-200);
-    padding: 20px 22px 18px;
-    display: flex; flex-direction: column; gap: 8px;
-    cursor: pointer;
-    transition: transform .2s, border-color .2s, box-shadow .2s;
-    position: relative;
-    overflow: hidden;
-    min-height: 160px;
-  }
-  .u-card::before {
-    content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
-    background: var(--accent); transform: scaleY(0); transform-origin: top;
-    transition: transform .25s ease;
-  }
-  .u-card:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(14,27,51,0.06); }
-  .u-card:hover::before { transform: scaleY(1); }
-  .u-card[data-tier="1"]::before { background: var(--tier1); }
-  .u-card[data-tier="2"]::before { background: var(--tier2); }
-  .u-card[data-tier="3"]::before { background: var(--tier3); }
-  .u-card-num { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--grey-400); text-transform: uppercase; display:flex; align-items:center; gap: 10px; }
-  .u-card-num .badge { display:inline-block; padding: 2px 8px; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: #fff; text-transform: uppercase; }
-  .u-card-icon { font-size: 22px; line-height: 1; margin-bottom: 2px; }
-  .u-card-title { font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.3; letter-spacing: -0.01em; }
-  .u-card-sub { font-size: 12.5px; color: var(--grey-600); line-height: 1.5; }
-  .u-card-foot { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--grey-400); }
-  .u-card-foot .go { color: var(--ink); font-weight: 600; letter-spacing: 0.04em; }
-  .u-card:hover .u-card-foot .go { color: var(--accent); }
-
-  /* Unified page header */
-  .u-page-head { margin: 8px 0 24px; }
-  .u-page-head .v2-meta { display: inline-block; }
-  .u-page-head .v2-title { margin-top: 8px; }
-  .u-page-head .v2-purpose { margin-top: 6px; }
-
-  /* Kill old eyebrow & objective box styling site-wide where not v2 */
-  .tier-hero .objective { display: none !important; }
-  .tier-hero { padding-bottom: 0 !important; margin-bottom: 24px !important; border-bottom: none !important; }
-  .tier-hero h1 { font-size: clamp(26px,3vw,36px) !important; font-weight: 300 !important; letter-spacing: -0.025em !important; margin: 8px 0 6px !important; }
-  .tier-hero .eyebrow { font-size: 11px; }
-  .tier-hero .lede { font-size: 13px; color: var(--grey-600); max-width: 58ch; }
-
-  /* Hide footers globally — one consistent footer only at app-level if needed */
-  .page-section > .footer { display: none; }
-  /* Old hero stat row in success story — strip */
-  #page-ucb .story-stats { display: none; }
-  #page-ucb .story-hero { padding: 36px 0 24px !important; }
-  #page-ucb .story-hero h1 { font-size: clamp(28px,3.4vw,40px) !important; font-weight: 300 !important; }
-  #page-ucb .story-hero p { font-size: 14px; max-width: 60ch; }
-
-  /* Standardize all .moves containers to use grid like u-grid */
-  .moves { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; gap: 14px !important; margin: 0 !important; }
-  @media (max-width: 600px) { .moves { grid-template-columns: 1fr !important; } }
-
-  /* Old move-card → unify to u-card visuals */
-  .move-card {
-    background: #fff !important;
-    border: 1px solid var(--grey-200) !important;
-    padding: 20px 22px 18px !important;
-    transition: transform .2s, border-color .2s, box-shadow .2s !important;
-    position: relative; overflow: hidden;
-    min-height: 160px;
-    cursor: pointer;
-  }
-  .move-card:hover { border-color: var(--ink) !important; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(14,27,51,0.06); background: #fff !important; }
-  .move-card .move-num { font-size: 10px !important; font-weight: 700 !important; letter-spacing: 0.18em !important; color: var(--grey-400) !important; text-transform: uppercase !important; margin-bottom: 6px !important; }
-  .move-card .move-title { font-size: 16px !important; font-weight: 600 !important; color: var(--ink) !important; line-height: 1.3 !important; letter-spacing: -0.01em !important; margin-bottom: 6px !important; }
-  .move-card .move-sub { font-size: 12.5px !important; color: var(--grey-600) !important; line-height: 1.5 !important; }
-  .move-card .move-foot { margin-top: auto !important; padding-top: 10px !important; font-size: 11px !important; color: var(--grey-400) !important; }
-  .move-card .move-foot .open { color: var(--ink) !important; font-weight: 600 !important; }
-  .move-card:hover .move-foot .open { color: var(--accent) !important; }
-
-  /* Old tier-card visual cleanup */
-  .tier-card {
-    background: #fff !important;
-    border: 1px solid var(--grey-200) !important;
-    padding: 22px 24px 20px !important;
-    position: relative; overflow: hidden;
-    transition: transform .2s, border-color .2s, box-shadow .2s !important;
-  }
-  .tier-card .tier-tab { display:none !important; }
-  .tier-card::before {
-    content:''; position:absolute; left:0; top:0; bottom:0; width:4px;
-    transform: scaleY(0); transform-origin: top; transition: transform .25s ease;
-  }
-  .tier-card[data-tier="1"]::before { background: var(--tier1); }
-  .tier-card[data-tier="2"]::before { background: var(--tier2); }
-  .tier-card[data-tier="3"]::before { background: var(--tier3); }
-  .tier-card:hover::before { transform: scaleY(1); }
-  .tier-card:hover { border-color: var(--ink) !important; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(14,27,51,0.06) !important; }
-  .tier-card .tier-num { font-size: 10px !important; font-weight: 700 !important; letter-spacing: 0.18em !important; color: var(--grey-400) !important; }
-  .tier-card .tier-name { font-size: 22px !important; font-weight: 500 !important; letter-spacing: -0.02em !important; margin-top: 4px !important; }
-  .tier-card[data-tier="1"] .tier-name { color: var(--tier1); }
-  .tier-card[data-tier="2"] .tier-name { color: var(--tier2); }
-  .tier-card[data-tier="3"] .tier-name { color: var(--tier3); }
-  .tier-card .tier-state { font-size: 11px !important; color: var(--grey-600) !important; font-weight: 500 !important; margin-top: 4px !important; }
-  .tier-card .tier-desc { font-size: 12.5px !important; color: var(--grey-600) !important; line-height: 1.5 !important; margin-top: 10px !important; }
-  .tier-card .tier-cta { font-size: 11px !important; color: var(--grey-400) !important; margin-top: 14px !important; }
-
-  /* Page padding tighten globally */
-  .page { padding-top: 24px !important; }
-
-  /* Section heads consistent */
-  .section-head { margin-bottom: 20px !important; }
-  .section-head h2 { font-size: clamp(20px,2.4vw,28px) !important; font-weight: 500 !important; letter-spacing: -0.02em !important; }
-
   /* ===== Storefront — grouped by cluster, polished cards ===== */
   .v2-storefront { display:flex; flex-direction:column; gap: 26px; }
   .v2-cluster {
@@ -1568,13 +1425,16 @@
         </div>
       </div>
 
-      <div style="margin: 36px 0 14px;">
-        <span class="v2-meta">Consulting team</span>
-        <h2 class="v2-title" style="margin-top: 6px; font-size: clamp(20px,2.2vw,26px);">Who to bring in.</h2>
-        <p class="v2-purpose">If the account has an EM assigned, they're your first call. Otherwise route to the CD with the closest practice area.</p>
-      </div>
+      <h3 class="h3" style="margin-bottom:24px; letter-spacing:-0.01em;">Connect with the consulting team</h3>
+      <p class="muted small" style="margin-bottom:32px; max-width:60ch;">Four Consulting Directors anchor the practice. The EM assigned to the account is your first point of contact — if you're unsure, the practice lead will route you.</p>
 
-      <div id="cd-directory"></div>
+      <div class="moves" id="cd-directory"></div>
+
+      <div style="margin-top: 56px; padding: 32px; background: var(--ink); color: #fff;">
+        <span class="eyebrow" style="color: var(--accent);"><span class="dot"></span>Not sure which CD to involve?</span>
+        <h3 style="font-size: 22px; font-weight: 500; color: #fff; margin: 16px 0; max-width: 36ch;">Default to the EM on the account.</h3>
+        <p style="font-size: 14px; color: #C2C8D8; max-width: 60ch; line-height: 1.6;">If the account has an EM assigned, they are always the first point of contact. If unsure, contact the consulting practice lead who can direct you to the right person — typically within the same day.</p>
+      </div>
 
     </div>
   </section>
@@ -1591,24 +1451,41 @@
         <h2 class="v2-title" style="margin-top:6px; font-size: clamp(22px,2.6vw,28px);">Three situations. Different conversations.</h2>
       </div>
 
-      <div class="u-grid cols-3">
-        <div class="u-card" data-tier="1" onclick="nav('tier1')">
-          <div class="u-card-num"><span class="badge" style="background:var(--tier1);">Tier 01 · Active</span></div>
-          <div class="u-card-title" style="font-size: 20px;">Active accounts</div>
-          <div class="u-card-sub">Already in the room. Expand before momentum plateaus.</div>
-          <div class="u-card-foot"><span>7 moves · Pulse Check</span><span class="go">Open →</span></div>
+      <div class="tier-grid" style="margin-top:0;">
+        <div class="tier-card" data-tier="1" onclick="nav('tier1')">
+          <div class="tier-tab"></div>
+          <div class="tier-num">TIER 01</div>
+          <div class="tier-name">Active</div>
+          <div class="tier-state">Engagement underway</div>
+          <p class="tier-desc">Already in the room. Priority is expansion — every active engagement opens the next one before momentum plateaus.</p>
+          <div class="tier-cta">
+            <span>7 moves  ·  Pulse Check inside</span>
+            <span class="arrow">→</span>
+          </div>
         </div>
-        <div class="u-card" data-tier="2" onclick="nav('tier2')">
-          <div class="u-card-num"><span class="badge" style="background:var(--tier2);">Tier 02 · Dormant</span></div>
-          <div class="u-card-title" style="font-size: 20px;">Dormant accounts</div>
-          <div class="u-card-sub">Trust exists, context exists. Reactivate deliberately — not cold.</div>
-          <div class="u-card-foot"><span>7 moves</span><span class="go">Open →</span></div>
+
+        <div class="tier-card" data-tier="2" onclick="nav('tier2')">
+          <div class="tier-tab"></div>
+          <div class="tier-num">TIER 02</div>
+          <div class="tier-name">Dormant</div>
+          <div class="tier-state">Relationship has gone quiet</div>
+          <p class="tier-desc">Trust exists, context exists — the path back is shorter than it looks. Deliberate reactivation, not a cold start.</p>
+          <div class="tier-cta">
+            <span>7 moves</span>
+            <span class="arrow">→</span>
+          </div>
         </div>
-        <div class="u-card" data-tier="3" onclick="nav('tier3')">
-          <div class="u-card-num"><span class="badge" style="background:var(--tier3);">Tier 03 · Prospective</span></div>
-          <div class="u-card-title" style="font-size: 20px;">Prospective accounts</div>
-          <div class="u-card-sub">No consulting history yet. Earn the right to a strategic call.</div>
-          <div class="u-card-foot"><span>6 moves</span><span class="go">Open →</span></div>
+
+        <div class="tier-card" data-tier="3" onclick="nav('tier3')">
+          <div class="tier-tab"></div>
+          <div class="tier-num">TIER 03</div>
+          <div class="tier-name">Prospective</div>
+          <div class="tier-state">No consulting relationship yet</div>
+          <p class="tier-desc">No prior consulting exposure. Opportunity is there; awareness isn't. The work is earning the right to a strategic conversation.</p>
+          <div class="tier-cta">
+            <span>6 moves</span>
+            <span class="arrow">→</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1729,6 +1606,22 @@
 
   
 
+  <section class="success-banner" onclick="nav('ucb')" style="cursor:pointer;">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span>The proof</span>
+      <h2 class="h2">UCB: from one engagement to twelve.</h2>
+      <p>How a single project at a pharma client became a five-cluster, $1.2M relationship across five years — and the six things that made it durable.</p>
+      <span class="cta">Read the story  →</span>
+    </div>
+  </section>
+
+
+  <div class="footer">
+    <div class="wrap footer-inner">
+      <span>NIIT Consulting &amp; Advisory  ·  Sales &amp; Engagement Hub</span>
+      <span>For internal use only  ·  v0.4</span>
+    </div>
+  </div>
 </div>
 
 <!-- ===================== TIER 1 — ACTIVE ===================== -->
@@ -1747,13 +1640,16 @@
 
       <div class="moves" id="tier1-moves"></div>
 
-      <!-- Pulse Check — tier 1 -->
-      <div class="pulse-section" style="margin-top: 36px;">
-        <div style="margin-bottom: 16px;">
-          <span class="v2-meta">For active engagements</span>
-          <h2 class="v2-title" style="margin-top:6px; font-size: clamp(20px,2.2vw,26px);">Pulse Check</h2>
-          <p class="v2-purpose">A lightweight self-assessment to share with the CLO mid-engagement. Surfaces tensions and opens the next conversation.</p>
+      <!-- Embedded Pulse Check for Tier 1 -->
+      <div class="pulse-section">
+        <div class="section-head" style="margin-bottom:32px;">
+          <div>
+            <span class="eyebrow"><span class="dot"></span>Use in active engagements</span>
+            <h2 class="h2" style="margin-top:12px;">Pulse Check.</h2>
+            <p class="lede" style="margin-top:20px;">A lightweight self-assessment to share with the CLO during the engagement — most useful between QBRs or in the final phase of delivery. Surfaces tensions without naming a solution, and creates the natural opening for the next conversation.</p>
+          </div>
         </div>
+
         <div class="pulse-picker" id="pulse-picker"></div>
         <div id="pulse-container"></div>
       </div>
@@ -2806,18 +2702,19 @@ const PULSE_ORDER = ['opmodel', 'ai', 'portfolio', 'skills', 'compliance'];
 function renderTierMoves(tier, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
-  container.className = 'u-grid';
   const ids = TIER_ORDER[tier];
-  const tierClr = tier === 1 ? 'var(--tier1)' : tier === 2 ? 'var(--tier2)' : 'var(--tier3)';
   container.innerHTML = ids.map((id, i) => {
     const m = MOVES[id];
     const num = String(i + 1).padStart(2, '0');
     return `
-      <div class="u-card" data-tier="${tier}" onclick="openMove('${id}')">
-        <div class="u-card-num"><span class="badge" style="background:${tierClr};">Move ${num}</span></div>
-        <div class="u-card-title">${m.title}</div>
-        <div class="u-card-sub">${m.sub}</div>
-        <div class="u-card-foot"><span>Email template inside</span><span class="go">Open →</span></div>
+      <div class="move-card" onclick="openMove('${id}')">
+        <div class="move-num">MOVE ${num}</div>
+        <div class="move-title">${m.title}</div>
+        <div class="move-sub">${m.sub}</div>
+        <div class="move-foot">
+          <span>Email template inside</span>
+          <span class="open">Open <span class="arrow">→</span></span>
+        </div>
       </div>
     `;
   }).join('');
@@ -4137,15 +4034,17 @@ const CDS = [
 function renderIndustryGrid() {
   const container = document.getElementById('industry-grid');
   if (!container) return;
-  container.className = 'u-grid cols-4';
   container.innerHTML = INDUSTRY_ORDER.map(id => {
     const ind = INDUSTRIES[id];
     return `
-      <div class="u-card" onclick="openIndustry('${id}')">
-        <div class="u-card-icon">${ind.icon}</div>
-        <div class="u-card-title">${ind.full}</div>
-        <div class="u-card-sub">${ind.pitch}</div>
-        <div class="u-card-foot"><span>Trends · Challenges · Offerings</span><span class="go">Open →</span></div>
+      <div class="move-card" onclick="openIndustry('${id}')">
+        <div class="move-num" style="font-size:24px; letter-spacing:0;">${ind.icon}</div>
+        <div class="move-title">${ind.full}</div>
+        <div class="move-sub">${ind.pitch}</div>
+        <div class="move-foot">
+          <span>Trends · Challenges · Engagements</span>
+          <span class="open">Open <span class="arrow">→</span></span>
+        </div>
       </div>
     `;
   }).join('');
@@ -4161,42 +4060,50 @@ function openIndustry(id) {
     return `<div class="related-card" onclick="openEngagement('${eid}')"><div class="t">${e.title}</div><div class="arr">${e.cluster}  ·  ${e.duration}  →</div></div>`;
   }).join('');
 
-  const engCards = ind.engagements.map(eid => {
-    const e = ENGAGEMENTS[eid]; if (!e) return '';
-    return `<div class="u-card" onclick="openEngagement('${eid}')">
-      <div class="u-card-num">${e.cluster}</div>
-      <div class="u-card-title">${e.title}</div>
-      <div class="u-card-sub">${e.duration ? e.duration : 'Offering'}</div>
-      <div class="u-card-foot"><span>Client-ready leave-behind</span><span class="go">Open →</span></div>
-    </div>`;
-  }).join('');
-
   body.innerHTML = `
-    <div class="u-page-head">
-      <span class="v2-meta">Prep · ${ind.short}</span>
-      <h1 class="v2-title" style="margin-top:8px;">${ind.icon}&nbsp;&nbsp;${ind.full}</h1>
-      <p class="v2-purpose">${ind.pitch}</p>
+    <div class="crumb">
+      <a onclick="nav('home')">Home</a>
+      <span class="sep">/</span>
+      <a onclick="nav('pre')">Prep</a>
+      <span class="sep">/</span>
+      <span>${ind.short}</span>
     </div>
 
-    <div class="u-detail-grid">
-      <div class="u-detail-block">
-        <div class="u-detail-label">Trends &amp; pressures</div>
-        ${ind.trends.map(tr => `<div class="u-detail-item"><h4>${tr.t}</h4><p>${tr.d}</p></div>`).join('')}
+    <div class="move-detail-hero">
+      <span class="eyebrow"><span class="dot"></span>Industry landing  ·  Prep</span>
+      <h1>${ind.icon}&nbsp;&nbsp;${ind.full}</h1>
+      <p class="lede">${ind.pitch}</p>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-block">
+        <div class="label">Identified trends &amp; pressures</div>
+        ${ind.trends.map(tr => `<div style="margin-bottom:20px;"><h4 style="font-size:15px; font-weight:600; margin-bottom:6px;">${tr.t}</h4><p>${tr.d}</p></div>`).join('')}
       </div>
-      <div class="u-detail-block">
-        <div class="u-detail-label">Common client challenges</div>
-        <ol class="u-detail-list">${ind.challenges.map(c=>`<li>${c}</li>`).join('')}</ol>
+      <div class="detail-block">
+        <div class="label">Common client challenges</div>
+        <ul>${ind.challenges.map((c,i)=>`<li><span class="n">0${i+1}</span><span>${c}</span></li>`).join('')}</ul>
       </div>
     </div>
 
-    <div style="margin-top: 28px;">
-      <div class="u-detail-label" style="margin-bottom: 12px;">Most-likely offerings for this industry</div>
-      <div class="u-grid cols-3">${engCards}</div>
+    <div class="related" style="border-top:none; padding-top:0; margin-top:24px;">
+      <div class="label">What we solve for  ·  Relevant engagements</div>
+      <div class="related-grid">${engHtml}</div>
+      <p class="muted small" style="margin-top:24px;">Click any engagement to view the full landing page — challenges it solves, our approach, outcomes and case studies. Each is client-ready as a leave-behind.</p>
     </div>
 
-    <div style="margin-top: 28px; display:flex; gap:10px;">
-      <button class="u-btn-primary" onclick="nav('live')">Go to discovery →</button>
-      <button class="u-btn-secondary" onclick="nav('pre')">← All industries</button>
+    <div class="next-steps" style="margin-top:64px;">
+      <div class="label">Next step</div>
+      <ol>
+        <li><span class="n">PRE</span><span class="t">Read this page five minutes before the call. Walk in with two specific observations and one engagement type ready to discuss.</span></li>
+        <li><span class="n">DURING</span><span class="t">Use the live diagnostic to surface the best-fit engagements based on what you actually hear in the room.</span></li>
+        <li><span class="n">AFTER</span><span class="t">Send the relevant engagement page as your leave-behind, and connect with the right Consulting Director.</span></li>
+      </ol>
+    </div>
+
+    <div style="margin-top:48px; display:flex; gap:12px;">
+      <button class="btn-secondary" onclick="nav('pre')">← Industries</button>
+      <button class="btn-primary" style="flex:0 0 auto;" onclick="nav('live')">Go to live diagnostic  →</button>
     </div>
   `;
   showPage('page-industry');
@@ -4561,10 +4468,10 @@ function submitDiagnostic() {
       <a onclick="nav('live')">Discover</a><span class="sep">/</span>
       <span>Results</span>
     </div>
-    <div class="u-page-head">
-      <span class="v2-meta">Diagnostic · Recommendation</span>
-      <h1 class="v2-title" style="margin-top:8px;">${isPulseCheck?'Current engagement — expansion signal.':'Here\'s where this client points.'}</h1>
-      <p class="v2-purpose">${isPulseCheck?'You\'re inside an active engagement. Use Pulse Check framing to open the next scope conversation.':'One primary, up to two supporting — sequence them rather than choose.'}</p>
+    <div class="move-detail-hero">
+      <span class="eyebrow"><span class="dot"></span>Live diagnostic · v2 · Recommendation</span>
+      <h1>${isPulseCheck?'Current engagement — expansion signal.':'Here\'s where this client points.'}</h1>
+      <p class="lede">${isPulseCheck?'You\'re inside an active engagement. Use Pulse Check framing to open the next scope conversation.':'One primary, up to two supporting — sequence them rather than choose.'}</p>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap;align-items:center;">
       <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;background:${tierBg[diagTier]||'#eee'};color:${tierFg[diagTier]||'#333'};">Tier ${diagTier} · ${tierLabels[diagTier]||''}</span>
@@ -4592,65 +4499,82 @@ function openEngagement(id) {
   const body = document.getElementById('engagement-detail-body');
 
   body.innerHTML = `
-    <div class="u-page-head">
-      <span class="v2-meta">${e.cluster} · ${e.type} · ${e.duration}</span>
-      <h1 class="v2-title" style="margin-top:8px;">${e.title}</h1>
-      <p class="v2-purpose">${e.short}</p>
+    <div class="crumb">
+      <a onclick="nav('home')">Home</a>
+      <span class="sep">/</span>
+      <a onclick="nav('live')">Engagements</a>
+      <span class="sep">/</span>
+      <span>${e.cluster}</span>
     </div>
 
-    <div class="u-detail-grid" style="margin-bottom: 24px;">
-      <div class="u-detail-block">
-        <div class="u-detail-label">Challenges this solves</div>
-        <ol class="u-detail-list">${e.challenges.map(c=>`<li>${c}</li>`).join('')}</ol>
-      </div>
-      <div class="u-detail-block">
-        <div class="u-detail-label">Outcomes &amp; deliverables</div>
-        <ol class="u-detail-list">${e.outcomes.map(o=>`<li>${o}</li>`).join('')}</ol>
-      </div>
+    <div class="move-detail-hero">
+      <span class="eyebrow"><span class="dot"></span>${e.cluster}  ·  ${e.type}  ·  ${e.duration}</span>
+      <h1>${e.title}</h1>
+      <p class="lede">${e.short}</p>
     </div>
 
-    <div style="margin-bottom: 28px;">
-      <div class="u-detail-label" style="margin-bottom: 12px;">Our approach</div>
-      <div class="u-grid cols-3">
-        ${e.approach.map((a,i)=>`
-          <div class="u-card" style="cursor:default; min-height: 130px;">
-            <div class="u-card-num">Step 0${i+1}</div>
-            <div class="u-card-title" style="font-size: 14px;">${a.t}</div>
-            <div class="u-card-sub">${a.d}</div>
-          </div>
-        `).join('')}
+    <div class="detail-grid">
+      <div class="detail-block">
+        <div class="label">Engagement type</div>
+        <p>${e.type}</p>
       </div>
-    </div>
-
-    <div style="margin-bottom: 28px;">
-      <div class="u-detail-label" style="margin-bottom: 12px;">Case studies</div>
-      <div style="display:flex; flex-direction:column; gap: 12px;">
-        ${e.cases.map(c => `
-          <div class="u-detail-block" style="background:#fff;">
-            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 10px;">
-              <div style="font-size: 14px; font-weight: 600; color: var(--ink);">${c.headline}</div>
-              <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.16em; color: var(--grey-400); text-transform: uppercase;">${c.client}</div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap: 20px;">
-              <div><div class="u-detail-label" style="margin-bottom: 6px;">Challenge</div><p style="font-size:12.5px; line-height:1.5; color:var(--ink-soft); margin:0;">${c.challenge}</p></div>
-              <div><div class="u-detail-label" style="margin-bottom: 6px;">What we did</div><p style="font-size:12.5px; line-height:1.5; color:var(--ink-soft); margin:0;">${c.work}</p></div>
-              <div><div class="u-detail-label" style="color: var(--accent); margin-bottom: 6px;">Outcome</div><p style="font-size:12.5px; line-height:1.5; color:var(--ink); margin:0;">${c.outcome}</p></div>
-            </div>
-          </div>
-        `).join('')}
+      <div class="detail-block">
+        <div class="label">Typical duration</div>
+        <p>${e.duration}</p>
+      </div>
+      <div class="detail-block">
+        <div class="label">Delivery format</div>
+        <p>${e.format}</p>
+      </div>
+      <div class="detail-block">
+        <div class="label">Scope tailored to</div>
+        <p>Client context &amp; complexity</p>
       </div>
     </div>
 
-    <div style="margin-bottom: 28px;">
-      <div class="u-detail-label" style="margin-bottom: 12px;">Selected clients</div>
-      <div style="display:flex; flex-wrap:wrap; gap: 8px;">
-        ${e.clients.map(cl => `<span style="font-size: 12px; padding: 6px 12px; background: var(--grey-50); border: 1px solid var(--grey-200); color: var(--ink); ">${cl}</span>`).join('')}
-      </div>
+    <h3 class="h3" style="margin-top:24px; margin-bottom:24px;">Challenges this solves</h3>
+    <div class="detail-block" style="margin-bottom:48px;">
+      <ul>${e.challenges.map((c,i)=>`<li><span class="n">0${i+1}</span><span>${c}</span></li>`).join('')}</ul>
     </div>
 
-    <div style="display:flex; gap:10px;">
-      <button class="u-btn-primary" onclick="nav('post')">Connect with a CD →</button>
-      <button class="u-btn-secondary" onclick="nav('offerings')">← Storefront</button>
+    <h3 class="h3" style="margin-bottom:24px;">Our approach</h3>
+    <div class="moves" style="margin-bottom:48px;">
+      ${e.approach.map((a,i)=>`
+        <div class="move-card" style="cursor:default;">
+          <div class="move-num">STEP 0${i+1}</div>
+          <div class="move-title">${a.t}</div>
+          <div class="move-sub">${a.d}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <h3 class="h3" style="margin-bottom:24px;">Outcomes &amp; deliverables</h3>
+    <div class="detail-block" style="margin-bottom:48px;">
+      <ul>${e.outcomes.map((o,i)=>`<li><span class="n">0${i+1}</span><span>${o}</span></li>`).join('')}</ul>
+    </div>
+
+    <h3 class="h3" style="margin-bottom:24px;">Case studies</h3>
+    ${e.cases.map(c => `
+      <div class="email-card" style="margin-bottom:24px;">
+        <div class="label">${c.client}</div>
+        <div class="subject" style="font-size:18px;">${c.headline}</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; padding-top:8px;">
+          <div><div style="font-size:10px; font-weight:600; letter-spacing:0.14em; color:var(--grey-400); text-transform:uppercase; margin-bottom:8px;">Challenge</div><p style="font-size:13.5px; line-height:1.55; color:var(--ink-soft);">${c.challenge}</p></div>
+          <div><div style="font-size:10px; font-weight:600; letter-spacing:0.14em; color:var(--grey-400); text-transform:uppercase; margin-bottom:8px;">What we did</div><p style="font-size:13.5px; line-height:1.55; color:var(--ink-soft);">${c.work}</p></div>
+          <div><div style="font-size:10px; font-weight:600; letter-spacing:0.14em; color:var(--accent); text-transform:uppercase; margin-bottom:8px;">Outcome</div><p style="font-size:13.5px; line-height:1.55; color:var(--ink);">${c.outcome}</p></div>
+        </div>
+      </div>
+    `).join('')}
+
+    <h3 class="h3" style="margin-top:48px; margin-bottom:24px;">Selected clients we have done this for</h3>
+    <div class="related-grid" style="margin-bottom:48px;">
+      ${e.clients.map(cl => `<div class="related-card" style="cursor:default;"><div class="t">${cl}</div></div>`).join('')}
+    </div>
+    <p class="muted small" style="margin-bottom:48px;">Each engagement page shows 10 curated clients most relevant to that engagement type. Full client list varies by page.</p>
+
+    <div style="margin-top:48px; display:flex; gap:12px;">
+      <button class="btn-secondary" onclick="nav('live')">← Diagnostic</button>
+      <button class="btn-primary" style="flex:0 0 auto;" onclick="nav('post')">Connect with a CD  →</button>
     </div>
   `;
   showPage('page-engagement');
@@ -4662,16 +4586,18 @@ function openEngagement(id) {
 function renderCDDirectory() {
   const container = document.getElementById('cd-directory');
   if (!container) return;
-  container.className = 'u-grid cols-4';
   container.innerHTML = CDS.map(cd => `
-    <div class="u-card" style="cursor:default;">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
-        <div style="width:36px; height:36px; background: var(--ink); color:#fff; font-size:12px; font-weight:600; display:flex; align-items:center; justify-content:center; letter-spacing:0.04em; flex-shrink:0;">${cd.initials}</div>
-        <div class="u-card-num" style="margin:0;">${cd.focus}</div>
+    <div class="move-card" style="cursor:default;">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+        <div style="width:40px; height:40px; background:var(--ink); color:#fff; font-size:13px; font-weight:600; display:flex; align-items:center; justify-content:center; letter-spacing:0.04em;">${cd.initials}</div>
+        <div class="move-num" style="margin-bottom:0;">${cd.focus}</div>
       </div>
-      <div class="u-card-title">${cd.name}</div>
-      <div class="u-card-sub">${cd.role}</div>
-      <div class="u-card-foot"><span>Slack or email</span><span class="go">Reach out →</span></div>
+      <div class="move-title">${cd.name}</div>
+      <div class="move-sub">${cd.role}</div>
+      <div class="move-foot">
+        <span>Reach out via Slack or email</span>
+        <span class="open">Book a conversation <span class="arrow">→</span></span>
+      </div>
     </div>
   `).join('');
 }
