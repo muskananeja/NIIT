@@ -1435,62 +1435,73 @@
 
   .ind-detail-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr 0.7fr;
-    gap: 16px;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 18px;
     margin-bottom: 28px;
   }
-  @media (max-width: 1080px) { .ind-detail-grid { grid-template-columns: 1fr 1fr; } .ind-callout { grid-column: 1 / -1; } }
-  @media (max-width: 720px)  { .ind-detail-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 880px) { .ind-detail-grid { grid-template-columns: 1fr; } }
 
-  .ind-callout {
+  /* Dark challenges block — same treatment as app-hero */
+  .ind-challenges-dark {
     background:
       radial-gradient(90% 60% at 100% 0%, rgba(230,0,126,0.20) 0%, transparent 55%),
       radial-gradient(70% 50% at 0% 100%, rgba(107,91,255,0.14) 0%, transparent 50%),
       linear-gradient(135deg, #0B1426 0%, #141E3A 55%, #1A1029 100%);
     color: #fff;
-    padding: 22px 24px;
+    padding: 24px 26px;
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
     box-shadow: var(--shadow-soft);
   }
-  .ind-callout::before {
+  .ind-challenges-dark::before {
     content:''; position:absolute; inset:0;
     background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
     background-size: 3px 3px;
     pointer-events: none;
     opacity: .55;
   }
-  .ind-callout::after {
+  .ind-challenges-dark::after {
     content:''; position:absolute; bottom:0; left:0; width:100%; height:1px;
     background: linear-gradient(90deg, var(--accent) 0%, transparent 60%);
   }
-  .ind-callout > * { position: relative; z-index: 1; }
-  .ind-callout-eyebrow {
+  .ind-challenges-dark > * { position: relative; z-index: 1; }
+  .ind-challenges-eyebrow {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #98A1B3;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 16px;
   }
-  .ind-callout-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    color: #fff;
-    font-size: 13.5px;
-    line-height: 1.45;
+  .ind-challenges-dark-list {
+    list-style: none;
+    counter-reset: chal-dark;
+    padding: 0;
+    margin: 0;
   }
-  .ind-callout-item .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-    margin-top: 7px;
+  .ind-challenges-dark-list li {
+    counter-increment: chal-dark;
+    padding: 12px 0 14px 38px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    font-size: 13px;
+    color: #C2C8D8;
+    line-height: 1.55;
   }
-  .ind-callout-item b { font-weight: 600; }
-  .ind-callout-item span { color: #98A1B3; font-size: 11.5px; line-height: 1.4; }
+  .ind-challenges-dark-list li:first-child { padding-top: 4px; }
+  .ind-challenges-dark-list li:first-child::before { top: 4px; }
+  .ind-challenges-dark-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .ind-challenges-dark-list li::before {
+    content: counter(chal-dark, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
 
   .ind-detail-block {
     background: #fff;
@@ -1637,7 +1648,7 @@
   .ind-btn-secondary:hover { border-color: var(--ink); }
 
   /* ===== Prep — dark hero band ===== */
-  .prep-hero {
+  .app-hero {
     background:
       radial-gradient(80% 70% at 100% 0%, rgba(230,0,126,0.20) 0%, transparent 55%),
       radial-gradient(60% 50% at 0% 100%, rgba(107,91,255,0.12) 0%, transparent 50%),
@@ -1648,23 +1659,30 @@
     overflow: hidden;
     margin-bottom: 0;
   }
-  .prep-hero::before {
+  .app-hero::before {
     content:''; position:absolute; inset:0;
     background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
     background-size: 3px 3px;
     pointer-events:none;
     opacity:.55;
   }
-  .prep-hero::after {
+  .app-hero::after {
     content:''; position:absolute; bottom:0; left:0; width:100%; height:1px;
     background: linear-gradient(90deg, var(--accent) 0%, transparent 60%);
   }
-  .prep-hero > .wrap { position: relative; z-index: 1; }
-  .prep-hero-inner {
+  .app-hero[data-tier="1"]::after { background: linear-gradient(90deg, var(--tier1) 0%, transparent 60%); }
+  .app-hero[data-tier="2"]::after { background: linear-gradient(90deg, var(--tier2) 0%, transparent 60%); }
+  .app-hero[data-tier="3"]::after { background: linear-gradient(90deg, var(--tier3) 0%, transparent 60%); }
+  .app-hero[data-tier="2"] .app-hero-eyebrow { color: var(--tier2); }
+  .app-hero[data-tier="2"] .app-hero-eyebrow::before { background: var(--tier2); }
+  .app-hero[data-tier="3"] .app-hero-eyebrow { color: var(--tier3); }
+  .app-hero[data-tier="3"] .app-hero-eyebrow::before { background: var(--tier3); }
+  .app-hero > .wrap { position: relative; z-index: 1; }
+  .app-hero-inner {
     display: flex; justify-content: space-between; align-items: flex-end;
     gap: 24px; flex-wrap: wrap;
   }
-  .prep-hero-eyebrow {
+  .app-hero-eyebrow {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.28em;
@@ -1674,8 +1692,8 @@
     align-items: center;
     gap: 12px;
   }
-  .prep-hero-eyebrow::before { content:''; width: 28px; height:1px; background: var(--accent); }
-  .prep-hero-title {
+  .app-hero-eyebrow::before { content:''; width: 28px; height:1px; background: var(--accent); }
+  .app-hero-title {
     font-size: clamp(28px, 3.6vw, 42px);
     font-weight: 300;
     letter-spacing: -0.03em;
@@ -1683,14 +1701,14 @@
     color: #fff;
     margin: 14px 0 10px;
   }
-  .prep-hero-sub {
+  .app-hero-sub {
     font-size: 14px;
     color: #B9C0D0;
     line-height: 1.55;
     max-width: 52ch;
     margin: 0;
   }
-  .prep-hero-count {
+  .app-hero-count {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -1913,13 +1931,13 @@
 <div id="page-pre" class="page-section hidden">
   <section class="prep-hero">
     <div class="wrap">
-      <div class="prep-hero-inner">
+      <div class="app-hero-inner">
         <div>
-          <span class="prep-hero-eyebrow">Prep · Industry briefs</span>
-          <h1 class="prep-hero-title">Pick the client's industry.</h1>
-          <p class="prep-hero-sub">Open five minutes before the call. Trends, pressures, and the offerings most likely to surface.</p>
+          <span class="app-hero-eyebrow">Prep · Industry briefs</span>
+          <h1 class="app-hero-title">Pick the client's industry.</h1>
+          <p class="app-hero-sub">Open five minutes before the call. Trends, pressures, and the offerings most likely to surface.</p>
         </div>
-        <div class="prep-hero-count">4 industries</div>
+        <div class="app-hero-count">4 industries</div>
       </div>
     </div>
   </section>
@@ -1941,14 +1959,20 @@
 
 <!-- ===================== DISCOVER — themes + learning tools ===================== -->
 <div id="page-live" class="page-section hidden">
-  <section class="page" style="padding-top: 32px;">
+  <section class="app-hero">
     <div class="wrap">
-
-      <div style="margin-bottom:24px;">
-        <span class="v2-meta">Discover</span>
-        <h1 class="v2-title" style="margin-top:8px;">The questions that turn a call into a CAS engagement.</h1>
-        <p class="v2-purpose">Ask these seven. They're how you identify a consulting &amp; advisory project — and route it to the right offering.</p>
+      <div class="app-hero-inner">
+        <div>
+          <span class="app-hero-eyebrow">Discover</span>
+          <h1 class="app-hero-title">The questions that turn a call into a CAS engagement.</h1>
+          <p class="app-hero-sub">Ask these seven. They're how you identify a consulting &amp; advisory project — and route it to the right offering.</p>
+        </div>
+        <div class="app-hero-count">7 themes</div>
       </div>
+    </div>
+  </section>
+  <section class="page" style="padding-top: 24px;">
+    <div class="wrap">
 
       <!-- 7 NON-NEGOTIABLE THEMES -->
       <div class="v2-themes-strip">
@@ -2006,13 +2030,20 @@
 
 <!-- ===================== STOREFRONT — all 14 offerings ===================== -->
 <div id="page-offerings" class="page-section hidden">
-  <section class="page" style="padding-top: 28px;">
+  <section class="app-hero">
     <div class="wrap">
-      <div style="margin-bottom:20px;">
-        <span class="v2-meta">Storefront</span>
-        <h1 class="v2-title" style="margin-top:8px;">What we sell.</h1>
-        <p class="v2-purpose">All consulting &amp; advisory offerings, grouped by cluster. Each card shows the outcome the client walks away with.</p>
+      <div class="app-hero-inner">
+        <div>
+          <span class="app-hero-eyebrow">Storefront</span>
+          <h1 class="app-hero-title">What we sell.</h1>
+          <p class="app-hero-sub">All consulting &amp; advisory offerings, grouped by cluster. Each card shows the outcome the client walks away with.</p>
+        </div>
+        <div class="app-hero-count">14 offerings</div>
       </div>
+    </div>
+  </section>
+  <section class="page" style="padding-top: 24px;">
+    <div class="wrap">
       <div id="offerings-grid" class="v2-storefront"></div>
     </div>
   </section>
@@ -2037,17 +2068,20 @@
 
 <!-- ===================== POST-CALL — next steps + CD handoff ===================== -->
 <div id="page-post" class="page-section hidden">
-  <section class="page">
+  <section class="app-hero">
     <div class="wrap">
-      <div class="crumb">
-        <a onclick="nav('home')">Home</a> <span class="sep">/</span> <span>Follow-up</span>
+      <div class="app-hero-inner">
+        <div>
+          <span class="app-hero-eyebrow">Follow-up</span>
+          <h1 class="app-hero-title">You just left the room.</h1>
+          <p class="app-hero-sub">Capture what you heard, route to the right CD, send the leave-behind — within 24 hours.</p>
+        </div>
+        <div class="app-hero-count">4 steps</div>
       </div>
-
-      <div style="margin: 8px 0 28px;">
-        <span class="v2-meta">Follow-up</span>
-        <h1 class="v2-title" style="margin-top:8px;">You just left the room.</h1>
-        <p class="v2-purpose">Capture what you heard, route to the right CD, send the leave-behind — within 24 hours.</p>
-      </div>
+    </div>
+  </section>
+  <section class="page" style="padding-top: 24px;">
+    <div class="wrap">
       <div class="moves" style="margin-bottom:64px;">
         <div class="move-card" style="cursor:default;">
           <div class="move-num">STEP 01</div>
@@ -2094,9 +2128,22 @@
 <!-- ===================== SALES EDUCATION (the original Outreach Playbook landing) ===================== -->
 <div id="page-saled" class="page-section hidden">
 
+  <section class="app-hero">
+    <div class="wrap">
+      <div class="app-hero-inner">
+        <div>
+          <span class="app-hero-eyebrow">Get in the room</span>
+          <h1 class="app-hero-title">Earn the meeting before the pitch.</h1>
+          <p class="app-hero-sub">Pick a tier on the right and browse the plays — or use the account router to be pointed straight to one.</p>
+        </div>
+        <div class="app-hero-count">3 tiers · 21 moves</div>
+      </div>
+    </div>
+  </section>
+
   <section class="tiers" id="playbook-tiers" style="padding-top: 28px;">
     <div class="wrap">
-      <div style="margin-bottom: 28px;">
+      <div style="margin-bottom: 24px;">
         <span class="v2-meta">Browse by tier</span>
         <h2 class="v2-title" style="margin-top:6px; font-size: clamp(22px,2.6vw,28px);">Three situations. Different conversations.</h2>
       </div>
@@ -2142,20 +2189,9 @@
   </section>
 
   <section class="hero hero-split" style="padding-top:24px; padding-bottom:32px;">
-    <div class="wrap">
-      <div class="crumb" style="margin-bottom:20px;">
-        <a onclick="nav('home')">Home</a> <span class="sep">/</span> <span>Get in the room</span>
-      </div>
-    </div>
-    <div class="wrap hero-split-inner">
+    <div class="wrap hero-split-inner" style="grid-template-columns: 1fr;">
 
-      <div class="hero-left">
-        <span class="v2-meta">Get in the room</span>
-        <h1 class="v2-title" style="margin-top:8px; font-size: clamp(28px,3.4vw,40px);">Earn the meeting before the pitch.</h1>
-        <p class="v2-purpose">Pick a tier on the right and browse the plays — or use the account router to be pointed straight to one.</p>
-      </div>
-
-      <div class="hero-right">
+      <div class="hero-right" style="margin: 0 auto; max-width: 720px; width: 100%;">
         <div class="brief-widget">
           <div class="brief-widget-head">
             <span class="v2-meta">Account router</span>
@@ -2276,17 +2312,20 @@
 
 <!-- ===================== TIER 1 — ACTIVE ===================== -->
 <div id="page-tier1" class="page-section hidden">
-  <section class="page">
+  <section class="app-hero" data-tier="1">
     <div class="wrap">
-      <div class="crumb">
-        <a onclick="nav('home')">Home</a> <span class="sep">/</span> <a onclick="nav('saled')">Get in the room</a> <span class="sep">/</span> <span>Tier 01  ·  Active</span>
+      <div class="app-hero-inner">
+        <div>
+          <span class="app-hero-eyebrow">Tier 01 · Active accounts</span>
+          <h1 class="app-hero-title">Deepen before momentum is lost.</h1>
+          <p class="app-hero-sub">Engagement is live. Expand the stakeholder map and surface the next opportunity while access is at its peak.</p>
+        </div>
+        <div class="app-hero-count">7 moves · Pulse Check</div>
       </div>
-
-      <div style="margin: 8px 0 28px;">
-        <span class="v2-meta" style="color:var(--tier1);">Tier 01 · Active accounts</span>
-        <h1 class="v2-title" style="margin-top:8px;">Deepen before momentum is lost.</h1>
-        <p class="v2-purpose">Engagement is live. Expand the stakeholder map and surface the next opportunity while access is at its peak.</p>
-      </div>
+    </div>
+  </section>
+  <section class="page" style="padding-top: 24px;">
+    <div class="wrap">
 
       <div class="moves" id="tier1-moves"></div>
 
@@ -2310,17 +2349,20 @@
 
 <!-- ===================== TIER 2 — DORMANT ===================== -->
 <div id="page-tier2" class="page-section hidden">
-  <section class="page">
+  <section class="app-hero" data-tier="2">
     <div class="wrap">
-      <div class="crumb">
-        <a onclick="nav('home')">Home</a> <span class="sep">/</span> <a onclick="nav('saled')">Get in the room</a> <span class="sep">/</span> <span>Tier 02  ·  Dormant</span>
+      <div class="app-hero-inner">
+        <div>
+          <span class="app-hero-eyebrow">Tier 02 · Dormant accounts</span>
+          <h1 class="app-hero-title">Reactivate the relationship.</h1>
+          <p class="app-hero-sub">Trust exists. Context exists. The path back is shorter than it looks — but it needs a deliberate reactivation, not a cold start.</p>
+        </div>
+        <div class="app-hero-count">7 moves</div>
       </div>
-
-      <div style="margin: 8px 0 28px;">
-        <span class="v2-meta" style="color:var(--tier2);">Tier 02 · Dormant accounts</span>
-        <h1 class="v2-title" style="margin-top:8px;">Reactivate the relationship.</h1>
-        <p class="v2-purpose">Trust exists. Context exists. The path back is shorter than it looks — but it needs a deliberate reactivation, not a cold start.</p>
-      </div>
+    </div>
+  </section>
+  <section class="page" style="padding-top: 24px;">
+    <div class="wrap">
 
       <div class="moves" id="tier2-moves"></div>
     </div>
@@ -2330,17 +2372,20 @@
 
 <!-- ===================== TIER 3 — PROSPECTIVE ===================== -->
 <div id="page-tier3" class="page-section hidden">
-  <section class="page">
+  <section class="app-hero" data-tier="3">
     <div class="wrap">
-      <div class="crumb">
-        <a onclick="nav('home')">Home</a> <span class="sep">/</span> <a onclick="nav('saled')">Get in the room</a> <span class="sep">/</span> <span>Tier 03  ·  Prospective</span>
+      <div class="app-hero-inner">
+        <div>
+          <span class="app-hero-eyebrow">Tier 03 · Prospective accounts</span>
+          <h1 class="app-hero-title">Earn the right to a strategic conversation.</h1>
+          <p class="app-hero-sub">No consulting history yet. Reframe how they see us — and earn the first strategic call.</p>
+        </div>
+        <div class="app-hero-count">6 moves</div>
       </div>
-
-      <div style="margin: 8px 0 28px;">
-        <span class="v2-meta" style="color:var(--tier3);">Tier 03 · Prospective accounts</span>
-        <h1 class="v2-title" style="margin-top:8px;">Earn the right to a strategic conversation.</h1>
-        <p class="v2-purpose">No consulting history yet. Reframe how they see us — and earn the first strategic call.</p>
-      </div>
+    </div>
+  </section>
+  <section class="page" style="padding-top: 24px;">
+    <div class="wrap">
 
       <div class="moves" id="tier3-moves"></div>
     </div>
@@ -4788,17 +4833,11 @@ function openIndustry(id) {
           </div>
         `).join('')}
       </div>
-      <div class="ind-detail-block">
-        <div class="ind-detail-label">Common client challenges</div>
-        <ol class="ind-challenge-list">
+      <div class="ind-challenges-dark">
+        <span class="ind-challenges-eyebrow">Common client challenges</span>
+        <ol class="ind-challenges-dark-list">
           ${ind.challenges.map(c => `<li>${c}</li>`).join('')}
         </ol>
-      </div>
-      <div class="ind-callout">
-        <span class="ind-callout-eyebrow">At a glance</span>
-        <div class="ind-callout-item"><span class="dot"></span><div><b>${ind.engagements.length} offerings</b><br/><span>Most likely to surface in a call</span></div></div>
-        <div class="ind-callout-item"><span class="dot"></span><div><b>${ind.trends.length} live trends</b><br/><span>Top pressures driving conversations</span></div></div>
-        <div class="ind-callout-item"><span class="dot"></span><div><b>${ind.challenges.length} client pain points</b><br/><span>Common CLO challenges to listen for</span></div></div>
       </div>
     </div>
 
