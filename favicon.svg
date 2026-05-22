@@ -1,0 +1,102 @@
+# NIIT Client Solutions & Enablement Hub
+
+One unified static site that merges your Netlify wireframe (Pre-Call / Live / Post-Call) and the polished Outreach Playbook into a single coherent journey, with the playbook's "Apple-grade" aesthetic applied throughout.
+
+---
+
+## Deploy to Vercel — 3 ways, all under a minute
+
+### Option A — Drag & drop (fastest, no CLI)
+
+1. Go to `https://vercel.com/new`
+2. Drag this entire folder onto the page
+3. Click **Deploy**
+
+That's it. You'll get a URL like `niit-hub-xxxxx.vercel.app` instantly.
+
+### Option B — Vercel CLI
+
+```bash
+npm i -g vercel
+cd this-folder
+vercel
+```
+
+Follow the prompts (first run links a project; subsequent `vercel --prod` runs ship to production).
+
+### Option C — GitHub → Vercel
+
+1. Push this folder to a new GitHub repo
+2. Import the repo at `https://vercel.com/new`
+3. Vercel auto-detects it as a static site. Hit Deploy.
+
+---
+
+## What's in this folder
+
+| File | Purpose |
+|---|---|
+| `index.html` | The entire site — every page, all logic, all data |
+| `favicon.svg` | Brand favicon (NIIT ink, magenta dot) |
+| `vercel.json` | Routing config — every URL serves index.html so deep links work |
+| `package.json` | Project metadata (no build step required) |
+
+It is intentionally one HTML file. No framework, no build, no dependencies. Loads instantly, ships instantly.
+
+---
+
+## The architecture
+
+**One site. One nav. One journey.**
+
+```
+Hub home (mode selection)
+│
+├── Before a call  →  Industry selection  →  Industry landing (Trends · Challenges · Engagements)
+│                                                  │
+│                                                  └──→  Engagement detail
+│
+├── During a call  →  8-question diagnostic  →  Ranked engagement recommendations
+│                                                  │
+│                                                  └──→  Engagement detail
+│
+├── After a call   →  4-step workflow + CD directory
+│
+└── Sales education  (the original Outreach Playbook, untouched)
+       │
+       ├── Tier 01 · Active        →  7 moves + Pulse Check
+       ├── Tier 02 · Dormant       →  7 moves
+       ├── Tier 03 · Prospective   →  6 moves
+       ├── UCB story
+       └── Logic & tracking
+```
+
+---
+
+## Key fixes vs the original two sites
+
+1. **Single nav across every page.** Five items: Home · Before a call · During a call · After a call · Sales education. Top-nav active-state follows the section — so even on a deep page like an engagement detail or a tier move, the right top-level item stays lit. No more orphan deep pages.
+2. **Single aesthetic across every page.** All Hub pages now use the same design system (Poppins, ink-on-paper, magenta accent, no rounded corners, sticky blur nav) as the Outreach Playbook.
+3. **Bug fixed.** The original Outreach Playbook had its tier names swapped in the move-detail breadcrumb (Tier 1 was labeled "Prospective"). Now correctly: Tier 1 = Active, Tier 2 = Dormant, Tier 3 = Prospective.
+4. **Mobile nav** — the five items wrap horizontally with a hidden scrollbar, not stacked into a broken column.
+5. **Consistent breadcrumbs everywhere** — Home / Mode / Section / Item, every page.
+6. **Real cross-mode flow.** Diagnostic results link forward into engagement pages, engagement pages link forward to CD handoff. The "one user journey that is pragmatic" you asked for.
+
+---
+
+## What's still wireframe-ish (and easy to fill in)
+
+The four industry pages and 14 engagement pages are powered from two JavaScript objects (`INDUSTRIES` and `ENGAGEMENTS`) near the bottom of `index.html`. The Learning Function Review is the worked example with full case studies; the other engagements have the same structure but content placeholders that match what's in the Netlify wireframe. Edit those two objects — no template changes needed.
+
+The CD directory in Post-Call uses placeholder names (`CDS` array, same file). Swap in real names when ready.
+
+---
+
+## Local preview
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
+
+Or just open `index.html` directly in a browser — works without a server too.
