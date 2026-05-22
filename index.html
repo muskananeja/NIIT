@@ -1117,12 +1117,15 @@
     transition: border-color .2s, box-shadow .2s, transform .2s;
     position: relative;
   }
-  .move-v2-card:hover { border-color: var(--ink); box-shadow: 0 4px 14px rgba(14,27,51,0.05); transform: translateY(-1px); }
-  /* Per-card accent color & icon */
-  .move-v2-card:nth-child(1) { border-top-color: #0EA5A4; }
+  .move-v2-card:hover { border-color: var(--ink); box-shadow: 0 6px 18px rgba(14,27,51,0.07); transform: translateY(-2px); }
+  /* Navy + magenta only — match homepage palette */
+  .move-v2-card:nth-child(1) { border-top-color: var(--ink); }
   .move-v2-card:nth-child(2) { border-top-color: var(--accent); }
-  .move-v2-card:nth-child(3) { border-top-color: #6366F1; }
-  .move-v2-card:nth-child(4) { border-top-color: #F59E0B; }
+  .move-v2-card:nth-child(3) { border-top-color: var(--ink); }
+  .move-v2-card:nth-child(4) { border-top-color: var(--accent); }
+  /* Label icon colored to match top border */
+  .move-v2-card:nth-child(2) .move-v2-label svg,
+  .move-v2-card:nth-child(4) .move-v2-label svg { color: var(--accent); opacity: 1; }
   .move-v2-card p { font-size: 12.5px; color:var(--ink-soft); line-height:1.55; margin:0; }
   .move-v2-label {
     font-size: 9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase;
