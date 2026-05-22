@@ -1435,11 +1435,62 @@
 
   .ind-detail-grid {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 18px;
+    grid-template-columns: 1.1fr 0.9fr 0.7fr;
+    gap: 16px;
     margin-bottom: 28px;
   }
-  @media (max-width: 880px) { .ind-detail-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1080px) { .ind-detail-grid { grid-template-columns: 1fr 1fr; } .ind-callout { grid-column: 1 / -1; } }
+  @media (max-width: 720px)  { .ind-detail-grid { grid-template-columns: 1fr; } }
+
+  .ind-callout {
+    background:
+      radial-gradient(90% 60% at 100% 0%, rgba(230,0,126,0.20) 0%, transparent 55%),
+      radial-gradient(70% 50% at 0% 100%, rgba(107,91,255,0.14) 0%, transparent 50%),
+      linear-gradient(135deg, #0B1426 0%, #141E3A 55%, #1A1029 100%);
+    color: #fff;
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: var(--shadow-soft);
+  }
+  .ind-callout::before {
+    content:''; position:absolute; inset:0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 3px 3px;
+    pointer-events: none;
+    opacity: .55;
+  }
+  .ind-callout::after {
+    content:''; position:absolute; bottom:0; left:0; width:100%; height:1px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 60%);
+  }
+  .ind-callout > * { position: relative; z-index: 1; }
+  .ind-callout-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #98A1B3;
+  }
+  .ind-callout-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    color: #fff;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  .ind-callout-item .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .ind-callout-item b { font-weight: 600; }
+  .ind-callout-item span { color: #98A1B3; font-size: 11.5px; line-height: 1.4; }
 
   .ind-detail-block {
     background: #fff;
@@ -1585,6 +1636,69 @@
   }
   .ind-btn-secondary:hover { border-color: var(--ink); }
 
+  /* ===== Prep — dark hero band ===== */
+  .prep-hero {
+    background:
+      radial-gradient(80% 70% at 100% 0%, rgba(230,0,126,0.20) 0%, transparent 55%),
+      radial-gradient(60% 50% at 0% 100%, rgba(107,91,255,0.12) 0%, transparent 50%),
+      linear-gradient(135deg, #0B1426 0%, #141E3A 55%, #1A1029 100%);
+    color: #fff;
+    padding: 38px 0 30px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .prep-hero::before {
+    content:''; position:absolute; inset:0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 3px 3px;
+    pointer-events:none;
+    opacity:.55;
+  }
+  .prep-hero::after {
+    content:''; position:absolute; bottom:0; left:0; width:100%; height:1px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 60%);
+  }
+  .prep-hero > .wrap { position: relative; z-index: 1; }
+  .prep-hero-inner {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .prep-hero-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .prep-hero-eyebrow::before { content:''; width: 28px; height:1px; background: var(--accent); }
+  .prep-hero-title {
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #fff;
+    margin: 14px 0 10px;
+  }
+  .prep-hero-sub {
+    font-size: 14px;
+    color: #B9C0D0;
+    line-height: 1.55;
+    max-width: 52ch;
+    margin: 0;
+  }
+  .prep-hero-count {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #98A1B3;
+    padding-bottom: 6px;
+  }
+
   /* ===== Prep — industry cards (4-col, polished) ===== */
   #industry-grid {
     display: grid !important;
@@ -1644,13 +1758,8 @@
     padding-top: 12px;
     border-top: 1px solid var(--grey-100);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    color: var(--grey-400);
-    text-transform: uppercase;
   }
   .ind-foot .ind-open {
     color: var(--ink);
@@ -1802,21 +1911,20 @@
 
 <!-- ===================== PRE-CALL — industry selection ===================== -->
 <div id="page-pre" class="page-section hidden">
-  <section class="page">
+  <section class="prep-hero">
     <div class="wrap">
-      <div class="crumb">
-        <a onclick="nav('home')">Home</a> <span class="sep">/</span> <span>Prep</span>
-      </div>
-
-      <div style="margin: 8px 0 22px; display:flex; justify-content:space-between; align-items:flex-end; gap: 24px; flex-wrap: wrap;">
+      <div class="prep-hero-inner">
         <div>
-          <span class="v2-meta">Prep · Industry briefs</span>
-          <h1 class="v2-title" style="margin-top:8px;">Pick the client's industry.</h1>
-          <p class="v2-purpose">Open five minutes before the call. Trends, pressures, and the offerings most likely to surface.</p>
+          <span class="prep-hero-eyebrow">Prep · Industry briefs</span>
+          <h1 class="prep-hero-title">Pick the client's industry.</h1>
+          <p class="prep-hero-sub">Open five minutes before the call. Trends, pressures, and the offerings most likely to surface.</p>
         </div>
-        <div style="font-size: 11px; color: var(--grey-400); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">4 industries</div>
+        <div class="prep-hero-count">4 industries</div>
       </div>
-
+    </div>
+  </section>
+  <section class="page" style="padding-top: 24px;">
+    <div class="wrap">
       <div id="industry-grid"></div>
     </div>
   </section>
@@ -4635,7 +4743,6 @@ function renderIndustryGrid() {
         <div class="ind-name">${ind.full}</div>
         <div class="ind-pitch">${ind.pitch}</div>
         <div class="ind-foot">
-          <span>${meta}</span>
           <span class="ind-open">Open →</span>
         </div>
       </div>
@@ -4686,6 +4793,12 @@ function openIndustry(id) {
         <ol class="ind-challenge-list">
           ${ind.challenges.map(c => `<li>${c}</li>`).join('')}
         </ol>
+      </div>
+      <div class="ind-callout">
+        <span class="ind-callout-eyebrow">At a glance</span>
+        <div class="ind-callout-item"><span class="dot"></span><div><b>${ind.engagements.length} offerings</b><br/><span>Most likely to surface in a call</span></div></div>
+        <div class="ind-callout-item"><span class="dot"></span><div><b>${ind.trends.length} live trends</b><br/><span>Top pressures driving conversations</span></div></div>
+        <div class="ind-callout-item"><span class="dot"></span><div><b>${ind.challenges.length} client pain points</b><br/><span>Common CLO challenges to listen for</span></div></div>
       </div>
     </div>
 
