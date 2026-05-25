@@ -1774,6 +1774,128 @@
   }
   .ind-card:hover .ind-foot .ind-open { color: var(--accent); transform: translateX(3px); }
 
+  /* ===== Offering landing page (Challenge → What We Do → Process → Outcomes → Stories) ===== */
+  .off-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  @media (max-width: 880px) { .off-grid { grid-template-columns: 1fr; } }
+  .off-block {
+    background: #fff;
+    border: 1px solid var(--grey-200);
+    padding: 22px 24px;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .off-block:hover { border-color: var(--ink); box-shadow: var(--shadow-soft); }
+  .off-block p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+  .off-block.off-challenge { background: var(--grey-50); }
+
+  .off-section { margin-bottom: 32px; }
+  .off-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--grey-600); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .off-num {
+    background: var(--accent); color: #fff;
+    font-size: 9.5px; font-weight: 700;
+    padding: 3px 9px; letter-spacing: 0.08em;
+  }
+
+  .off-process { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .off-step {
+    background: #fff;
+    border: 1px solid var(--grey-200);
+    padding: 18px 20px;
+    display: flex; gap: 16px;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .off-step::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+    background: var(--accent); transform: scaleY(0); transform-origin: top;
+    transition: transform .25s ease;
+  }
+  .off-step:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+  .off-step:hover::before { transform: scaleY(1); }
+  .off-step-num {
+    font-size: 22px; font-weight: 300;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1; min-width: 32px;
+    flex-shrink: 0;
+  }
+  .off-step-body h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 6px; letter-spacing: -0.01em; }
+  .off-step-body p { font-size: 12.5px; color: var(--grey-600); line-height: 1.5; margin: 0; }
+
+  .off-outcomes {
+    list-style: none; counter-reset: outc; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+  }
+  @media (max-width: 720px) { .off-outcomes { grid-template-columns: 1fr; } }
+  .off-outcomes li {
+    counter-increment: outc;
+    padding: 10px 0 12px 32px;
+    border-bottom: 1px solid var(--grey-100);
+    position: relative;
+    font-size: 13px; color: var(--ink-soft); line-height: 1.5;
+  }
+  .off-outcomes li::before {
+    content: counter(outc, decimal-leading-zero);
+    position: absolute; left: 0; top: 10px;
+    font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em;
+  }
+
+  .off-stories { display: flex; flex-direction: column; gap: 14px; }
+  .off-story {
+    background: #fff;
+    border: 1px solid var(--grey-200);
+    overflow: hidden;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .off-story:hover { border-color: var(--ink); box-shadow: var(--shadow-soft); }
+  .off-story-head {
+    background: var(--ink); color: #fff;
+    padding: 14px 22px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .off-story-client { font-size: 14px; font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+  .off-story-industry { font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 3px; }
+  .off-story-title {
+    font-size: 13.5px; color: #C2C8D8; font-style: italic;
+    text-align: right; max-width: 50ch;
+  }
+  .off-story-body {
+    padding: 20px 22px;
+    display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 22px;
+  }
+  @media (max-width: 880px) { .off-story-body { grid-template-columns: 1fr; } }
+  .off-story-section .off-story-label {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--grey-600); margin-bottom: 8px;
+  }
+  .off-story-outcome .off-story-label { color: var(--accent); }
+  .off-story-section p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; margin: 0; }
+  .off-story-section ul { padding: 0; margin: 0; list-style: none; }
+  .off-story-section ul li {
+    font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;
+    padding-left: 14px; position: relative; margin-bottom: 6px;
+  }
+  .off-story-section ul li::before {
+    content: ''; position: absolute; left: 0; top: 8px;
+    width: 4px; height: 4px; background: var(--accent); border-radius: 50%;
+  }
+  .off-story-outcome p { color: var(--ink); font-weight: 500; }
+
+  /* Storefront cards — clickable indicator */
+  .v2-off-card.has-detail { cursor: pointer; }
+  .v2-off-cta {
+    font-size: 10.5px; font-weight: 600;
+    color: var(--accent); letter-spacing: 0.06em;
+    margin-top: 8px;
+    transition: transform .15s;
+  }
+  .v2-off-card.has-detail:hover .v2-off-cta { transform: translateX(3px); }
+
   /* ===== Storefront — grouped by cluster, polished cards ===== */
   .v2-storefront { display:flex; flex-direction:column; gap: 26px; }
   .v2-cluster {
@@ -2034,6 +2156,24 @@
     </div>
   </section>
   <div class="footer"><div class="wrap footer-inner"><span>NIIT Consulting &amp; Advisory  ·  Sales &amp; Engagement Hub</span><span>v0.4</span></div></div>
+</div>
+
+<!-- ===================== OFFERING DETAIL — landing page ===================== -->
+<div id="page-offering-detail" class="page-section hidden">
+  <section class="app-hero">
+    <div class="wrap">
+      <div class="app-hero-inner">
+        <div>
+          <span class="app-hero-eyebrow" id="off-cluster"></span>
+          <h1 class="app-hero-title" id="off-name"></h1>
+          <p class="app-hero-sub" id="off-definition"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="page" style="padding-top: 24px;">
+    <div class="wrap" id="offering-detail-body"></div>
+  </section>
 </div>
 
 <!-- ===================== DIAGNOSTIC RESULTS ===================== -->
@@ -3796,6 +3936,8 @@ function navBack() {
   const prev = _navHistory.pop(); // pop previous — handler below will re-push
   if (typeof prev === 'string' && prev.startsWith('move:')) {
     openMove(prev.slice(5));
+  } else if (typeof prev === 'string' && prev.startsWith('offering:')) {
+    openOffering(prev.slice(9));
   } else if (typeof prev === 'string') {
     nav(prev);
   } else {
@@ -3818,6 +3960,7 @@ const ROUTES = {
   post:    { page: 'page-post',         topNav: 'post'  },
   saled:   { page: 'page-saled',        topNav: 'saled' },
   offerings: { page: 'page-offerings',  topNav: 'offerings' },
+  'offering-detail': { page: 'page-offering-detail', topNav: 'offerings' },
 
   // Deep routes within Sales Education
   tier1:   { page: 'page-tier1',        topNav: 'saled' },
@@ -4000,9 +4143,9 @@ function renderOfferingsGrid() {
   };
   const order = ['Wedge','AI & Digital','Learning Function Design','Capability & Skills','Portfolio & Governance','Skills Intelligence','Analytics & Technology'];
   const groups = {};
-  Object.values(DIAG_OFFERINGS).forEach(o => {
+  Object.entries(DIAG_OFFERINGS).forEach(([key, o]) => {
     if (!groups[o.cluster]) groups[o.cluster] = [];
-    groups[o.cluster].push(o);
+    groups[o.cluster].push({key, ...o});
   });
   el.innerHTML = order.filter(k => groups[k]).map(k => {
     const items = groups[k];
@@ -4014,16 +4157,380 @@ function renderOfferingsGrid() {
           <div class="v2-cluster-count">${items.length} offering${items.length>1?'s':''}</div>
         </div>
         <div class="v2-offerings-grid">
-          ${items.map(o => `
-            <div class="v2-off-card">
-              <div class="v2-off-name">${o.name}</div>
-              <div class="v2-off-outcome">${o.outcome}</div>
-            </div>
-          `).join('')}
+          ${items.map(o => {
+            const hasDetail = OFFERING_DETAILS && OFFERING_DETAILS[o.key];
+            return `
+              <div class="v2-off-card ${hasDetail ? 'has-detail' : ''}" onclick="${hasDetail ? `openOffering('${o.key}')` : ''}">
+                <div class="v2-off-name">${o.name}</div>
+                <div class="v2-off-outcome">${o.outcome}</div>
+                ${hasDetail ? '<div class="v2-off-cta">Open landing page →</div>' : '<div class="v2-off-cta" style="color:var(--grey-400);">Coming soon</div>'}
+              </div>
+            `;
+          }).join('')}
         </div>
       </div>
     `;
   }).join('');
+}
+
+// ============ OFFERING LANDING PAGES ============
+const OFFERING_DETAILS = {
+  lft: {
+    challenge: `Organizations need to respond faster to changing business priorities, emerging technologies, evolving workforce expectations, and shifting skill demands. Leaders increasingly expect Learning and Talent teams to play a more strategic role in enabling transformation. But Learning and Talent functions have typically evolved independently across business units, regions, and functional teams — creating fragmented operating models, inconsistent learner experiences, duplicated investments, disconnected technologies, and limited visibility into workforce capability needs.`,
+    whatWeDo: `Learning Transformation helps organizations align their Learning and Talent functions with their business strategy, workforce priorities, and evolving ways of working. We review the current learning function, then redesign the operating model, governance, processes, technologies, and talent experiences needed to support growth, performance, and future capability needs across the enterprise.`,
+    process: [
+      { t: 'Learning activity analysis', d: 'Analyze current learning operations across the enterprise; surface initiatives needed to enable transformation.' },
+      { t: 'Operating model design', d: 'Define the future-state Learning Operating Model and governance framework — processes, roles, standards, interaction models.' },
+      { t: 'Transition playbook', d: 'Build a Learning Operating Model Transition Playbook to operationalize the strategy and guide implementation of key initiatives.' },
+      { t: 'Phased roadmap', d: 'Create phased implementation and transition plans to support model redesign, organizational alignment, and adoption of new ways of working.' },
+      { t: 'Strategic advisory', d: 'Provide ongoing transformation support across governance, learning operations, stakeholder alignment, and implementation planning.' }
+    ],
+    outcomes: [
+      'Align Learning and Talent strategy, investments, and governance more closely to business priorities and workforce capability needs',
+      'Create a more connected, scalable, and business-led Learning ecosystem across functions, geographies, and teams',
+      'Improve workforce readiness and agility through more targeted, skills-focused, learner-centric development experiences',
+      'Increase operational efficiency, transparency, and consistency across learning processes, technologies, and vendors',
+      'Build a stronger foundation for long-term workforce transformation, capability building, and organizational resilience'
+    ],
+    stories: [{
+      client: 'Leading Global Pharmaceutical Organization', industry: 'Pharma & Life Sciences',
+      title: 'Enterprise Learning Transformation Program',
+      challenge: 'The client engaged CAS to support a broader enterprise Learning Transformation initiative aimed at aligning Learning more closely with evolving business priorities, workforce capability needs, and future ways of working. A Learning Function Review identified the need to redesign the Learning Operating Model to improve governance, scalability, consistency, and alignment.',
+      did: ['Conducted learning activity analysis and recommended key initiatives to enable transformation','Developed a comprehensive Learning Operating Model Transition Playbook','Defined detailed learning lifecycle processes, governance structures, standards, roles, interaction models, and transition approaches','Created phased implementation and transition plans','Provided ongoing strategic advisory across governance, operations, and stakeholder alignment'],
+      outcome: 'Established the foundation for a more agile, scalable, and business-aligned Learning organization. Enabled greater consistency in governance, learning operations, and learner experience while creating a stronger framework for skills-focused, personalized, and business-driven learning.'
+    }]
+  },
+  acad: {
+    challenge: `Sales and other functions often have access to learning content but no clear academy structure, onboarding journey, or upskilling pathway. New hires move directly into courses without strong orientation. Existing teams need clearer support to build product knowledge, role confidence, and future-ready skills. Organizations need a scalable academy model that can support immediate capability needs while acting as a blueprint for future academies.`,
+    whatWeDo: `Academy Design & Build brings together role-based learning, onboarding, upskilling, content structure, governance, and launch planning into one connected experience. We help learners navigate learning meaningfully — designing structured onboarding and upskilling journeys, mapping content to priority skills, optimizing existing content, and identifying where additional interventions are needed.`,
+    process: [
+      { t: 'Analyze', d: 'Stakeholder workshops and interviews to understand priorities, learner groups, business pain points, and current learning landscape. Review existing catalogue to identify what is available, outdated, or missing.' },
+      { t: 'Design', d: 'Define the academy vision and high-level structure. Identify priority roles, core skills, and the learning journeys required for new hires and existing employees.' },
+      { t: 'Develop', d: 'Map available content to roles and skills, organize the catalogue into intuitive journeys, and create a list of recommended interventions to fill gaps.' },
+      { t: 'Implement', d: 'Create academy wireframes and launch support materials so the client can visualize how the academy works on the learning platform.' },
+      { t: 'Evaluate', d: 'Build the Academy Playbook with governance, ownership, processes, content standards, maintenance, measurement, and guidance for future academy development.' }
+    ],
+    outcomes: [
+      'Structured academy model with clear onboarding and upskilling journeys for each function',
+      'A guided learning experience — learners understand where to begin and how learning connects to their role',
+      'Organized learning catalogue with skill and content gaps identified',
+      'Academy Playbook for sustaining the academy over time — governance, ownership, content maintenance, quality standards, measurement',
+      'LMS/LXP wireframes making the solution easier for stakeholders to visualize, discuss, and implement'
+    ],
+    stories: [{
+      client: 'Qatar Airways', industry: 'Aviation',
+      title: 'Qatar Airways Sales Academy',
+      challenge: 'The Sales team had learning resources but the experience was not easy to navigate. Learners could access courses but didn\'t always know where to start, what was most relevant, or how learning connected to their role. New hires moved directly into courses without context. Sales teams were sometimes relying on discounts to close deals — pointing to a deeper need for stronger product understanding and consultative selling skills.',
+      did: ['Stakeholder workshops + content catalogue review','Defined the academy vision, priority sales roles, core skills','Designed onboarding and upskilling journeys','Built academy wireframes for LMS/LXP visualization','Delivered the Academy Playbook with governance and content standards'],
+      outcome: 'Moved Qatar Airways from "we have learning content" to "we have a clear capability-building experience." Gave learners a guided journey, organized the catalogue, identified gaps, and created a sustainable framework that can scale to future academies.'
+    }]
+  },
+  adcb: {
+    challenge: `Many organisations have invested heavily in digital platforms, automation, and AI tools — but operational transformation lags behind. The challenge is no longer technology deployment alone, but redesigning how work gets done, how decisions are made, and how the workforce operates in AI-enabled environments. Capability frameworks remain anchored in outdated role structures. Learning investments are disconnected from strategic workforce priorities, digital capabilities are defined inconsistently, and organisations struggle to determine which capabilities truly matter in an AI-enabled operating environment.`,
+    whatWeDo: `AI & Digital Capability Building Programs help organisations build the workforce capabilities needed to adopt AI, automation, data, and digital ways of working at scale. The work goes beyond training delivery to define which capabilities matter, where capability gaps exist, how skills should be activated in day-to-day work, and how adoption should be governed and measured.`,
+    process: [
+      { t: 'Strategic context', d: 'Analyze business priorities, job architecture, strategic initiatives, and leadership input on AI.' },
+      { t: 'Market benchmarking', d: 'Research peers, adjacent industries, and external skills reports to identify digital, data, and AI capability trends.' },
+      { t: 'Capability surfacing', d: 'Facilitate working sessions across the value chain to surface capability gaps and skills priorities.' },
+      { t: 'Capability model', d: 'Develop a Digital & AI Skills and Capability Model spanning AI foundations, leadership, human, technical, and deep technical dimensions.' },
+      { t: 'Validation workshop', d: 'Run a Future of Work & Digital Capability workshop with senior stakeholders to validate the model against business priorities and constraints.' },
+      { t: 'Prioritization', d: 'Apply a structured prioritisation framework to distinguish enterprise-wide quick wins from deeper business-unit-specific capability bets.' },
+      { t: 'Implementation roadmap', d: 'Build a roadmap covering 6 workstreams including governance and measurement for integrated, sustained capability development.' }
+    ],
+    outcomes: [
+      'Clearer prioritisation of enterprise AI, digital, and data capabilities tied to business strategy',
+      'Better alignment between workforce capability investments and evolving operating models',
+      'Stronger leadership readiness for AI-enabled decision-making and organisational change',
+      'More consistent governance around digital capability development, trust, and ethical AI adoption',
+      'Improved workforce adoption of new tools, workflows, and ways of working',
+      'Greater visibility into capability gaps, role evolution, and future workforce requirements'
+    ],
+    stories: [{
+      client: 'UCB', industry: 'Pharma & Life Sciences',
+      title: 'Digital Capability Model and Implementation Roadmap',
+      challenge: 'UCB had a clear ambition to use digital, data, and AI to accelerate scientific discovery, improve patient outcomes, and support long-term growth. But capability requirements were evolving faster than the existing skills architecture, and maturity varied across PVUs and functions. The organisation needed a clearer view of which digital and AI capabilities mattered most, how they should be defined, and where to focus near-term and long-term upskilling investment.',
+      did: ['Analyzed business priorities, job architecture, and Techwolf insights','Benchmarked digital/data/AI trends across pharma and adjacent industries','Facilitated working sessions across the value chain to surface gaps','Built a Digital & AI Skills and Capability Model','Ran a Future of Work workshop to validate against business priorities','Applied a prioritisation framework for enterprise vs PVU-specific bets','Developed a 6-workstream roadmap including governance and measurement'],
+      outcome: 'Gave UCB an evidence-based foundation for deciding where to invest in digital/data/AI capability building. Translated transformation ambition into a structured capability model, prioritisation logic, and roadmap. Positioned UCB to focus near-term on enterprise scale capabilities (Data & AI Literacy, Responsible AI, Adaptive Thinking) while recognising deeper specialist capabilities need PVU-led pathways.'
+    }]
+  },
+  saf: {
+    challenge: `Due to emerging technologies, workforce shortages, evolving employee expectations, and changing ways of working, organisations are facing increasing pressure to redefine workforce capabilities. Many struggle to clearly define the skills and capabilities needed for future success, assess current workforce readiness, and create consistent approaches for talent development, mobility, and workforce planning. Skills information exists across disconnected systems and functions — resulting in inconsistent skill definitions, fragmented job architectures, limited visibility into workforce capabilities, and challenges aligning learning, performance, staffing, and career decisions.`,
+    whatWeDo: `Skills Architecture & Framework helps organisations define, organize, and operationalize the skills, behaviors, and capability expectations needed for business success. We create a structured and transparent framework to identify skills, proficiency levels, role expectations, and development pathways — enabling consistent talent decisions across hiring, development, mobility, and performance management. The work includes skills taxonomies, role/capability frameworks, assessment approaches, proficiency models, governance structures, and enablement tools.`,
+    process: [
+      { t: 'Discovery & stakeholder consultation', d: 'Working sessions with senior stakeholders to identify critical decision moments, capability expectations, and gaps.' },
+      { t: 'Capability framework design', d: 'Build the enterprise capability framework — key skills, sub-behaviors, mindset shifts, enablers, and business impacts.' },
+      { t: 'Behavioral architecture', d: 'Translate enterprise behaviors into observable actions and practical workplace application using "What, Why, How, Do" definitions.' },
+      { t: 'Role-based personas', d: 'Create role-based learner personas, competency grids, and moments-that-matter maps aligned to enterprise roles and decision contexts.' },
+      { t: 'Capability development architecture', d: 'Design a scalable, digital-first capability development architecture — learning objectives, modular interventions, governance, scaling models, and measurement.' }
+    ],
+    outcomes: [
+      'Enterprise-wide view of the skills and capabilities needed to support business strategy and future ways of working',
+      'Consistent skills definitions, proficiency expectations, and capability frameworks across roles, functions, and talent processes',
+      'Visibility into workforce capabilities, skill gaps, and development priorities for more informed talent decisions',
+      'Transparent, skills-based approaches to learning, career mobility, staffing, performance management, and workforce planning',
+      'Scalable foundation for skills-driven talent practices, workforce agility, and long-term organisational adaptability'
+    ],
+    stories: [
+      {
+        client: 'Global Mining and Metals Organization', industry: 'Mining & Resources',
+        title: 'S&OP Leadership Capability Framework',
+        challenge: 'Strong Sales and Operational Planning (S&OP) processes existed, but leadership engagement and decision-making behaviors across GM and MD levels were inconsistent. S&OP was viewed as a planning process rather than a cross-functional leadership capability — resulting in siloed decision-making, limited system-wide ownership, and inconsistent leader behaviors.',
+        did: ['Working sessions with senior stakeholders to identify critical S&OP decision moments','Developed an S&OP Leadership Behaviors and Mindset Framework','Created role-based learner personas and character sketches','Designed a role-based learning strategy and capability architecture','Designed a scalable capability development journey and learning resource build plan'],
+        outcome: 'Established a clear, practical definition of what effective S&OP leadership looks like. Enabled the client to move beyond process-centric participation towards collaborative, business-led decision-making focused on enterprise value creation. Created a scalable foundation for leadership onboarding and long-term behavior reinforcement.'
+      },
+      {
+        client: 'Novartis', industry: 'Pharma & Life Sciences',
+        title: 'Enterprise Capability Framework for Cross-functional Collaboration',
+        challenge: 'As Novartis evolved from fragmented, function-specific learning programs towards a unified Enterprise Skills strategy, Cross-functional Collaboration and Stakeholder Engagement were identified as critical priorities to support its Network Teams model and "future ways of working." Existing learning efforts were cohort-based and decentralized — limiting scalability, consistency, and alignment around the behaviors required to operate in matrixed environments.',
+        did: ['Discovery workshops to identify critical collaboration behaviors and mindset shifts','Built an enterprise capability framework with key skills, behaviors, enablers, and business impacts','Designed behavioral architecture using "What, Why, How, Do" definitions','Created role-based competency grids and moments-that-matter maps','Designed a scalable, digital-first capability development architecture with governance, scaling, and measurement'],
+        outcome: 'Helped Novartis advance its shift towards a networked, enterprise-first organization by creating a shared framework for collaboration, stakeholder engagement, and decision-making across teams. Established clearer expectations for how individuals and teams operate in complex, matrixed environments. Created a strong foundation for enterprise-wide capability building.'
+      }
+    ]
+  },
+  lam: {
+    challenge: `Many organisations have mature learning ecosystems but limited capability intelligence. Data exists across LMSs, LXPs, CRMs, collaboration tools, workflow systems, and operational environments — yet most learning functions rely on manually assembled reporting focused on completions and satisfaction scores. Leaders struggle to understand whether capability investments are influencing adoption, productivity, customer behaviour, or workforce readiness. As AI-enabled ways of working emerge, traditional learning analytics is becoming insufficient. The expectation is shifting from periodic reporting to continuous signal detection across workflows and business outcomes.`,
+    whatWeDo: `Learning Analytics & Measurement Strategy helps organisations understand whether learning investments are influencing business outcomes, workforce behaviour, and operational performance. We establish the data, governance, measurement frameworks, and decision-making processes needed to move beyond completion reporting toward evidence-based learning decisions. The work builds an AI-enabled measurement ecosystem that continuously captures signals across learning, workflow, performance, customer behaviour, and operational systems.`,
+    process: [
+      { t: 'Maturity assessment', d: 'Enterprise-wide stakeholder interviews across commercial, marketing, product, R&D, customer success, and systems leadership to assess current measurement maturity and business alignment.' },
+      { t: 'Data architecture review', d: 'Assess learning data architecture, system integration gaps, reporting processes, and data readiness across LMS, CRM, event, and operational platforms.' },
+      { t: 'Future-state vision', d: 'Design a learning analytics vision linking learning activities to adoption, utilisation, and commercial performance outcomes.' },
+      { t: 'Measurement framework', d: 'Develop a phased measurement framework, analytics roadmap, KPI structure, and governance approach.' },
+      { t: 'Alignment workshops', d: 'Facilitate leadership workshops to align stakeholders on definitions, measurement priorities, taxonomy standards, and operating principles.' }
+    ],
+    outcomes: [
+      'Shift learning measurement from retrospective reporting to continuous organisational sensing',
+      'Connect learning, workflow, customer, and operational signals into a unified decision-making ecosystem',
+      'Improve visibility into capability application, adoption patterns, and behavioural change',
+      'Enable AI-assisted identification of performance risks, engagement gaps, and intervention opportunities',
+      'Establish scalable governance, taxonomy, and measurement architectures across learning ecosystems',
+      'Improve investment decisions by linking capability-building activity to operational and commercial outcomes'
+    ],
+    stories: [{
+      client: 'Global Animal Health Diagnostics Organisation', industry: 'Animal Health',
+      title: 'Customer Education Learning Analytics Strategy',
+      challenge: 'The client had built a broad customer education ecosystem spanning live events, webinars, on-demand learning, trade shows, in-clinic education, and commercial enablement. But customer education data was fragmented across systems and disconnected from business metrics like product adoption, utilisation, and customer engagement. Leadership wanted clearer evidence of how education influenced commercial outcomes — particularly for strategic diagnostic products and new market launches.',
+      did: ['Enterprise-wide stakeholder interviews across commercial, marketing, product, R&D, customer success, and systems','Assessed learning data architecture and integration gaps across LMS, CRM, event, and operational platforms','Designed a future-state learning analytics vision linking education to adoption and commercial performance','Developed a phased measurement framework, analytics roadmap, KPI structure, and governance approach','Facilitated leadership workshops to align on definitions, measurement priorities, and operating principles'],
+      outcome: 'Provided a structured enterprise view of how customer education could be measured, governed, and linked to commercial outcomes. Created alignment across stakeholders on what should be measured, how customer education should be defined, and where operational gaps existed. Positioned the organisation to move from fragmented activity reporting toward integrated, business-aligned learning analytics.'
+    }]
+  },
+  lsg: {
+    challenge: `Organizations face fragmented and inconsistent learning content development across regions and functions, with limited governance and quality assurance. There's low visibility into content lifecycle, compliance, and audit readiness — particularly critical in regulated environments like GxP. Organizations rely heavily on external vendors and lack scalable ways to empower internal SMEs to create and manage content efficiently.`,
+    whatWeDo: `A structured approach to designing, managing, and governing learning content across the organisation. We establish clear standards, workflows, and accountability to ensure learning content is consistent, compliant, high-quality, and aligned with business needs. The work covers end-to-end governance, intake, lifecycle management, and enablement of internal teams.`,
+    process: [
+      { t: 'Discovery & AS-IS analysis', d: 'Stakeholder interviews and current-state analysis to define gaps and future-state vision.' },
+      { t: 'Framework co-design', d: 'Co-design the learning content development framework, aligned with business needs and learning culture.' },
+      { t: 'MVP definition', d: 'Develop a Minimum Viable Product with core and advanced service levels.' },
+      { t: 'Governance & workflows', d: 'Establish end-to-end governance, workflows, and lifecycle management processes — plus quality assurance checkpoints.' },
+      { t: 'Tiered development model', d: 'Introduce a multi-tier development model (e.g. Self-Checkout, Studio, Boutique) to support different complexity levels.' },
+      { t: 'Intake system', d: 'Design and implement a structured intake and triage system for learning needs.' },
+      { t: 'Beta pilot & activation', d: 'Run beta pilot with refinement cycles. Deliver enablement assets including communication toolkit and activation playbook.' }
+    ],
+    outcomes: [
+      'Consistent and standardised approach to learning content development across regions and teams',
+      'Compliance, audit readiness, and quality assurance through structured governance and checkpoints',
+      'End-to-end visibility of the content lifecycle — improving control and decision-making',
+      'Reduced dependency on external vendors by empowering SMEs and internal teams',
+      'Improved speed, scalability, and efficiency of content development and deployment'
+    ],
+    stories: [{
+      client: 'UCB', industry: 'Pharma & Life Sciences',
+      title: 'U-KNOW Learning Content Development Framework',
+      challenge: 'UCB faced significant challenges due to fragmented and inconsistent learning content creation processes across global teams. There was no unified governance model, leading to inefficiencies, duplication, and lack of standardisation. The organisation also required stronger compliance mechanisms to meet GxP regulatory standards and improve audit readiness. There was also a need to reduce reliance on external vendors while empowering internal stakeholders.',
+      did: ['Co-designed the U-KNOW Learning Content Development Framework aligned with UCB\'s business needs','Conducted discovery, stakeholder interviews, and AS-IS analysis','Developed an MVP with core and advanced service levels','Established end-to-end governance, workflows, and lifecycle management','Introduced a three-tier development model: Self-Checkout, Learning Studio, Learning Boutique','Designed the Learning Launchpad for structured intake and triage','Led a beta pilot and refinement cycle','Delivered enablement assets including communication toolkit and activation playbook'],
+      outcome: 'Enabled UCB to standardise and streamline its learning content development processes globally — significantly improving consistency, compliance, and efficiency. Increased visibility across the content lifecycle, strengthened audit readiness in a regulated environment, and reduced dependency on external vendors. Established a strong governance foundation for sustainable adoption and continuous improvement.'
+    }]
+  },
+  po: {
+    challenge: `Organizations often struggle with bloated, fragmented, and underperforming learning portfolios. This typically surfaces during LMS/LXP transitions, organizational restructuring, or MLS onboarding. What's broken: thousands of courses across systems with no single source of truth, redundant content (e.g. 200+ versions of the same topic), outdated or unused assets, inconsistent taxonomy and ownership. Learners get overwhelmed → low engagement and completion. In an attention economy, a cluttered learning ecosystem loses the learner before they even start.`,
+    whatWeDo: `We rationalize, streamline, and elevate the learning portfolio to ensure every asset is relevant to business priorities, high quality, easy to discover, and cost-efficient to maintain. The approach combines deep data analysis, AI-supported optimization, and business-aligned prioritization to deliver a focused, high-impact learning portfolio that drives engagement and reduces cost.`,
+    process: [
+      { t: 'Phase 1 — Portfolio clean-up', d: 'Consolidate data across LMS/LXP and other systems. Clean and standardize metadata (taxonomy, tags, ownership). Create a single unified catalogue. Identify duplicates, outdated courses, and low-engagement assets.' },
+      { t: 'Phase 2 — Content-level optimization', d: 'Review course design and instructional quality. Assess against business relevance, learning effectiveness, modality fit, and content duplication. Assign clear recommendations: retain, retire, refresh, replace, or rationalize.' },
+      { t: 'Final deliverables', d: 'Clean, standardized LMS-ready catalogue. Detailed course-level recommendations. Cost-saving and impact analysis. Execution roadmap. Optional governance playbook for sustainability.' }
+    ],
+    outcomes: [
+      'Significant cost reduction and avoidance — e.g. up to $24.9M net savings in year 1 on a recent engagement',
+      'Significant reduction in total courses; elimination of duplication and outdated content',
+      'Clearer, structured learning pathways; reduced cognitive overload',
+      'Improved engagement and completion rates',
+      'Reduction in total learning hours — thousands of hours returned to the business',
+      'Faster time-to-competence'
+    ],
+    stories: [
+      {
+        client: 'Rio Tinto Iron Ore (RTIO)', industry: 'Mining & Resources',
+        title: 'Full Portfolio Optimization (Level 2)',
+        challenge: 'Portfolio of 3,300+ courses across multiple systems. Poor data quality, duplication, unclear ownership. No clear definition of mandatory learning.',
+        did: ['Consolidated and cleaned portfolio data','Conducted full course-level review and optimization','Built governance frameworks and maintenance processes'],
+        outcome: 'Reduced portfolio by ~30% (766 courses retired). Delivered $27.6M annual savings potential. Reduced learning hours by ~197,000 annually. Established governance for long-term sustainability. Transformed learning from a compliance-heavy burden into a strategic, efficient system.'
+      },
+      {
+        client: 'Unilever', industry: 'Consumer Goods',
+        title: 'Pathway Optimization (Level 1)',
+        challenge: '4,700+ learning pathways in Degreed. Low engagement, duplication, poor skills alignment. Transition to Workday required portfolio clean-up.',
+        did: ['Consolidated and analyzed pathway data','Optimized 260 strategic pathways','Improved metadata, skills tagging, and discoverability'],
+        outcome: 'Identified 2,400+ pathways for retirement consideration. Highlighted major engagement gaps (e.g. 2,292 pathways unused in a year). Created a prioritized, streamlined portfolio aligned to skills — ready for platform transition.'
+      }
+    ]
+  },
+  lfr: {
+    challenge: `Learning functions are often asked to evolve faster than their underlying structure, strategy, and capabilities. Typical issues: no clear strategic direction, fragmented or inconsistent operating models, limited visibility into maturity and performance, over-indexing on delivery and compliance with limited alignment to business outcomes, weak linkage between learning investments and business impact, inconsistent practices across regions or teams. This surfaces especially when new leadership enters the function, the organization pursues transformation, or the function is expected to evolve into a more strategic business enabler.`,
+    whatWeDo: `We assess the current state of the learning function and design a clear, actionable roadmap to evolve it into a high-performing, strategically aligned capability. The work spans maturity assessment & benchmarking, future vision definition, and strategic roadmap with business case.`,
+    process: [
+      { t: 'Define scope & framework', d: 'Select the maturity model or benchmark (ALO, value chain). Align on scope — full function or targeted areas. Define assessment criteria.' },
+      { t: 'AS-IS data collection', d: 'Leadership interviews, stakeholder focus groups, surveys, maturity scoring, document review, site visits, workshops. Capture both quantitative metrics and qualitative insights.' },
+      { t: 'Diagnostic & benchmarking', d: 'Assess current maturity against selected framework. Identify gaps vs best practice, root causes of inefficiency, variability across teams.' },
+      { t: 'Insight alignment & validation', d: 'Collaborative workshops to validate findings, align stakeholders on key issues, define priority improvement areas and initial solution directions.' },
+      { t: 'Future vision & roadmap', d: 'Define target state across operating model, processes, governance, capabilities, and technology. Build a phased roadmap including quick wins and strategic transformation initiatives. Develop supporting business case and investment rationale.' }
+    ],
+    outcomes: [
+      'Clear, evidence-based understanding of current maturity, strengths, and gaps',
+      'Alignment across stakeholders on current state reality and transformation priorities',
+      'Defined future vision for the learning function',
+      'Structured, prioritized roadmap with clear sequencing and investment focus areas',
+      'Stronger alignment between learning strategy and business priorities',
+      'Learning evolves into a strategic business enabler — governed, scalable, measurable'
+    ],
+    stories: [
+      {
+        client: 'Pfizer GCET (Global Commercial Learning)', industry: 'Pharma & Life Sciences',
+        title: 'Global Commercial Learning Operations Transformation',
+        challenge: 'Rapidly expanding remit with fragmented processes and limited governance. Learning function operating in a reactive, delivery-focused mode. Limited ability to link learning to business readiness and outcomes.',
+        did: ['Conducted comprehensive assessment of the learning function','Defined a future-state operating model and transformation playbook','Established governance principles, operating structure, and measurement framework'],
+        outcome: 'Positioned learning as a governed enterprise operating system. Shifted from reactive delivery to planned, portfolio-driven execution. Enabled stronger linkage between learning and commercial readiness.'
+      },
+      {
+        client: 'Anglo American', industry: 'Mining & Resources',
+        title: 'ALO Benchmarking Assessment',
+        challenge: 'Learning practices were fragmented and inconsistent across disciplines. Limited alignment on learning needs, roles and responsibilities, and strategic direction.',
+        did: ['Assessed the Technical Academy using the Adaptive Learning Organization (ALO) model','Conducted surveys, focus groups, and stakeholder feedback sessions','Benchmarked maturity across key capabilities — Sense, Decide, Evolve'],
+        outcome: 'Identified maturity level between fragmented and cohesive. Highlighted key improvement areas: data & analytics, learning strategy, governance and roles. Provided foundation for continuous improvement planning and future roadmap development.'
+      },
+      {
+        client: 'Siemens Energy', industry: 'Energy & Resources',
+        title: 'New Hire Training Transformation Business Case',
+        challenge: 'Highly variable and site-specific training approaches. Limited standardization across content, delivery, and infrastructure. Difficulty scaling training to meet rapid growth needs.',
+        did: ['Conducted current-state assessment across multiple sites','Identified gaps across the training value chain','Developed a clearly defined future vision, prioritized transformation recommendations, phased roadmap and business case'],
+        outcome: 'Defined 10 key initiatives to mature training capability. Enabled shift toward a standardized, scalable training model and structured learning journeys. Created a clear investment roadmap to support global scale and consistency.'
+      }
+    ]
+  },
+  ljp: {
+    challenge: `Teams have access to learning content, but the experience isn't flowing like a guided pathway. Learners can see courses, but don't always know what to take first, what's most relevant to their role, or how the learning connects to their day-to-day work. New joiners, lateral movers, and experienced hires have different needs but the journeys aren't differentiated. The result: learners need a clearer sense of belonging, stronger peer and manager support, and a pathway that moves them from orientation to confidence to role-readiness.`,
+    whatWeDo: `We design learning journeys and pathways that convert existing content into a more purposeful, role-aligned, and experience-led learning model. We review the catalogue, map learning to skills/roles/proficiency, and curate pathways that help employees understand what to learn, when to learn it, and how to apply it. Journeys go beyond digital courses to include buddy meetings, mentor conversations, manager check-ins, peer learning, expert Q&A, on-the-job shadowing, self-assessments, practice activities, and job aids.`,
+    process: [
+      { t: 'Understand the learning need', d: 'Discovery discussions to understand learner profiles, business priorities, and where the current experience is breaking down.' },
+      { t: 'Review the catalogue', d: 'Review existing content to understand what is available, relevant, repeated, missing, or better suited for different roles and proficiency levels.' },
+      { t: 'Map roles, skills, proficiency', d: 'Map courses and learning experiences to role needs, priority skills, and proficiency levels (foundational, proficient, advanced).' },
+      { t: 'Design journey architecture', d: 'Create core journey types — onboarding and upskilling. Within onboarding, design plug-and-play models for new hires, lateral movers, and experienced hires.' },
+      { t: 'Build blended experiences', d: 'Curate experiences beyond courses — buddy check-ins, mentor/coach conversations, manager meetings, peer learning, expert Q&A, on-the-job shadowing, practice tasks, reflection, job aids.' },
+      { t: 'Enable adoption & governance', d: 'Develop supporting RACIs, tools, templates, and guides for managers, buddies, mentors, coaches, and employees. Provide launch and communications guidance.' }
+    ],
+    outcomes: [
+      'Structured onboarding and upskilling journeys giving a clearer way to guide learners through role-relevant development',
+      'Different learner groups move through an intentional experience suited to their context (new hires, lateral movers, experienced hires)',
+      'Blended, human, practical learning — buddy conversations, manager meetings, peer learning, reflection, on-the-job application',
+      'More focused and easier-to-maintain learning pathways supporting proficiency-based development',
+      'LMS-ready journey structure supported by tools, templates, and role clarity'
+    ],
+    stories: [{
+      client: 'Qatar Airways', industry: 'Aviation',
+      title: 'Qatar Airways Sales and Business Finance Learning Journeys',
+      challenge: 'Qatar Airways needed a more structured way to help Sales and Business Finance employees build role-relevant capability, ramp up faster, and feel supported through their learning journey. Salespeople were under pressure to meet targets and sometimes relying on discounts to close deals — pointing to a deeper need for stronger product knowledge, consultative selling confidence, and commercial understanding. Onboarding also needed more structure for new joiners, lateral movers, and experienced hires.',
+      did: ['Reviewed the catalogue and mapped resources to skills, roles, proficiency levels','Curated onboarding journeys (plug-and-play for new hires, lateral movers, experienced hires) and upskilling journeys','Built blended experiences: buddy meetings, mentor conversations, manager check-ins, peer learning, expert Q&A, shadowing, self-assessments','Developed RACIs, manager/buddy/mentor guides, and launch/adoption guidance','Delivered LMS-ready journey structure'],
+      outcome: 'Moved learning from a list of courses to an experience that builds confidence, belonging, performance readiness, and continuous development. Sales pathway directly supported the business challenge behind target achievement — building consultative selling, customer focus, negotiation, market understanding, and commercial confidence.'
+    }]
+  }
+};
+
+function openOffering(key) {
+  const o = (typeof DIAG_OFFERINGS !== 'undefined') ? DIAG_OFFERINGS[key] : null;
+  const d = OFFERING_DETAILS[key];
+  if (!o || !d) return;
+
+  document.getElementById('off-cluster').textContent = o.cluster;
+  document.getElementById('off-name').textContent = o.name;
+  document.getElementById('off-definition').textContent = o.outcome;
+
+  const body = document.getElementById('offering-detail-body');
+  body.innerHTML = `
+    <div class="off-grid">
+      <div class="off-block off-challenge">
+        <div class="off-label"><span class="off-num">01</span> The challenge</div>
+        <p>${d.challenge}</p>
+      </div>
+      <div class="off-block off-what">
+        <div class="off-label"><span class="off-num">02</span> What we do</div>
+        <p>${d.whatWeDo}</p>
+      </div>
+    </div>
+
+    <div class="off-section">
+      <div class="off-label"><span class="off-num">03</span> Our process</div>
+      <div class="off-process">
+        ${d.process.map((p, i) => `
+          <div class="off-step">
+            <div class="off-step-num">${String(i+1).padStart(2,'0')}</div>
+            <div class="off-step-body">
+              <h4>${p.t}</h4>
+              <p>${p.d}</p>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="off-section">
+      <div class="off-label"><span class="off-num">04</span> Outcomes clients see</div>
+      <ol class="off-outcomes">
+        ${d.outcomes.map(o => `<li>${o}</li>`).join('')}
+      </ol>
+    </div>
+
+    <div class="off-section">
+      <div class="off-label"><span class="off-num">05</span> Client stories</div>
+      <div class="off-stories">
+        ${d.stories.map(s => `
+          <div class="off-story">
+            <div class="off-story-head">
+              <div>
+                <div class="off-story-client">${s.client}</div>
+                <div class="off-story-industry">${s.industry}</div>
+              </div>
+              <div class="off-story-title">${s.title}</div>
+            </div>
+            <div class="off-story-body">
+              <div class="off-story-section">
+                <div class="off-story-label">Challenge</div>
+                <p>${s.challenge}</p>
+              </div>
+              <div class="off-story-section">
+                <div class="off-story-label">What we did</div>
+                <ul>${s.did.map(x => `<li>${x}</li>`).join('')}</ul>
+              </div>
+              <div class="off-story-section off-story-outcome">
+                <div class="off-story-label">Outcome</div>
+                <p>${s.outcome}</p>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-top:32px;">
+      <button class="ind-btn-secondary" onclick="nav('offerings')">← Back to Storefront</button>
+      <button class="ind-btn-primary" onclick="nav('live')">Start the discovery diagnostic →</button>
+    </div>
+  `;
+
+  showPage('page-offering-detail');
+  setTopNav('offerings');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Register in nav history
+  const histKey = 'offering:' + key;
+  if (_navHistory[_navHistory.length-1] !== histKey) _navHistory.push(histKey);
+  _updateBackBtn();
 }
 
 // ============ INDUSTRY DATA ============
