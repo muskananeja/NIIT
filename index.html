@@ -1799,16 +1799,17 @@
     margin: 0;
   }
   .off-ed-lede {
-    font-size: clamp(15px, 1.4vw, 18px);
-    color: var(--ink-soft);
-    line-height: 1.5;
+    font-size: clamp(16px, 1.5vw, 20px);
+    color: var(--ink);
+    line-height: 1.45;
     font-weight: 400;
-    max-width: 62ch;
-    margin: 8px 0 0;
-    font-style: italic;
-    letter-spacing: -0.005em;
+    max-width: 66ch;
+    margin: 14px 0 0;
+    padding: 4px 0 4px 16px;
+    border-left: 2px solid var(--accent);
+    letter-spacing: -0.01em;
   }
-  .off-ed-lede strong { color: var(--ink); font-style: normal; font-weight: 600; }
+  .off-ed-lede strong { color: var(--accent); font-weight: 600; }
 
   /* 2-column compact grid */
   .off-ed-grid {
@@ -1817,7 +1818,8 @@
     gap: 14px;
   }
   @media (max-width: 960px) { .off-ed-grid { grid-template-columns: 1fr; } }
-  .off-ed-col { display: flex; flex-direction: column; gap: 14px; }
+  .off-ed-col { display: flex; flex-direction: column; gap: 12px; }
+  .off-ed-cases { display: flex; flex-direction: column; gap: 8px; }
 
   .off-ed-card {
     background: var(--paper-pure);
@@ -1899,72 +1901,67 @@
     line-height: 1.5;
   }
 
-  /* POV card — emphasizes our perspective */
-  .off-ed-card.off-ed-card-pov {
-    background: linear-gradient(180deg, var(--paper-pure) 0%, var(--grey-50) 100%);
-    border-left: 2px solid var(--ink);
+  /* POV card — emphasizes our perspective, subtly */
+  .off-ed-card.off-ed-card-pov h2 { color: var(--accent); }
+  .off-ed-card-pov h2::before {
+    content: ''; display: inline-block;
+    width: 14px; height: 1px; background: var(--accent);
+    vertical-align: middle; margin-right: 10px;
   }
-  .off-ed-card-pov h2 { color: var(--ink); }
   .off-ed-card-pov p {
-    font-size: 14px;
+    font-size: 13.5px;
     line-height: 1.6;
     color: var(--ink) !important;
-    font-weight: 400;
+    font-weight: 500;
+    letter-spacing: -0.005em;
   }
 
-  /* CD card — named human */
+  /* CD card — named human (light, matches page rhythm) */
   .off-ed-cd {
-    background: var(--ink);
-    color: #fff;
-    padding: 16px 18px;
+    background: var(--paper-pure);
+    border: 1px solid var(--grey-200);
+    padding: 14px 16px;
     display: grid;
-    grid-template-columns: 44px 1fr auto;
+    grid-template-columns: 38px 1fr auto;
     gap: 14px;
     align-items: center;
-    position: relative;
-    overflow: hidden;
-    transition: transform .2s, box-shadow .2s;
+    transition: border-color .2s, box-shadow .2s;
   }
-  .off-ed-cd::before {
-    content:''; position:absolute; top:-30%; right:-15%; width:200px; height:200px;
-    background: radial-gradient(circle, rgba(230,0,126,0.2) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .off-ed-cd > * { position: relative; z-index: 1; }
+  .off-ed-cd:hover { border-color: var(--ink); box-shadow: var(--shadow-soft); }
   .off-ed-cd-avatar {
-    width: 44px; height: 44px;
-    background: var(--accent); color: #fff;
+    width: 38px; height: 38px;
+    background: var(--ink); color: #fff;
     display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 600;
+    font-size: 12.5px; font-weight: 600;
     letter-spacing: 0.04em;
+    flex-shrink: 0;
   }
   .off-ed-cd-body { min-width: 0; }
   .off-ed-cd-label {
-    font-size: 9.5px; font-weight: 700;
+    font-size: 9px; font-weight: 700;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 4px;
+    color: var(--grey-400);
+    margin-bottom: 2px;
   }
   .off-ed-cd-name {
-    font-size: 14px; font-weight: 600;
-    color: #fff; letter-spacing: -0.01em;
-    margin-bottom: 2px;
+    font-size: 13.5px; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.01em;
+    margin-bottom: 1px;
   }
   .off-ed-cd-role {
     font-size: 11px;
-    color: #C2C8D8;
+    color: var(--grey-600);
     line-height: 1.35;
   }
   .off-ed-cd-cta {
-    background: var(--accent); color: #fff;
-    border: none; font-family: inherit; cursor: pointer;
-    padding: 8px 14px;
+    background: none; border: none; cursor: pointer; font-family: inherit;
+    padding: 0;
     font-size: 11px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    transition: background .2s, transform .15s;
+    letter-spacing: 0.06em; color: var(--accent);
+    transition: color .2s, transform .15s;
     white-space: nowrap;
   }
-  .off-ed-cd-cta:hover { background: #fff; color: var(--ink); transform: translateY(-1px); }
+  .off-ed-cd-cta:hover { color: var(--accent-deep); transform: translateX(3px); }
 
   /* Compact outcomes list */
   .off-ed-outcomes-compact {
@@ -2094,10 +2091,9 @@
   }
 
   /* Client story preview cards (compact, in offering page right col) */
-  .off-ed-cases { }
   .off-ed-cases-head {
     display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
   }
   .off-ed-cases-head h2 {
     font-size: 10.5px; font-weight: 700;
@@ -2109,7 +2105,7 @@
     letter-spacing: 0.12em; color: var(--grey-400);
   }
   .off-ed-cases-grid {
-    display: grid; gap: 10px;
+    display: grid; gap: 8px;
   }
   .off-ed-case-card {
     background: var(--paper-pure);
