@@ -1801,13 +1801,16 @@
     margin: 0;
   }
   .off-ed-lede {
-    font-size: 14px;
-    color: var(--grey-600);
+    font-size: clamp(15px, 1.4vw, 18px);
+    color: var(--ink-soft);
     line-height: 1.5;
     font-weight: 400;
-    max-width: 70ch;
-    margin: 4px 0 0;
+    max-width: 62ch;
+    margin: 8px 0 0;
+    font-style: italic;
+    letter-spacing: -0.005em;
   }
+  .off-ed-lede strong { color: var(--ink); font-style: normal; font-weight: 600; }
 
   /* 2-column compact grid */
   .off-ed-grid {
@@ -1872,40 +1875,101 @@
     margin: 6px 0 0;
   }
 
-  /* Compact process steps — single column, hairlines */
-  .off-ed-steps-compact {
+  /* Inline process steps — num + name + description on every step */
+  .off-ed-steps-inline {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  .off-ed-steps-compact li {
+  .off-ed-steps-inline li {
     display: grid;
     grid-template-columns: 32px 1fr;
-    align-items: center;
-    padding: 7px 0;
+    gap: 0 4px;
+    padding: 10px 0;
     border-bottom: 1px solid var(--grey-100);
-    cursor: default;
   }
-  .off-ed-steps-compact li:last-child { border-bottom: none; }
-  .off-ed-steps-compact li:hover { background: var(--grey-50); }
-  .off-ed-step-num {
-    font-size: 10px;
-    font-weight: 700;
+  .off-ed-steps-inline li:last-child { border-bottom: none; }
+  .off-ed-steps-inline .off-ed-step-num {
+    font-size: 10px; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.12em;
+    padding-top: 2px;
+  }
+  .off-ed-steps-inline .off-ed-step-name {
+    font-size: 12.5px; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.005em;
+    margin-bottom: 3px;
+  }
+  .off-ed-steps-inline .off-ed-step-desc {
+    font-size: 11.5px; color: var(--grey-600);
+    line-height: 1.5;
+  }
+
+  /* POV card — emphasizes our perspective */
+  .off-ed-card.off-ed-card-pov {
+    background: linear-gradient(180deg, var(--paper-pure) 0%, var(--grey-50) 100%);
+    border-left: 2px solid var(--ink);
+  }
+  .off-ed-card-pov h2 { color: var(--ink); }
+  .off-ed-card-pov p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink) !important;
+    font-weight: 400;
+  }
+
+  /* CD card — named human */
+  .off-ed-cd {
+    background: var(--ink);
+    color: #fff;
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .off-ed-cd::before {
+    content:''; position:absolute; top:-30%; right:-15%; width:200px; height:200px;
+    background: radial-gradient(circle, rgba(230,0,126,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .off-ed-cd > * { position: relative; z-index: 1; }
+  .off-ed-cd-avatar {
+    width: 44px; height: 44px;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .off-ed-cd-body { min-width: 0; }
+  .off-ed-cd-label {
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--accent);
-    letter-spacing: 0.12em;
+    margin-bottom: 4px;
   }
-  .off-ed-step-name {
-    font-size: 12.5px;
-    color: var(--ink);
-    font-weight: 500;
-    letter-spacing: -0.005em;
+  .off-ed-cd-name {
+    font-size: 14px; font-weight: 600;
+    color: #fff; letter-spacing: -0.01em;
+    margin-bottom: 2px;
   }
-  .off-ed-card-hint {
-    margin-top: 8px;
-    font-size: 10px;
-    color: var(--grey-400);
-    font-style: italic;
+  .off-ed-cd-role {
+    font-size: 11px;
+    color: #C2C8D8;
+    line-height: 1.35;
   }
+  .off-ed-cd-cta {
+    background: var(--accent); color: #fff;
+    border: none; font-family: inherit; cursor: pointer;
+    padding: 8px 14px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background .2s, transform .15s;
+    white-space: nowrap;
+  }
+  .off-ed-cd-cta:hover { background: #fff; color: var(--ink); transform: translateY(-1px); }
 
   /* Compact outcomes list */
   .off-ed-outcomes-compact {
@@ -5019,8 +5083,10 @@ function renderOfferingsGrid() {
 // ============ OFFERING LANDING PAGES ============
 const OFFERING_DETAILS = {
   lft: {
-    challenge: `Organizations need to respond faster to changing business priorities, emerging technologies, evolving workforce expectations, and shifting skill demands. Leaders increasingly expect Learning and Talent teams to play a more strategic role in enabling transformation. But Learning and Talent functions have typically evolved independently across business units, regions, and functional teams — creating fragmented operating models, inconsistent learner experiences, duplicated investments, disconnected technologies, and limited visibility into workforce capability needs.`,
-    whatWeDo: `Learning Transformation helps organizations align their Learning and Talent functions with their business strategy, workforce priorities, and evolving ways of working. We review the current learning function, then redesign the operating model, governance, processes, technologies, and talent experiences needed to support growth, performance, and future capability needs across the enterprise.`,
+    lede: `When the operating model evolves faster than the learning function, the gap shows up in time-to-competence — not the LMS dashboard.`,
+    cd: 'JE',
+    challenge: `Learning and Talent functions evolved independently across business units, regions, and teams — leaving **fragmented operating models, inconsistent learner experiences, duplicated investments, and disconnected technologies**. Leaders now expect L&T to enable transformation, but the underlying architecture wasn't built for that role.`,
+    whatWeDo: `The hard part isn't designing a better operating model — it's **earning the right to redesign while the function keeps delivering**. We sequence the transformation so today's work funds tomorrow's structure. We don't replace what works; we put a connective tissue around it.`,
     process: [
       { t: 'Learning activity analysis', d: 'Analyze current learning operations across the enterprise; surface initiatives needed to enable transformation.' },
       { t: 'Operating model design', d: 'Define the future-state Learning Operating Model and governance framework — processes, roles, standards, interaction models.' },
@@ -5055,8 +5121,10 @@ const OFFERING_DETAILS = {
     ]
   },
   acad: {
-    challenge: `Sales and other functions often have access to learning content but no clear academy structure, onboarding journey, or upskilling pathway. New hires move directly into courses without strong orientation. Existing teams need clearer support to build product knowledge, role confidence, and future-ready skills. Organizations need a scalable academy model that can support immediate capability needs while acting as a blueprint for future academies.`,
-    whatWeDo: `Academy Design & Build brings together role-based learning, onboarding, upskilling, content structure, governance, and launch planning into one connected experience. We help learners navigate learning meaningfully — designing structured onboarding and upskilling journeys, mapping content to priority skills, optimizing existing content, and identifying where additional interventions are needed.`,
+    lede: `A learning catalogue isn't an academy. The difference is what happens between a course completion and a confident first conversation with a customer.`,
+    cd: 'BK',
+    challenge: `Functions have content but **no academy structure, onboarding journey, or upskilling pathway**. New hires walk into courses without orientation. Sales teams rely on discounts because they lack product confidence. Leaders want a **scalable academy model** — not a one-time learning solution that has to be rebuilt for the next function.`,
+    whatWeDo: `Academies fail when they're built as content libraries first and experiences second. We work **backwards from the moment of confidence** — the first call, the first decision — and design the journey to make that moment inevitable. Then we leave behind a playbook so the next academy doesn't start from scratch.`,
     process: [
       { t: 'Analyze', d: 'Stakeholder workshops and interviews to understand priorities, learner groups, business pain points, and current learning landscape. Review existing catalogue to identify what is available, outdated, or missing.' },
       { t: 'Design', d: 'Define the academy vision and high-level structure. Identify priority roles, core skills, and the learning journeys required for new hires and existing employees.' },
@@ -5091,8 +5159,10 @@ const OFFERING_DETAILS = {
     ]
   },
   adcb: {
-    challenge: `Many organisations have invested heavily in digital platforms, automation, and AI tools — but operational transformation lags behind. The challenge is no longer technology deployment alone, but redesigning how work gets done, how decisions are made, and how the workforce operates in AI-enabled environments. Capability frameworks remain anchored in outdated role structures. Learning investments are disconnected from strategic workforce priorities, digital capabilities are defined inconsistently, and organisations struggle to determine which capabilities truly matter in an AI-enabled operating environment.`,
-    whatWeDo: `AI & Digital Capability Building Programs help organisations build the workforce capabilities needed to adopt AI, automation, data, and digital ways of working at scale. The work goes beyond training delivery to define which capabilities matter, where capability gaps exist, how skills should be activated in day-to-day work, and how adoption should be governed and measured.`,
+    lede: `The bottleneck on AI isn't the tools. It's the workforce's judgement about when to trust them — and where humans should still hold the pen.`,
+    cd: 'CB',
+    challenge: `Heavy investment in digital platforms and AI tools — but **operational transformation lags**. The challenge isn't technology deployment, it's **redesigning how work gets done in AI-enabled environments**. Capability frameworks are anchored in outdated role structures. Learning investments are disconnected from workforce priorities. Leaders can't tell which digital capabilities actually matter.`,
+    whatWeDo: `AI capability is three problems, not one: **fluency for the broad workforce**, **judgement for leaders**, and **depth for specialists**. We refuse to treat them as a single curriculum. We define the capabilities that matter for each, sequence the investment, and build the measurement to prove adoption — not just attendance.`,
     process: [
       { t: 'Strategic context', d: 'Analyze business priorities, job architecture, strategic initiatives, and leadership input on AI.' },
       { t: 'Market benchmarking', d: 'Research peers, adjacent industries, and external skills reports to identify digital, data, and AI capability trends.' },
@@ -5130,8 +5200,10 @@ const OFFERING_DETAILS = {
     ]
   },
   saf: {
-    challenge: `Due to emerging technologies, workforce shortages, evolving employee expectations, and changing ways of working, organisations are facing increasing pressure to redefine workforce capabilities. Many struggle to clearly define the skills and capabilities needed for future success, assess current workforce readiness, and create consistent approaches for talent development, mobility, and workforce planning. Skills information exists across disconnected systems and functions — resulting in inconsistent skill definitions, fragmented job architectures, limited visibility into workforce capabilities, and challenges aligning learning, performance, staffing, and career decisions.`,
-    whatWeDo: `Skills Architecture & Framework helps organisations define, organize, and operationalize the skills, behaviors, and capability expectations needed for business success. We create a structured and transparent framework to identify skills, proficiency levels, role expectations, and development pathways — enabling consistent talent decisions across hiring, development, mobility, and performance management. The work includes skills taxonomies, role/capability frameworks, assessment approaches, proficiency models, governance structures, and enablement tools.`,
+    lede: `Skills frameworks fail when they describe roles instead of decisions. The architecture has to start with what people are choosing between — not what they're doing.`,
+    cd: 'GJ',
+    challenge: `Skills information lives across **disconnected systems and functions** — producing inconsistent definitions, fragmented job architectures, and limited visibility into actual workforce capability. Talent, learning, performance, and workforce planning all run on different versions of the same truth.`,
+    whatWeDo: `We build skills architectures around the **decisions the business needs to make** — not the jobs people happen to hold. The architecture has to survive a reorg; most don't. We design with reuse in mind, so hiring, mobility, performance, and learning all run off one framework instead of four.`,
     process: [
       { t: 'Discovery & stakeholder consultation', d: 'Working sessions with senior stakeholders to identify critical decision moments, capability expectations, and gaps.' },
       { t: 'Capability framework design', d: 'Build the enterprise capability framework — key skills, sub-behaviors, mindset shifts, enablers, and business impacts.' },
@@ -5166,8 +5238,10 @@ const OFFERING_DETAILS = {
     ]
   },
   lam: {
-    challenge: `Many organisations have mature learning ecosystems but limited capability intelligence. Data exists across LMSs, LXPs, CRMs, collaboration tools, workflow systems, and operational environments — yet most learning functions rely on manually assembled reporting focused on completions and satisfaction scores. Leaders struggle to understand whether capability investments are influencing adoption, productivity, customer behaviour, or workforce readiness. As AI-enabled ways of working emerge, traditional learning analytics is becoming insufficient. The expectation is shifting from periodic reporting to continuous signal detection across workflows and business outcomes.`,
-    whatWeDo: `Learning Analytics & Measurement Strategy helps organisations understand whether learning investments are influencing business outcomes, workforce behaviour, and operational performance. We establish the data, governance, measurement frameworks, and decision-making processes needed to move beyond completion reporting toward evidence-based learning decisions. The work builds an AI-enabled measurement ecosystem that continuously captures signals across learning, workflow, performance, customer behaviour, and operational systems.`,
+    lede: `If your dashboard only shows completions, you don't have measurement — you have attendance records. Real measurement starts where the work happens.`,
+    cd: 'MW',
+    challenge: `Mature learning ecosystems but **limited capability intelligence**. Data sits across LMS, LXP, CRM, workflow, and operational platforms — yet reporting still focuses on completions and satisfaction. Leaders can't link capability investment to **adoption, productivity, or workforce readiness**. The shift to AI-enabled work makes the old reporting model obsolete.`,
+    whatWeDo: `Learning analytics done well is **operational, not retrospective**. We design measurement that fires **while the work is happening** — not three months after it ended. We connect learning signals to workflow and outcome signals, and embed the measurement into the decisions, not into a dashboard nobody reads.`,
     process: [
       { t: 'Maturity assessment', d: 'Enterprise-wide stakeholder interviews across commercial, marketing, product, R&D, customer success, and systems leadership to assess current measurement maturity and business alignment.' },
       { t: 'Data architecture review', d: 'Assess learning data architecture, system integration gaps, reporting processes, and data readiness across LMS, CRM, event, and operational platforms.' },
@@ -5203,8 +5277,10 @@ const OFFERING_DETAILS = {
     ]
   },
   lsg: {
-    challenge: `Organizations face **fragmented and inconsistent learning content development** across regions and functions, with limited governance and quality assurance. There's **low visibility into content lifecycle, compliance, and audit readiness** — particularly critical in regulated environments like GxP. Organizations rely heavily on external vendors and lack scalable ways to empower internal SMEs to create and manage content efficiently.`,
-    whatWeDo: `A structured approach to designing, managing, and governing learning content across the organisation. We establish **clear standards, workflows, and accountability** to ensure learning content is **consistent, compliant, high-quality, and aligned with business needs**. The work covers end-to-end governance, intake, lifecycle management, and enablement of internal teams.`,
+    lede: `Governance isn't process documentation. It's the operating discipline that decides what gets built, what gets retired, and who gets to break the rules.`,
+    cd: 'JE',
+    challenge: `**Fragmented learning content development** across regions and functions, with limited governance and quality assurance. **Low visibility into the content lifecycle, compliance, and audit readiness** — critical risk in GxP environments. Heavy reliance on external vendors, with no scalable way to empower internal SMEs.`,
+    whatWeDo: `Governance is the system that **decides**; standards are the system that **constrains**. Most clients have neither — and bolt on processes that mimic both. We design the actual system: who chooses, who escalates, who builds, who audits. Then we make it real with the tools and rituals that hold it together.`,
     process: [
       { t: 'Discovery & AS-IS analysis', d: 'Stakeholder interviews and current-state analysis to define gaps and future-state vision.' },
       { t: 'Framework co-design', d: 'Co-design the learning content development framework, aligned with business needs and learning culture.' },
@@ -5241,8 +5317,10 @@ const OFFERING_DETAILS = {
     ]
   },
   po: {
-    challenge: `Organizations often struggle with bloated, fragmented, and underperforming learning portfolios. This typically surfaces during LMS/LXP transitions, organizational restructuring, or MLS onboarding. What's broken: thousands of courses across systems with no single source of truth, redundant content (e.g. 200+ versions of the same topic), outdated or unused assets, inconsistent taxonomy and ownership. Learners get overwhelmed → low engagement and completion. In an attention economy, a cluttered learning ecosystem loses the learner before they even start.`,
-    whatWeDo: `We rationalize, streamline, and elevate the learning portfolio to ensure every asset is relevant to business priorities, high quality, easy to discover, and cost-efficient to maintain. The approach combines deep data analysis, AI-supported optimization, and business-aligned prioritization to deliver a focused, high-impact learning portfolio that drives engagement and reduces cost.`,
+    lede: `Most learning portfolios are bloated for the same reason they were built: nobody owns the retire-decision. The savings sit there waiting for someone to make the call.`,
+    cd: 'MW',
+    challenge: `**Bloated, fragmented, and underperforming portfolios** — surfaces during LMS/LXP transitions, restructuring, or MLS onboarding. **Thousands of courses with no single source of truth**, 200+ versions of the same topic, outdated assets, inconsistent taxonomy. Learners are overwhelmed; engagement and completion collapse.`,
+    whatWeDo: `Optimization isn't about finding what to cut — it's about **confronting what was already broken**. We make the **retire decision the client has been postponing**, with the data to defend it. We don't grade the portfolio politely. We tell you what to keep, what to kill, and what nobody noticed was already gone.`,
     process: [
       { t: 'Phase 1 — Portfolio clean-up', d: 'Consolidate data across LMS/LXP and other systems. Clean and standardize metadata (taxonomy, tags, ownership). Create a single unified catalogue. Identify duplicates, outdated courses, and low-engagement assets.' },
       { t: 'Phase 2 — Content-level optimization', d: 'Review course design and instructional quality. Assess against business relevance, learning effectiveness, modality fit, and content duplication. Assign clear recommendations: retain, retire, refresh, replace, or rationalize.' },
@@ -5276,8 +5354,10 @@ const OFFERING_DETAILS = {
     ]
   },
   lfr: {
-    challenge: `Learning functions are often asked to evolve faster than their underlying structure, strategy, and capabilities. Typical issues: no clear strategic direction, fragmented or inconsistent operating models, limited visibility into maturity and performance, over-indexing on delivery and compliance with limited alignment to business outcomes, weak linkage between learning investments and business impact, inconsistent practices across regions or teams. This surfaces especially when new leadership enters the function, the organization pursues transformation, or the function is expected to evolve into a more strategic business enabler.`,
-    whatWeDo: `We assess the current state of the learning function and design a clear, actionable roadmap to evolve it into a high-performing, strategically aligned capability. The work spans maturity assessment & benchmarking, future vision definition, and strategic roadmap with business case.`,
+    lede: `L&D functions don't usually need a strategy — they need a clear-eyed read of where they are, and the courage to retire what isn't working before adding more.`,
+    cd: 'JE',
+    challenge: `Learning functions evolve **faster than their structure can absorb**. No clear strategic direction, fragmented operating model, weak linkage to business impact. Common when **new leadership enters**, transformation kicks off, or the function is expected to become a strategic enabler. The patterns are predictable; the fixes are not.`,
+    whatWeDo: `Most reviews surface 30 problems and recommend 30 fixes. We surface **the three that actually matter**, sequence them, and tell the client **what to stop doing first**. We benchmark, but we don't hide behind it — the recommendation is sharper than the maturity score.`,
     process: [
       { t: 'Define scope & framework', d: 'Select the maturity model or benchmark (ALO, value chain). Align on scope — full function or targeted areas. Define assessment criteria.' },
       { t: 'AS-IS data collection', d: 'Leadership interviews, stakeholder focus groups, surveys, maturity scoring, document review, site visits, workshops. Capture both quantitative metrics and qualitative insights.' },
@@ -5321,8 +5401,10 @@ const OFFERING_DETAILS = {
     ]
   },
   ljp: {
-    challenge: `Teams have access to learning content, but the experience isn't flowing like a guided pathway. Learners can see courses, but don't always know what to take first, what's most relevant to their role, or how the learning connects to their day-to-day work. New joiners, lateral movers, and experienced hires have different needs but the journeys aren't differentiated. The result: learners need a clearer sense of belonging, stronger peer and manager support, and a pathway that moves them from orientation to confidence to role-readiness.`,
-    whatWeDo: `We design learning journeys and pathways that convert existing content into a more purposeful, role-aligned, and experience-led learning model. We review the catalogue, map learning to skills/roles/proficiency, and curate pathways that help employees understand what to learn, when to learn it, and how to apply it. Journeys go beyond digital courses to include buddy meetings, mentor conversations, manager check-ins, peer learning, expert Q&A, on-the-job shadowing, self-assessments, practice activities, and job aids.`,
+    lede: `A journey isn't a playlist. It's the right learning at the right point of need, supported by the right human at the right moment.`,
+    cd: 'BK',
+    challenge: `Content is everywhere but the **experience isn't flowing**. Learners don't know what to take first, what matters for their role, or how learning connects to their day-to-day. **New joiners, lateral movers, and experienced hires** all get the same generic onboarding. The cost shows up in ramp time, confidence, and early-tenure attrition.`,
+    whatWeDo: `The unit of learning isn't a course — it's a **moment of work**. We design journeys around those moments, not around topics, modalities, or time. We layer in the human: a buddy at week one, a manager check-in at week four, a peer review at week twelve. The courses are the easiest part.`,
     process: [
       { t: 'Understand the learning need', d: 'Discovery discussions to understand learner profiles, business priorities, and where the current experience is breaking down.' },
       { t: 'Review the catalogue', d: 'Review existing content to understand what is available, relevant, repeated, missing, or better suited for different roles and proficiency levels.' },
@@ -5369,6 +5451,17 @@ function _md(text) {
   return String(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 }
 
+// Real metrics = at least 2 entries containing digits (not "Enterprise" / "Multi-phase")
+function _hasRealMetrics(metrics) {
+  if (!metrics || !metrics.length) return false;
+  return metrics.filter(m => /\d/.test(m.v)).length >= 2;
+}
+
+function _findCD(initials) {
+  if (typeof CDS === 'undefined') return null;
+  return CDS.find(c => c.initials === initials);
+}
+
 function _outcomeHook(outcomeText) {
   // Pull a short hook: text before the first em-dash, or first sentence
   const dash = outcomeText.indexOf('—');
@@ -5382,47 +5475,47 @@ function openOffering(key) {
   const d = OFFERING_DETAILS[key];
   if (!o || !d) return;
 
-  const chal = _splitSentences(d.challenge, 2);
-  const what = _splitSentences(d.whatWeDo, 2);
+  const ledeText = d.lede || o.outcome;
+  const cd = d.cd ? _findCD(d.cd) : null;
 
   const body = document.getElementById('offering-detail-body');
   body.innerHTML = `
     <header class="off-ed-header">
       <div class="off-ed-cluster">${o.cluster}</div>
       <h1 class="off-ed-title">${o.name}</h1>
-      <p class="off-ed-lede">${o.outcome}</p>
+      <p class="off-ed-lede">${_md(ledeText)}</p>
     </header>
 
     <div class="off-ed-grid">
-      <!-- LEFT: Challenge + Approach + Process -->
+      <!-- LEFT: Problem + Perspective + Process -->
       <div class="off-ed-col">
         <section class="off-ed-card">
-          <h2>Where this comes from</h2>
-          <p>${_md(chal.head)}</p>
-          ${chal.rest ? `<details><summary>Read more</summary><p>${_md(chal.rest)}</p></details>` : ''}
+          <h2>The problem</h2>
+          <p>${_md(d.challenge)}</p>
         </section>
 
-        <section class="off-ed-card">
-          <h2>How we do it</h2>
-          <p>${_md(what.head)}</p>
-          ${what.rest ? `<details><summary>Read more</summary><p>${_md(what.rest)}</p></details>` : ''}
+        <section class="off-ed-card off-ed-card-pov">
+          <h2>Our perspective</h2>
+          <p>${_md(d.whatWeDo)}</p>
         </section>
 
         <section class="off-ed-card">
           <h2>The work</h2>
-          <ol class="off-ed-steps-compact">
+          <ol class="off-ed-steps-inline">
             ${d.process.map((p, i) => `
-              <li title="${p.d.replace(/"/g,'&quot;')}">
+              <li>
                 <span class="off-ed-step-num">${String(i+1).padStart(2,'0')}</span>
-                <span class="off-ed-step-name">${_md(p.t)}</span>
+                <div class="off-ed-step-body">
+                  <div class="off-ed-step-name">${_md(p.t)}</div>
+                  <div class="off-ed-step-desc">${_md(p.d)}</div>
+                </div>
               </li>
             `).join('')}
           </ol>
-          <div class="off-ed-card-hint">Hover any step for detail</div>
         </section>
       </div>
 
-      <!-- RIGHT: Outcomes + Case studies -->
+      <!-- RIGHT: Outcomes + Case studies + CD -->
       <div class="off-ed-col">
         <section class="off-ed-card off-ed-card-accent">
           <h2>What changes</h2>
@@ -5443,18 +5536,30 @@ function openOffering(key) {
                   <span class="off-ed-case-card-industry">${s.industry}</span>
                   <span class="off-ed-case-card-client">${s.client}</span>
                 </div>
-                <div class="off-ed-case-card-hook">${_outcomeHook(s.outcome)}</div>
+                <div class="off-ed-case-card-hook">${_md(_outcomeHook(s.outcome))}</div>
                 <button class="off-ed-case-card-cta" onclick="openCaseStudy('${key}', ${i})">Read full case →</button>
               </div>
             `).join('')}
           </div>
         </section>
+
+        ${cd ? `
+          <section class="off-ed-cd">
+            <div class="off-ed-cd-avatar">${cd.initials}</div>
+            <div class="off-ed-cd-body">
+              <div class="off-ed-cd-label">Lead on this offering</div>
+              <div class="off-ed-cd-name">${cd.name}</div>
+              <div class="off-ed-cd-role">${cd.role}</div>
+            </div>
+            <button class="off-ed-cd-cta" onclick="nav('post')" title="Reach out to ${cd.name}">Talk →</button>
+          </section>
+        ` : ''}
       </div>
     </div>
 
     <footer class="off-ed-footer-compact">
       <a class="off-ed-link" onclick="nav('offerings')">← All offerings</a>
-      <a class="off-ed-link off-ed-link-primary" onclick="nav('live')">Run the discovery diagnostic →</a>
+      <a class="off-ed-link off-ed-link-primary" onclick="nav('post')">Book a 30-min conversation →</a>
     </footer>
 
     <!-- Case study modal -->
@@ -5490,9 +5595,9 @@ function openCaseStudy(offeringKey, storyIdx) {
       <div class="case-modal-title">${s.title}</div>
     </div>
 
-    ${s.metrics ? `
+    ${_hasRealMetrics(s.metrics) ? `
       <div class="case-modal-metrics">
-        ${s.metrics.map(m => `
+        ${s.metrics.filter(m => /\d/.test(m.v)).map(m => `
           <div class="case-modal-metric">
             <div class="case-modal-metric-v">${m.v}</div>
             <div class="case-modal-metric-l">${m.l}</div>
@@ -5501,7 +5606,7 @@ function openCaseStudy(offeringKey, storyIdx) {
       </div>
     ` : ''}
 
-    <div class="case-modal-pullquote">${_outcomeHook(s.outcome)}</div>
+    <div class="case-modal-pullquote">${_md(_outcomeHook(s.outcome))}</div>
 
     <div class="case-modal-body">
       <section class="case-modal-section">
@@ -5524,7 +5629,7 @@ function openCaseStudy(offeringKey, storyIdx) {
 
     <div class="case-modal-footer">
       <button class="off-ed-link" onclick="closeCaseStudy()">← Back to offering</button>
-      <button class="off-ed-link off-ed-link-primary" onclick="nav('live')">Run the diagnostic →</button>
+      <button class="off-ed-link off-ed-link-primary" onclick="closeCaseStudy(); nav('post')">Book a 30-min conversation →</button>
     </div>
   `;
   document.getElementById('case-modal').classList.add('open');
