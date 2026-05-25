@@ -1774,41 +1774,266 @@
   }
   .ind-card:hover .ind-foot .ind-open { color: var(--accent); transform: translateX(3px); }
 
-  /* ===== Offering landing page — editorial, magazine-style ===== */
-  .off-page { padding: 56px 0 64px; background: var(--paper); }
+  /* ===== Offering landing page — compact editorial, ~1 page ===== */
+  .off-page { padding: 28px 0 24px; background: var(--paper); }
   .off-ed-header {
-    max-width: 760px;
-    margin: 0 auto 48px;
+    max-width: var(--maxw);
+    margin: 0 auto 22px;
     padding: 0 var(--gutter);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
   .off-ed-cluster {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 600;
     letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 20px;
+    margin: 0;
   }
   .off-ed-title {
-    font-size: clamp(36px, 5.5vw, 64px);
+    font-size: clamp(28px, 3.6vw, 40px);
     font-weight: 300;
-    letter-spacing: -0.035em;
-    line-height: 1.02;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
     color: var(--ink);
-    margin: 0 0 18px;
+    margin: 0;
   }
   .off-ed-lede {
-    font-size: clamp(17px, 1.6vw, 22px);
+    font-size: 14px;
+    color: var(--grey-600);
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 70ch;
+    margin: 4px 0 0;
+  }
+
+  /* 2-column compact grid */
+  .off-ed-grid {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 960px) { .off-ed-grid { grid-template-columns: 1fr; } }
+  .off-ed-col { display: flex; flex-direction: column; gap: 14px; }
+
+  .off-ed-card {
+    background: var(--paper-pure);
+    border: 1px solid var(--grey-200);
+    padding: 16px 18px 14px;
+  }
+  .off-ed-card.off-ed-card-accent { background: var(--grey-50); border-left: 2px solid var(--accent); }
+  .off-ed-card.off-ed-card-case { background: var(--ink); color: #fff; border: none; position: relative; overflow: hidden; }
+  .off-ed-card.off-ed-card-case::before {
+    content:''; position:absolute; top:-30%; right:-15%; width:240px; height:240px;
+    background: radial-gradient(circle, rgba(230,0,126,0.25) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .off-ed-card.off-ed-card-case > * { position: relative; z-index: 1; }
+
+  .off-ed-card h2 {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .off-ed-card-accent h2 { color: var(--accent); border-bottom-color: rgba(230,0,126,0.2); }
+  .off-ed-card > p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .off-ed-card details { margin-top: 8px; }
+  .off-ed-card details summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    padding: 4px 0;
+  }
+  .off-ed-card details summary::-webkit-details-marker { display: none; }
+  .off-ed-card details[open] summary::after { content: ' ↑'; }
+  .off-ed-card details summary::after { content: ' ↓'; }
+  .off-ed-card details > p {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--grey-600);
+    margin: 6px 0 0;
+  }
+
+  /* Compact process steps — single column, hairlines */
+  .off-ed-steps-compact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .off-ed-steps-compact li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    align-items: center;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--grey-100);
+    cursor: default;
+  }
+  .off-ed-steps-compact li:last-child { border-bottom: none; }
+  .off-ed-steps-compact li:hover { background: var(--grey-50); }
+  .off-ed-step-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+  }
+  .off-ed-step-name {
+    font-size: 12.5px;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .off-ed-card-hint {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--grey-400);
+    font-style: italic;
+  }
+
+  /* Compact outcomes list */
+  .off-ed-outcomes-compact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .off-ed-outcomes-compact li {
+    padding: 7px 0 7px 18px;
+    border-bottom: 1px solid rgba(230,0,126,0.08);
+    position: relative;
+    font-size: 12.5px;
     color: var(--ink-soft);
     line-height: 1.45;
-    font-weight: 300;
+  }
+  .off-ed-outcomes-compact li:last-child { border-bottom: none; }
+  .off-ed-outcomes-compact li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 15px;
+    width: 10px; height: 1px;
+    background: var(--accent);
+  }
+
+  /* Case study card (dark) */
+  .off-ed-card-case .off-ed-case-eyebrow {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .off-ed-card-case .off-ed-case-client {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
     letter-spacing: -0.01em;
-    max-width: 50ch;
+  }
+  .off-ed-pullquote-compact {
+    margin: 0;
+    padding: 6px 0 6px 12px;
+    border-left: 2px solid var(--accent);
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: #fff;
+    font-weight: 300;
+    letter-spacing: -0.005em;
+    font-style: normal;
+  }
+  .off-ed-card-case details { margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; }
+  .off-ed-card-case details summary {
+    color: var(--accent);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    list-style: none;
+  }
+  .off-ed-card-case details summary::-webkit-details-marker { display: none; }
+  .off-ed-card-case details[open] summary::after { content: ' −'; }
+  .off-ed-card-case details summary::after { content: ' +'; }
+  .off-ed-case-full { margin-top: 10px; }
+  .off-ed-case-title-inline {
+    font-size: 12px;
+    font-weight: 600;
+    color: #C2C8D8;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .off-ed-case-full p {
+    font-size: 12px;
+    line-height: 1.55;
+    color: #C2C8D8;
+    margin: 0 0 8px;
+  }
+  .off-ed-case-full p strong { color: var(--accent); font-weight: 600; }
+  .off-ed-case-outcome { color: #fff !important; }
+  .off-ed-case-outcome strong { color: var(--accent); }
+
+  /* Also done for — accordion (light) */
+  .off-ed-also-compact { display: flex; flex-direction: column; }
+  .off-ed-also-item-compact { border-bottom: 1px solid var(--grey-100); }
+  .off-ed-also-item-compact:last-child { border-bottom: none; }
+  .off-ed-also-item-compact summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 8px 0;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .off-ed-also-item-compact summary::-webkit-details-marker { display: none; }
+  .off-ed-also-client-compact {
+    font-size: 12.5px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .off-ed-also-arrow {
+    color: var(--grey-400);
+    font-size: 14px;
+    font-weight: 300;
+    transition: color .2s;
+  }
+  .off-ed-also-item-compact[open] .off-ed-also-arrow { color: var(--accent); }
+  .off-ed-also-item-compact[open] .off-ed-also-arrow::before { content: '−'; }
+  .off-ed-also-item-compact:not([open]) .off-ed-also-arrow::before { content: '+'; }
+  .off-ed-also-arrow { font-size: 0; }
+  .off-ed-also-arrow::before { font-size: 14px; }
+  .off-ed-also-body-compact { padding: 0 0 8px; }
+  .off-ed-also-body-compact p {
+    font-size: 12px;
+    color: var(--grey-600);
+    line-height: 1.5;
     margin: 0;
   }
 
-  .off-ed-body { max-width: 720px; margin: 0 auto; padding: 0 var(--gutter); }
-  .off-ed-main { font-size: 16px; line-height: 1.7; color: var(--ink-soft); }
+  .off-ed-footer-compact {
+    max-width: var(--maxw);
+    margin: 18px auto 0;
+    padding: 16px var(--gutter) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--grey-200);
+  }
 
   .off-ed-section { margin-bottom: 56px; }
   .off-ed-section h2 {
@@ -4838,6 +5063,8 @@ function openOffering(key) {
   if (!o || !d) return;
 
   const [featured, ...rest] = d.stories;
+  const chal = _splitSentences(d.challenge, 2);
+  const what = _splitSentences(d.whatWeDo, 2);
 
   const body = document.getElementById('offering-detail-body');
   body.innerHTML = `
@@ -4847,88 +5074,84 @@ function openOffering(key) {
       <p class="off-ed-lede">${o.outcome}</p>
     </header>
 
-    <div class="off-ed-body">
-      <article class="off-ed-main">
-
-        <section class="off-ed-section">
+    <div class="off-ed-grid">
+      <!-- LEFT: Challenge + Approach + Process -->
+      <div class="off-ed-col">
+        <section class="off-ed-card">
           <h2>Where this comes from</h2>
-          <p>${d.challenge}</p>
+          <p>${chal.head}</p>
+          ${chal.rest ? `<details><summary>Read more</summary><p>${chal.rest}</p></details>` : ''}
         </section>
 
-        <section class="off-ed-section">
+        <section class="off-ed-card">
           <h2>How we do it</h2>
-          <p>${d.whatWeDo}</p>
+          <p>${what.head}</p>
+          ${what.rest ? `<details><summary>Read more</summary><p>${what.rest}</p></details>` : ''}
         </section>
 
-        <section class="off-ed-section">
-          <h2>The work, step by step</h2>
-          <ol class="off-ed-steps">
+        <section class="off-ed-card">
+          <h2>The work</h2>
+          <ol class="off-ed-steps-compact">
             ${d.process.map((p, i) => `
-              <li>
+              <li title="${p.d.replace(/"/g,'&quot;')}">
                 <span class="off-ed-step-num">${String(i+1).padStart(2,'0')}</span>
-                <div>
-                  <h3>${p.t}</h3>
-                  <p>${p.d}</p>
-                </div>
+                <span class="off-ed-step-name">${p.t}</span>
               </li>
             `).join('')}
           </ol>
+          <div class="off-ed-card-hint">Hover any step for detail</div>
         </section>
+      </div>
 
-        <section class="off-ed-section">
+      <!-- RIGHT: Outcomes + Case study -->
+      <div class="off-ed-col">
+        <section class="off-ed-card off-ed-card-accent">
           <h2>What changes</h2>
-          <ul class="off-ed-outcomes">
-            ${d.outcomes.map(out => `<li>${out}</li>`).join('')}
+          <ul class="off-ed-outcomes-compact">
+            ${d.outcomes.slice(0, 5).map(out => `<li>${out}</li>`).join('')}
           </ul>
         </section>
 
-        <hr class="off-ed-rule" />
-
-        <section class="off-ed-section">
-          <div class="off-ed-section-eyebrow">Case in point</div>
-          <h2 class="off-ed-case-title">${featured.title}</h2>
-          <div class="off-ed-case-meta">${featured.client} · ${featured.industry}</div>
-          <blockquote class="off-ed-pullquote">${featured.outcome}</blockquote>
-
-          <div class="off-ed-case-detail">
-            <div>
-              <div class="off-ed-mini-label">The situation</div>
-              <p>${featured.challenge}</p>
+        <section class="off-ed-card off-ed-card-case">
+          <div class="off-ed-case-eyebrow">Case in point · ${featured.industry}</div>
+          <div class="off-ed-case-client">${featured.client}</div>
+          <blockquote class="off-ed-pullquote-compact">${_outcomeHook(featured.outcome)}</blockquote>
+          <details>
+            <summary>Full case study</summary>
+            <div class="off-ed-case-full">
+              <div class="off-ed-case-title-inline">${featured.title}</div>
+              <p><strong>Situation —</strong> ${featured.challenge}</p>
+              <p><strong>What we did —</strong> ${featured.did.join(' · ')}</p>
+              <p class="off-ed-case-outcome"><strong>Outcome —</strong> ${featured.outcome}</p>
             </div>
-            <div>
-              <div class="off-ed-mini-label">What we did</div>
-              <ul>${featured.did.map(x => `<li>${x}</li>`).join('')}</ul>
-            </div>
-          </div>
+          </details>
         </section>
 
         ${rest.length ? `
-          <section class="off-ed-section">
-            <div class="off-ed-section-eyebrow">Also done for</div>
-            <div class="off-ed-also">
+          <section class="off-ed-card">
+            <h2>Also done for</h2>
+            <div class="off-ed-also-compact">
               ${rest.map(s => `
-                <details class="off-ed-also-item">
+                <details class="off-ed-also-item-compact">
                   <summary>
-                    <span class="off-ed-also-client">${s.client}</span>
-                    <span class="off-ed-also-title">${s.title}</span>
+                    <span class="off-ed-also-client-compact">${s.client}</span>
+                    <span class="off-ed-also-arrow">+</span>
                   </summary>
-                  <div class="off-ed-also-body">
-                    <p><strong>Situation.</strong> ${s.challenge}</p>
-                    <p><strong>What we did.</strong> ${s.did.join('. ')}.</p>
-                    <p class="off-ed-also-outcome"><strong>Outcome.</strong> ${s.outcome}</p>
+                  <div class="off-ed-also-body-compact">
+                    <p>${_outcomeHook(s.outcome)}</p>
                   </div>
                 </details>
               `).join('')}
             </div>
           </section>
         ` : ''}
-
-        <footer class="off-ed-footer">
-          <a class="off-ed-link" onclick="nav('offerings')">← All offerings</a>
-          <a class="off-ed-link off-ed-link-primary" onclick="nav('live')">Run the discovery diagnostic →</a>
-        </footer>
-      </article>
+      </div>
     </div>
+
+    <footer class="off-ed-footer-compact">
+      <a class="off-ed-link" onclick="nav('offerings')">← All offerings</a>
+      <a class="off-ed-link off-ed-link-primary" onclick="nav('live')">Run the discovery diagnostic →</a>
+    </footer>
   `;
 
   showPage('page-offering-detail');
