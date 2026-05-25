@@ -1777,9 +1777,7 @@
   /* ===== Offering landing page — compact editorial, ~1 page ===== */
   .off-page { padding: 28px 0 24px; background: var(--paper); }
   .off-ed-header {
-    max-width: var(--maxw);
-    margin: 0 auto 22px;
-    padding: 0 var(--gutter);
+    margin: 0 0 22px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 6px;
@@ -1814,9 +1812,6 @@
 
   /* 2-column compact grid */
   .off-ed-grid {
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding: 0 var(--gutter);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
@@ -2088,9 +2083,8 @@
   }
 
   .off-ed-footer-compact {
-    max-width: var(--maxw);
-    margin: 18px auto 0;
-    padding: 16px var(--gutter) 0;
+    margin: 18px 0 0;
+    padding-top: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2178,10 +2172,10 @@
     to { opacity: 1; }
   }
   .case-modal-inner {
-    max-width: 880px;
+    max-width: 1120px;
     margin: 0 auto;
     background: var(--paper-pure);
-    padding: 44px 56px 36px;
+    padding: 48px 64px 40px;
     position: relative;
     box-shadow: 0 24px 80px rgba(0,0,0,0.4);
     animation: modalSlideUp .35s cubic-bezier(.2,.7,.2,1);
@@ -2190,6 +2184,7 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: none; }
   }
+  @media (max-width: 1000px) { .case-modal-inner { padding: 40px 44px; } }
   @media (max-width: 720px) {
     .case-modal { padding: 12px; }
     .case-modal-inner { padding: 28px 24px; }
@@ -2223,12 +2218,12 @@
     border-left: 1px solid var(--grey-200);
   }
   .case-modal-client {
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(32px, 4.4vw, 52px);
     font-weight: 300;
     letter-spacing: -0.03em;
-    line-height: 1.05;
+    line-height: 1.02;
     color: var(--ink);
-    margin: 0 0 8px;
+    margin: 0 0 10px;
   }
   .case-modal-title {
     font-size: 16px;
@@ -2284,7 +2279,9 @@
     margin: 0 0 28px;
   }
 
-  .case-modal-body { display: flex; flex-direction: column; gap: 26px; }
+  .case-modal-body { display: grid; grid-template-columns: 1fr 1.2fr; gap: 36px 44px; }
+  .case-modal-body > .case-modal-outcome { grid-column: 1 / -1; }
+  @media (max-width: 900px) { .case-modal-body { grid-template-columns: 1fr; gap: 26px; } }
   .case-modal-section h3 {
     font-size: 10.5px;
     font-weight: 700;
@@ -5515,15 +5512,8 @@ function openOffering(key) {
         </section>
       </div>
 
-      <!-- RIGHT: Outcomes + Case studies + CD -->
+      <!-- RIGHT: Case studies (priority) → Outcomes → CD -->
       <div class="off-ed-col">
-        <section class="off-ed-card off-ed-card-accent">
-          <h2>What changes</h2>
-          <ul class="off-ed-outcomes-compact">
-            ${d.outcomes.slice(0, 5).map(out => `<li>${_md(out)}</li>`).join('')}
-          </ul>
-        </section>
-
         <section class="off-ed-cases">
           <div class="off-ed-cases-head">
             <h2>Client stories</h2>
@@ -5541,6 +5531,13 @@ function openOffering(key) {
               </div>
             `).join('')}
           </div>
+        </section>
+
+        <section class="off-ed-card off-ed-card-accent">
+          <h2>What changes</h2>
+          <ul class="off-ed-outcomes-compact">
+            ${d.outcomes.slice(0, 5).map(out => `<li>${_md(out)}</li>`).join('')}
+          </ul>
         </section>
 
         ${cd ? `
