@@ -2035,6 +2035,248 @@
     border-top: 1px solid var(--grey-200);
   }
 
+  /* Client story preview cards (compact, in offering page right col) */
+  .off-ed-cases { }
+  .off-ed-cases-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .off-ed-cases-head h2 {
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink); margin: 0;
+  }
+  .off-ed-cases-count {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; color: var(--grey-400);
+  }
+  .off-ed-cases-grid {
+    display: grid; gap: 10px;
+  }
+  .off-ed-case-card {
+    background: var(--paper-pure);
+    border: 1px solid var(--grey-200);
+    padding: 14px 16px;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .off-ed-case-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+    background: var(--accent);
+    transform: scaleY(0); transform-origin: top;
+    transition: transform .25s ease;
+  }
+  .off-ed-case-card:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+  .off-ed-case-card:hover::before { transform: scaleY(1); }
+  .off-ed-case-card-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; margin-bottom: 8px;
+  }
+  .off-ed-case-card-industry {
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .off-ed-case-card-client {
+    font-size: 14px; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .off-ed-case-card-hook {
+    font-size: 12.5px; color: var(--ink-soft);
+    line-height: 1.5; margin-bottom: 10px;
+    font-style: italic;
+  }
+  .off-ed-case-card-cta {
+    background: none; border: none; padding: 0;
+    font-family: inherit; cursor: pointer;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; color: var(--accent);
+    transition: color .2s, transform .2s;
+  }
+  .off-ed-case-card:hover .off-ed-case-card-cta { color: var(--accent-deep); transform: translateX(3px); }
+
+  /* CASE STUDY MODAL — large, client-facing */
+  .case-modal {
+    position: fixed; inset: 0;
+    background: rgba(11,20,38,0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 100;
+    display: none;
+    overflow-y: auto;
+    padding: 40px 20px;
+    animation: modalFadeIn .25s ease;
+  }
+  .case-modal.open { display: block; }
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .case-modal-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--paper-pure);
+    padding: 44px 56px 36px;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+    animation: modalSlideUp .35s cubic-bezier(.2,.7,.2,1);
+  }
+  @keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (max-width: 720px) {
+    .case-modal { padding: 12px; }
+    .case-modal-inner { padding: 28px 24px; }
+  }
+
+  .case-modal-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; cursor: pointer;
+    font-size: 28px; line-height: 1;
+    color: var(--grey-400);
+    transition: color .15s, transform .15s;
+    padding: 4px 10px;
+  }
+  .case-modal-close:hover { color: var(--accent); transform: scale(1.1); }
+
+  .case-modal-header {
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .case-modal-meta {
+    display: flex; gap: 14px; align-items: center;
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .case-modal-industry { color: var(--accent); }
+  .case-modal-offering {
+    color: var(--grey-600);
+    padding-left: 14px;
+    border-left: 1px solid var(--grey-200);
+  }
+  .case-modal-client {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .case-modal-title {
+    font-size: 16px;
+    color: var(--grey-600);
+    font-style: italic;
+    letter-spacing: -0.005em;
+  }
+
+  .case-modal-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0;
+    background: var(--ink);
+    margin: 0 0 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-modal-metrics::before {
+    content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 100%;
+    background: radial-gradient(circle at top right, rgba(230,0,126,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .case-modal-metric {
+    padding: 22px 24px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    position: relative; z-index: 1;
+  }
+  .case-modal-metric:last-child { border-right: none; }
+  .case-modal-metric-v {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+  .case-modal-metric-l {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #98A1B3;
+  }
+
+  .case-modal-pullquote {
+    padding: 16px 0 16px 22px;
+    border-left: 3px solid var(--accent);
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.4;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    margin: 0 0 28px;
+  }
+
+  .case-modal-body { display: flex; flex-direction: column; gap: 26px; }
+  .case-modal-section h3 {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+  .case-modal-outcome h3 { color: var(--accent); }
+  .case-modal-section p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .case-modal-outcome p { color: var(--ink); font-weight: 500; }
+  .case-modal-actions {
+    list-style: none; counter-reset: act;
+    padding: 0; margin: 0;
+  }
+  .case-modal-actions li {
+    counter-increment: act;
+    padding: 10px 0 12px 36px;
+    border-bottom: 1px solid var(--grey-100);
+    position: relative;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .case-modal-actions li:last-child { border-bottom: none; }
+  .case-modal-actions li::before {
+    content: counter(act, decimal-leading-zero);
+    position: absolute; left: 0; top: 11px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .case-modal-actions li strong { font-weight: 600; color: var(--ink); }
+  .case-modal-section p strong { font-weight: 600; color: var(--ink); }
+  .case-modal-outcome p strong { color: var(--accent); }
+
+  .case-modal-footer {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--grey-200);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .case-modal-footer .off-ed-link {
+    background: none; border: none; cursor: pointer; font-family: inherit;
+    padding: 0;
+  }
+
   .off-ed-section { margin-bottom: 56px; }
   .off-ed-section h2 {
     font-size: 13px;
@@ -4793,13 +5035,24 @@ const OFFERING_DETAILS = {
       'Increase operational efficiency, transparency, and consistency across learning processes, technologies, and vendors',
       'Build a stronger foundation for long-term workforce transformation, capability building, and organizational resilience'
     ],
-    stories: [{
-      client: 'Leading Global Pharmaceutical Organization', industry: 'Pharma & Life Sciences',
-      title: 'Enterprise Learning Transformation Program',
-      challenge: 'The client engaged CAS to support a broader enterprise Learning Transformation initiative aimed at aligning Learning more closely with evolving business priorities, workforce capability needs, and future ways of working. A Learning Function Review identified the need to redesign the Learning Operating Model to improve governance, scalability, consistency, and alignment.',
-      did: ['Conducted learning activity analysis and recommended key initiatives to enable transformation','Developed a comprehensive Learning Operating Model Transition Playbook','Defined detailed learning lifecycle processes, governance structures, standards, roles, interaction models, and transition approaches','Created phased implementation and transition plans','Provided ongoing strategic advisory across governance, operations, and stakeholder alignment'],
-      outcome: 'Established the foundation for a more agile, scalable, and business-aligned Learning organization. Enabled greater consistency in governance, learning operations, and learner experience while creating a stronger framework for skills-focused, personalized, and business-driven learning.'
-    }]
+    stories: [
+      {
+        client: 'Leading Global Pharma', industry: 'Pharma & Life Sciences',
+        title: 'Enterprise Learning Transformation Program',
+        challenge: 'The client engaged CAS to support a broader **enterprise Learning Transformation** aimed at aligning Learning more closely with **evolving business priorities** and future ways of working. A Learning Function Review identified the need to **redesign the Learning Operating Model** to improve governance, scalability, consistency, and alignment.',
+        did: ['Conducted **learning activity analysis** and recommended key initiatives to enable transformation','Developed a comprehensive **Learning Operating Model Transition Playbook**','Defined **lifecycle processes, governance structures, standards, roles, and interaction models** across the enterprise','Created **phased implementation and transition plans**','Provided ongoing strategic advisory across governance, operations, and stakeholder alignment'],
+        outcome: 'Established the foundation for a more **agile, scalable, and business-aligned** Learning organization. Enabled **greater consistency in governance, operations, and learner experience** — creating a stronger framework for **skills-focused, personalized, and business-driven learning**.',
+        metrics: [{ v: 'Enterprise', l: 'Scope' }, { v: 'Multi-phase', l: 'Transition' }, { v: 'Future-state', l: 'Op model' }]
+      },
+      {
+        client: 'Global Pharma (multi-engagement)', industry: 'Pharma & Life Sciences',
+        title: 'Adaptive Learning Organization (ALO) Maturity Lift',
+        challenge: 'A multi-business-unit pharma needed to **shift Learning from delivery-focused to a strategic enterprise capability**. Maturity varied across functions; governance, analytics, and operating model needed alignment.',
+        did: ['Benchmarked **maturity across Sense / Decide / Evolve** capabilities','Mapped fragmented practices to the **enterprise value chain**','Designed a **phased capability uplift roadmap**','Defined **measurement framework** linked to business outcomes'],
+        outcome: '**Repositioned Learning** from request-taker to strategic enabler. Created a **shared maturity baseline** across BUs and a roadmap to close the gaps. Established **early-stage signals** for downstream analytics investment.',
+        metrics: [{ v: '3 capabilities', l: 'Sense/Decide/Evolve' }, { v: 'Multi-BU', l: 'Scope' }, { v: 'Phased', l: 'Roadmap' }]
+      }
+    ]
   },
   acad: {
     challenge: `Sales and other functions often have access to learning content but no clear academy structure, onboarding journey, or upskilling pathway. New hires move directly into courses without strong orientation. Existing teams need clearer support to build product knowledge, role confidence, and future-ready skills. Organizations need a scalable academy model that can support immediate capability needs while acting as a blueprint for future academies.`,
@@ -4818,13 +5071,24 @@ const OFFERING_DETAILS = {
       'Academy Playbook for sustaining the academy over time — governance, ownership, content maintenance, quality standards, measurement',
       'LMS/LXP wireframes making the solution easier for stakeholders to visualize, discuss, and implement'
     ],
-    stories: [{
-      client: 'Qatar Airways', industry: 'Aviation',
-      title: 'Qatar Airways Sales Academy',
-      challenge: 'The Sales team had learning resources but the experience was not easy to navigate. Learners could access courses but didn\'t always know where to start, what was most relevant, or how learning connected to their role. New hires moved directly into courses without context. Sales teams were sometimes relying on discounts to close deals — pointing to a deeper need for stronger product understanding and consultative selling skills.',
-      did: ['Stakeholder workshops + content catalogue review','Defined the academy vision, priority sales roles, core skills','Designed onboarding and upskilling journeys','Built academy wireframes for LMS/LXP visualization','Delivered the Academy Playbook with governance and content standards'],
-      outcome: 'Moved Qatar Airways from "we have learning content" to "we have a clear capability-building experience." Gave learners a guided journey, organized the catalogue, identified gaps, and created a sustainable framework that can scale to future academies.'
-    }]
+    stories: [
+      {
+        client: 'Qatar Airways', industry: 'Aviation',
+        title: 'Qatar Airways Sales Academy',
+        challenge: 'The Sales team had learning resources but **no academy structure or guided pathway**. New hires were moving straight into courses without context. **Sales teams were relying on discounts to close deals** — pointing to a deeper need for stronger product understanding and consultative selling skills. The ask was for a **scalable academy model**, not a one-time solution.',
+        did: ['Stakeholder workshops + **full content catalogue review**','Defined the **academy vision**, priority sales roles, and core skills','Designed **onboarding journeys** (new hires, lateral movers, experienced hires) and **upskilling journeys**','Built **academy wireframes** for LMS/LXP visualization','Delivered the **Academy Playbook** — governance, ownership, content standards, measurement'],
+        outcome: 'Moved Qatar Airways from "we have learning content" to "**we have a clear capability-building experience**." Gave learners a guided journey, organized the catalogue, identified gaps, and created a **sustainable framework that scales to future academies**.',
+        metrics: [{ v: '3 personas', l: 'Onboarding paths' }, { v: 'Playbook', l: 'Scaling model' }, { v: 'LMS-ready', l: 'Delivery' }]
+      },
+      {
+        client: 'Aviation Sales Function', industry: 'Aviation',
+        title: 'Sales Capability Academy Blueprint',
+        challenge: 'Sales leaders needed a **role-based capability builder** — not just a course catalogue. Onboarding was inconsistent and ramp time was longer than commercial targets allowed. Upskilling around **consultative selling and commercial confidence** was underdeveloped.',
+        did: ['Mapped **role archetypes** and capability priorities','Designed **modular journeys** by role and tenure','Layered in **blended experiences** — buddy, coach, manager check-ins','Built **measurement points** at each journey milestone'],
+        outcome: 'Established a **role-led academy structure** with clear progression paths. Reduced perceived friction for new hires and gave the business a **playbook to replicate** across other commercial functions.',
+        metrics: [{ v: 'Role-based', l: 'Architecture' }, { v: 'Blended', l: 'Experience' }, { v: 'Modular', l: 'Scaling' }]
+      }
+    ]
   },
   adcb: {
     challenge: `Many organisations have invested heavily in digital platforms, automation, and AI tools — but operational transformation lags behind. The challenge is no longer technology deployment alone, but redesigning how work gets done, how decisions are made, and how the workforce operates in AI-enabled environments. Capability frameworks remain anchored in outdated role structures. Learning investments are disconnected from strategic workforce priorities, digital capabilities are defined inconsistently, and organisations struggle to determine which capabilities truly matter in an AI-enabled operating environment.`,
@@ -4846,13 +5110,24 @@ const OFFERING_DETAILS = {
       'Improved workforce adoption of new tools, workflows, and ways of working',
       'Greater visibility into capability gaps, role evolution, and future workforce requirements'
     ],
-    stories: [{
-      client: 'UCB', industry: 'Pharma & Life Sciences',
-      title: 'Digital Capability Model and Implementation Roadmap',
-      challenge: 'UCB had a clear ambition to use digital, data, and AI to accelerate scientific discovery, improve patient outcomes, and support long-term growth. But capability requirements were evolving faster than the existing skills architecture, and maturity varied across PVUs and functions. The organisation needed a clearer view of which digital and AI capabilities mattered most, how they should be defined, and where to focus near-term and long-term upskilling investment.',
-      did: ['Analyzed business priorities, job architecture, and Techwolf insights','Benchmarked digital/data/AI trends across pharma and adjacent industries','Facilitated working sessions across the value chain to surface gaps','Built a Digital & AI Skills and Capability Model','Ran a Future of Work workshop to validate against business priorities','Applied a prioritisation framework for enterprise vs PVU-specific bets','Developed a 6-workstream roadmap including governance and measurement'],
-      outcome: 'Gave UCB an evidence-based foundation for deciding where to invest in digital/data/AI capability building. Translated transformation ambition into a structured capability model, prioritisation logic, and roadmap. Positioned UCB to focus near-term on enterprise scale capabilities (Data & AI Literacy, Responsible AI, Adaptive Thinking) while recognising deeper specialist capabilities need PVU-led pathways.'
-    }]
+    stories: [
+      {
+        client: 'UCB', industry: 'Pharma & Life Sciences',
+        title: 'Digital Capability Model & Implementation Roadmap',
+        challenge: 'UCB had ambition to use **digital, data, and AI to accelerate scientific discovery** and improve patient outcomes. But capability requirements were **evolving faster than the existing skills architecture**, and **maturity varied across PVUs**. The organisation needed clarity on **which digital and AI capabilities mattered most** and where to focus upskilling investment.',
+        did: ['Analyzed business priorities, **job architecture**, and Techwolf insights','Benchmarked **digital/data/AI trends** across pharma and adjacent industries','Facilitated **working sessions across the value chain** to surface gaps','Built a **Digital & AI Skills and Capability Model** spanning AI foundations, leadership, human, technical, deep-technical','Ran a **Future of Work workshop** to validate against business priorities','Applied a **prioritisation framework** for enterprise vs PVU-specific bets','Developed a **6-workstream roadmap** including governance and measurement'],
+        outcome: 'Gave UCB an **evidence-based foundation** for AI capability investment. Translated transformation ambition into a **structured capability model, prioritisation logic, and roadmap**. Positioned UCB to focus near-term on **Data & AI Literacy, Responsible AI, and Adaptive Thinking** at enterprise scale — while recognising deeper specialist capabilities need PVU-led pathways.',
+        metrics: [{ v: '5 dimensions', l: 'Capability model' }, { v: '6 workstreams', l: 'Roadmap' }, { v: 'Enterprise+PVU', l: 'Scope' }]
+      },
+      {
+        client: 'Global Biopharma R&D', industry: 'Pharma & Life Sciences',
+        title: 'Enterprise AI Fluency Program',
+        challenge: 'A biopharma R&D function needed to **build AI fluency across scientists and clinicians**, not just data teams. Existing learning was fragmented and **disconnected from the operating model shifts** AI was driving in discovery and clinical workflows.',
+        did: ['Mapped **AI-touched workflows** across discovery, clinical, medical affairs','Built **role-aware capability tracks** — foundations, applied, advanced','Designed **leadership readiness module** on Responsible AI and decision-making','Embedded **adoption signals** into the measurement architecture'],
+        outcome: 'Created a **workforce-wide AI fluency baseline** aligned to the operating model. Gave leaders a **decision framework for human-AI augmentation** rather than a generic tech roll-out. Established **measurement of adoption, not just training completion**.',
+        metrics: [{ v: '3 tracks', l: 'Role-aware' }, { v: 'Leader+IC', l: 'Coverage' }, { v: 'Adoption', l: 'Measure' }]
+      }
+    ]
   },
   saf: {
     challenge: `Due to emerging technologies, workforce shortages, evolving employee expectations, and changing ways of working, organisations are facing increasing pressure to redefine workforce capabilities. Many struggle to clearly define the skills and capabilities needed for future success, assess current workforce readiness, and create consistent approaches for talent development, mobility, and workforce planning. Skills information exists across disconnected systems and functions — resulting in inconsistent skill definitions, fragmented job architectures, limited visibility into workforce capabilities, and challenges aligning learning, performance, staffing, and career decisions.`,
@@ -4873,18 +5148,20 @@ const OFFERING_DETAILS = {
     ],
     stories: [
       {
-        client: 'Global Mining and Metals Organization', industry: 'Mining & Resources',
+        client: 'Rio Tinto', industry: 'Mining & Resources',
         title: 'S&OP Leadership Capability Framework',
-        challenge: 'Strong Sales and Operational Planning (S&OP) processes existed, but leadership engagement and decision-making behaviors across GM and MD levels were inconsistent. S&OP was viewed as a planning process rather than a cross-functional leadership capability — resulting in siloed decision-making, limited system-wide ownership, and inconsistent leader behaviors.',
-        did: ['Working sessions with senior stakeholders to identify critical S&OP decision moments','Developed an S&OP Leadership Behaviors and Mindset Framework','Created role-based learner personas and character sketches','Designed a role-based learning strategy and capability architecture','Designed a scalable capability development journey and learning resource build plan'],
-        outcome: 'Established a clear, practical definition of what effective S&OP leadership looks like. Enabled the client to move beyond process-centric participation towards collaborative, business-led decision-making focused on enterprise value creation. Created a scalable foundation for leadership onboarding and long-term behavior reinforcement.'
+        challenge: 'Strong **Sales and Operational Planning (S&OP) processes existed**, but **leadership engagement and decision-making behaviors** across GM and MD levels were inconsistent. S&OP was viewed as a **planning process rather than a cross-functional leadership capability** — resulting in **siloed decision-making and inconsistent leader behaviors**.',
+        did: ['Working sessions with senior stakeholders to identify **critical S&OP decision moments**','Developed an **S&OP Leadership Behaviors and Mindset Framework**','Created **role-based learner personas** and character sketches','Designed a **role-based learning strategy and capability architecture**','Designed a **scalable capability development journey** and learning resource build plan'],
+        outcome: 'Established a **clear, practical definition of effective S&OP leadership**. Enabled the client to move from **process-centric participation to collaborative, business-led decision-making** focused on enterprise value creation. Created a **scalable foundation for leadership onboarding and behavior reinforcement**.',
+        metrics: [{ v: 'GM/MD level', l: 'Leadership scope' }, { v: 'Decision moments', l: 'Architecture' }, { v: 'Cross-functional', l: 'Reach' }]
       },
       {
         client: 'Novartis', industry: 'Pharma & Life Sciences',
-        title: 'Enterprise Capability Framework for Cross-functional Collaboration',
-        challenge: 'As Novartis evolved from fragmented, function-specific learning programs towards a unified Enterprise Skills strategy, Cross-functional Collaboration and Stakeholder Engagement were identified as critical priorities to support its Network Teams model and "future ways of working." Existing learning efforts were cohort-based and decentralized — limiting scalability, consistency, and alignment around the behaviors required to operate in matrixed environments.',
-        did: ['Discovery workshops to identify critical collaboration behaviors and mindset shifts','Built an enterprise capability framework with key skills, behaviors, enablers, and business impacts','Designed behavioral architecture using "What, Why, How, Do" definitions','Created role-based competency grids and moments-that-matter maps','Designed a scalable, digital-first capability development architecture with governance, scaling, and measurement'],
-        outcome: 'Helped Novartis advance its shift towards a networked, enterprise-first organization by creating a shared framework for collaboration, stakeholder engagement, and decision-making across teams. Established clearer expectations for how individuals and teams operate in complex, matrixed environments. Created a strong foundation for enterprise-wide capability building.'
+        title: 'Enterprise Capability Framework — Cross-functional Collaboration',
+        challenge: 'As Novartis evolved towards a **unified Enterprise Skills strategy**, **Cross-functional Collaboration and Stakeholder Engagement** were identified as critical priorities to support its **Network Teams model**. Existing efforts were **cohort-based and decentralized** — limiting scalability and consistency.',
+        did: ['Discovery workshops to identify **collaboration behaviors and mindset shifts**','Built an **enterprise capability framework** with skills, behaviors, enablers, and business impacts','Designed **behavioral architecture** using "What, Why, How, Do" definitions','Created **role-based competency grids and moments-that-matter maps**','Designed a **scalable, digital-first capability development architecture** with governance and measurement'],
+        outcome: 'Helped Novartis advance its shift towards a **networked, enterprise-first organization** by creating a **shared framework for collaboration and decision-making**. Established clearer expectations for **operating in complex, matrixed environments**. Created a strong foundation for **enterprise-wide capability building**.',
+        metrics: [{ v: 'Enterprise', l: 'Network Teams' }, { v: 'Digital-first', l: 'Architecture' }, { v: 'Behaviors-led', l: 'Approach' }]
       }
     ]
   },
@@ -4906,17 +5183,28 @@ const OFFERING_DETAILS = {
       'Establish scalable governance, taxonomy, and measurement architectures across learning ecosystems',
       'Improve investment decisions by linking capability-building activity to operational and commercial outcomes'
     ],
-    stories: [{
-      client: 'Global Animal Health Diagnostics Organisation', industry: 'Animal Health',
-      title: 'Customer Education Learning Analytics Strategy',
-      challenge: 'The client had built a broad customer education ecosystem spanning live events, webinars, on-demand learning, trade shows, in-clinic education, and commercial enablement. But customer education data was fragmented across systems and disconnected from business metrics like product adoption, utilisation, and customer engagement. Leadership wanted clearer evidence of how education influenced commercial outcomes — particularly for strategic diagnostic products and new market launches.',
-      did: ['Enterprise-wide stakeholder interviews across commercial, marketing, product, R&D, customer success, and systems','Assessed learning data architecture and integration gaps across LMS, CRM, event, and operational platforms','Designed a future-state learning analytics vision linking education to adoption and commercial performance','Developed a phased measurement framework, analytics roadmap, KPI structure, and governance approach','Facilitated leadership workshops to align on definitions, measurement priorities, and operating principles'],
-      outcome: 'Provided a structured enterprise view of how customer education could be measured, governed, and linked to commercial outcomes. Created alignment across stakeholders on what should be measured, how customer education should be defined, and where operational gaps existed. Positioned the organisation to move from fragmented activity reporting toward integrated, business-aligned learning analytics.'
-    }]
+    stories: [
+      {
+        client: 'Global Animal Health Diagnostics', industry: 'Animal Health',
+        title: 'Customer Education Learning Analytics Strategy',
+        challenge: 'A broad customer education ecosystem — **live events, webinars, on-demand learning, trade shows, in-clinic education** — but data was **fragmented across systems** and disconnected from business metrics like **product adoption, utilisation, and customer engagement**. Leadership wanted **clearer evidence of how education influenced commercial outcomes**, especially for strategic diagnostic launches.',
+        did: ['Enterprise-wide stakeholder interviews across **commercial, marketing, product, R&D, customer success**','Assessed **learning data architecture** and integration gaps across LMS, CRM, event, and operational platforms','Designed a **future-state analytics vision** linking education to adoption and commercial performance','Developed a **phased measurement framework, analytics roadmap, KPI structure, and governance approach**','Facilitated leadership workshops to align on definitions, measurement priorities, and operating principles'],
+        outcome: 'Provided a **structured enterprise view** of how customer education could be measured, governed, and linked to commercial outcomes. Created **stakeholder alignment** on what should be measured and how customer education should be defined. Positioned the organisation to move from **fragmented activity reporting toward integrated, business-aligned learning analytics**.',
+        metrics: [{ v: 'Enterprise', l: 'Stakeholder reach' }, { v: 'Multi-system', l: 'Data architecture' }, { v: 'Phased', l: 'Roadmap' }]
+      },
+      {
+        client: 'Global Pharma Commercial', industry: 'Pharma & Life Sciences',
+        title: 'Capability Intelligence & Adoption Sensing',
+        challenge: 'A commercial learning function had **rich LMS data but limited capability intelligence**. Leaders couldn\'t link capability investment to **commercial KPIs** like product adoption, account growth, or behaviour change in customer-facing reps.',
+        did: ['Mapped **signal sources** across LMS, CRM, workflow, and outcomes platforms','Defined a **capability-to-outcome linkage model**','Designed a **continuous sensing architecture** instead of periodic reporting','Built a **governance and decision-rights** model for measurement'],
+        outcome: 'Shifted measurement from **retrospective reporting to real-time capability sensing**. Gave commercial leaders **evidence-based view** of where capability investment was paying off. Created the **operating discipline** for AI-enabled analytics adoption.',
+        metrics: [{ v: '4 systems', l: 'Signal sources' }, { v: 'Continuous', l: 'Sensing' }, { v: 'AI-ready', l: 'Architecture' }]
+      }
+    ]
   },
   lsg: {
-    challenge: `Organizations face fragmented and inconsistent learning content development across regions and functions, with limited governance and quality assurance. There's low visibility into content lifecycle, compliance, and audit readiness — particularly critical in regulated environments like GxP. Organizations rely heavily on external vendors and lack scalable ways to empower internal SMEs to create and manage content efficiently.`,
-    whatWeDo: `A structured approach to designing, managing, and governing learning content across the organisation. We establish clear standards, workflows, and accountability to ensure learning content is consistent, compliant, high-quality, and aligned with business needs. The work covers end-to-end governance, intake, lifecycle management, and enablement of internal teams.`,
+    challenge: `Organizations face **fragmented and inconsistent learning content development** across regions and functions, with limited governance and quality assurance. There's **low visibility into content lifecycle, compliance, and audit readiness** — particularly critical in regulated environments like GxP. Organizations rely heavily on external vendors and lack scalable ways to empower internal SMEs to create and manage content efficiently.`,
+    whatWeDo: `A structured approach to designing, managing, and governing learning content across the organisation. We establish **clear standards, workflows, and accountability** to ensure learning content is **consistent, compliant, high-quality, and aligned with business needs**. The work covers end-to-end governance, intake, lifecycle management, and enablement of internal teams.`,
     process: [
       { t: 'Discovery & AS-IS analysis', d: 'Stakeholder interviews and current-state analysis to define gaps and future-state vision.' },
       { t: 'Framework co-design', d: 'Co-design the learning content development framework, aligned with business needs and learning culture.' },
@@ -4927,19 +5215,30 @@ const OFFERING_DETAILS = {
       { t: 'Beta pilot & activation', d: 'Run beta pilot with refinement cycles. Deliver enablement assets including communication toolkit and activation playbook.' }
     ],
     outcomes: [
-      'Consistent and standardised approach to learning content development across regions and teams',
-      'Compliance, audit readiness, and quality assurance through structured governance and checkpoints',
-      'End-to-end visibility of the content lifecycle — improving control and decision-making',
-      'Reduced dependency on external vendors by empowering SMEs and internal teams',
-      'Improved speed, scalability, and efficiency of content development and deployment'
+      '**Consistent and standardised** approach to learning content development across regions and teams',
+      '**Compliance, audit readiness, and quality assurance** through structured governance and checkpoints',
+      '**End-to-end visibility** of the content lifecycle — improving control and decision-making',
+      '**Reduced dependency on external vendors** by empowering SMEs and internal teams',
+      'Improved **speed, scalability, and efficiency** of content development and deployment'
     ],
-    stories: [{
-      client: 'UCB', industry: 'Pharma & Life Sciences',
-      title: 'U-KNOW Learning Content Development Framework',
-      challenge: 'UCB faced significant challenges due to fragmented and inconsistent learning content creation processes across global teams. There was no unified governance model, leading to inefficiencies, duplication, and lack of standardisation. The organisation also required stronger compliance mechanisms to meet GxP regulatory standards and improve audit readiness. There was also a need to reduce reliance on external vendors while empowering internal stakeholders.',
-      did: ['Co-designed the U-KNOW Learning Content Development Framework aligned with UCB\'s business needs','Conducted discovery, stakeholder interviews, and AS-IS analysis','Developed an MVP with core and advanced service levels','Established end-to-end governance, workflows, and lifecycle management','Introduced a three-tier development model: Self-Checkout, Learning Studio, Learning Boutique','Designed the Learning Launchpad for structured intake and triage','Led a beta pilot and refinement cycle','Delivered enablement assets including communication toolkit and activation playbook'],
-      outcome: 'Enabled UCB to standardise and streamline its learning content development processes globally — significantly improving consistency, compliance, and efficiency. Increased visibility across the content lifecycle, strengthened audit readiness in a regulated environment, and reduced dependency on external vendors. Established a strong governance foundation for sustainable adoption and continuous improvement.'
-    }]
+    stories: [
+      {
+        client: 'UCB', industry: 'Pharma & Life Sciences',
+        title: 'U-KNOW Learning Content Development Framework',
+        challenge: 'UCB faced **fragmented and inconsistent** learning content creation across global teams. **No unified governance model** led to inefficiencies, duplication, and lack of standardisation. The organisation needed **stronger compliance mechanisms** to meet **GxP regulatory standards** and improve audit readiness — while reducing reliance on external vendors and empowering internal stakeholders.',
+        did: ['Co-designed the **U-KNOW Learning Content Development Framework** aligned with UCB\'s business needs','Conducted discovery, stakeholder interviews, and AS-IS analysis','Developed an **MVP with core and advanced service levels**','Established **end-to-end governance, workflows, and lifecycle management**','Introduced a **three-tier development model**: Self-Checkout, Learning Studio, Learning Boutique','Designed the **Learning Launchpad** for structured intake and triage','Led a beta pilot and refinement cycle','Delivered enablement assets including communication toolkit and activation playbook'],
+        outcome: 'Enabled UCB to **standardise and streamline** its learning content development processes globally — significantly improving **consistency, compliance, and efficiency**. Increased visibility across the content lifecycle, **strengthened audit readiness in a regulated environment**, and reduced dependency on external vendors. Established a strong governance foundation for sustainable adoption.',
+        metrics: [{ v: '3-tier', l: 'Development model' }, { v: 'GxP', l: 'Audit-ready' }, { v: 'Global', l: 'Scope' }]
+      },
+      {
+        client: 'Rio Tinto Iron Ore', industry: 'Mining & Resources',
+        title: 'Governance Model Playbook',
+        challenge: '**Fragmented decision-making** across markets and stakeholders. Lack of clarity on **who owned which decisions** across the portfolio. Limited structure for prioritization, escalation, and trade-offs — making it difficult to scale the function as demand grew.',
+        did: ['Designed a comprehensive **Governance Model Playbook**','Defined **governance layers** — portfolio, program, and execution','Established **decision rights, ownership, and escalation paths**','Defined **operating cadence** — annual, quarterly, monthly planning cycles','Established clear rules for **prioritization and portfolio trade-offs**'],
+        outcome: 'Enabled **consistent and transparent decision-making** across regions. Reduced reliance on informal escalation and relationship-driven decisions. Created a **scalable governance foundation** to support portfolio growth — moving the function from request-taker to portfolio owner.',
+        metrics: [{ v: '3 layers', l: 'Governance model' }, { v: 'Annual–monthly', l: 'Cadence' }, { v: 'Multi-region', l: 'Scope' }]
+      }
+    ]
   },
   po: {
     challenge: `Organizations often struggle with bloated, fragmented, and underperforming learning portfolios. This typically surfaces during LMS/LXP transitions, organizational restructuring, or MLS onboarding. What's broken: thousands of courses across systems with no single source of truth, redundant content (e.g. 200+ versions of the same topic), outdated or unused assets, inconsistent taxonomy and ownership. Learners get overwhelmed → low engagement and completion. In an attention economy, a cluttered learning ecosystem loses the learner before they even start.`,
@@ -4959,18 +5258,20 @@ const OFFERING_DETAILS = {
     ],
     stories: [
       {
-        client: 'Rio Tinto Iron Ore (RTIO)', industry: 'Mining & Resources',
+        client: 'Rio Tinto Iron Ore', industry: 'Mining & Resources',
         title: 'Full Portfolio Optimization (Level 2)',
-        challenge: 'Portfolio of 3,300+ courses across multiple systems. Poor data quality, duplication, unclear ownership. No clear definition of mandatory learning.',
-        did: ['Consolidated and cleaned portfolio data','Conducted full course-level review and optimization','Built governance frameworks and maintenance processes'],
-        outcome: 'Reduced portfolio by ~30% (766 courses retired). Delivered $27.6M annual savings potential. Reduced learning hours by ~197,000 annually. Established governance for long-term sustainability. Transformed learning from a compliance-heavy burden into a strategic, efficient system.'
+        challenge: 'Portfolio of **3,300+ courses across multiple systems**. **Poor data quality, duplication, unclear ownership**. No clear definition of mandatory learning. Cost and complexity were rising — and learner engagement was declining.',
+        did: ['**Consolidated and cleaned** portfolio data across systems','Conducted **full course-level review and optimization**','Built **governance frameworks** and ongoing maintenance processes','Defined **retain / retire / refresh / replace / rationalize** decisions for every asset'],
+        outcome: 'Reduced portfolio by **~30%** (766 courses retired). Delivered **$27.6M annual savings potential**. Reduced learning hours by **~197,000 annually**. Established governance for long-term sustainability — transforming learning from a **compliance-heavy burden into a strategic, efficient system**.',
+        metrics: [{ v: '$27.6M', l: 'Annual savings' }, { v: '~30%', l: 'Portfolio cut' }, { v: '197K hrs', l: 'Time returned' }]
       },
       {
         client: 'Unilever', industry: 'Consumer Goods',
-        title: 'Pathway Optimization (Level 1)',
-        challenge: '4,700+ learning pathways in Degreed. Low engagement, duplication, poor skills alignment. Transition to Workday required portfolio clean-up.',
-        did: ['Consolidated and analyzed pathway data','Optimized 260 strategic pathways','Improved metadata, skills tagging, and discoverability'],
-        outcome: 'Identified 2,400+ pathways for retirement consideration. Highlighted major engagement gaps (e.g. 2,292 pathways unused in a year). Created a prioritized, streamlined portfolio aligned to skills — ready for platform transition.'
+        title: 'Pathway Optimization & Platform Transition',
+        challenge: '**4,700+ learning pathways** in Degreed. **Low engagement, duplication, poor skills alignment**. Transition to Workday required portfolio clean-up — and the team needed evidence-based decisions on what to keep.',
+        did: ['Consolidated and analyzed **pathway data**','Optimized **260 strategic pathways**','Improved **metadata, skills tagging, and discoverability**','Identified **engagement and duplication patterns** at scale'],
+        outcome: 'Identified **2,400+ pathways for retirement**. Highlighted major engagement gaps (e.g. **2,292 pathways unused in a year**). Created a **prioritized, streamlined portfolio aligned to skills** — ready for the platform transition.',
+        metrics: [{ v: '2,400+', l: 'Retired pathways' }, { v: '260', l: 'Strategic kept' }, { v: 'Skills-aligned', l: 'New catalogue' }]
       }
     ]
   },
@@ -4994,25 +5295,28 @@ const OFFERING_DETAILS = {
     ],
     stories: [
       {
-        client: 'Pfizer GCET (Global Commercial Learning)', industry: 'Pharma & Life Sciences',
+        client: 'Pfizer GCET', industry: 'Pharma & Life Sciences',
         title: 'Global Commercial Learning Operations Transformation',
-        challenge: 'Rapidly expanding remit with fragmented processes and limited governance. Learning function operating in a reactive, delivery-focused mode. Limited ability to link learning to business readiness and outcomes.',
-        did: ['Conducted comprehensive assessment of the learning function','Defined a future-state operating model and transformation playbook','Established governance principles, operating structure, and measurement framework'],
-        outcome: 'Positioned learning as a governed enterprise operating system. Shifted from reactive delivery to planned, portfolio-driven execution. Enabled stronger linkage between learning and commercial readiness.'
+        challenge: 'Rapidly **expanding remit with fragmented processes and limited governance**. Learning function operating in a **reactive, delivery-focused mode** — with limited ability to link learning to business readiness and outcomes.',
+        did: ['Conducted **comprehensive assessment** of the learning function','Defined a **future-state operating model** and transformation playbook','Established **governance principles, operating structure, and measurement framework**','Designed **stakeholder alignment** across global commercial teams'],
+        outcome: 'Positioned learning as a **governed enterprise operating system**. Shifted from **reactive delivery to planned, portfolio-driven execution**. Enabled stronger linkage between learning and **commercial readiness**.',
+        metrics: [{ v: 'Global', l: 'Scope' }, { v: 'Future-state', l: 'Op model' }, { v: 'Portfolio-led', l: 'Execution' }]
       },
       {
         client: 'Anglo American', industry: 'Mining & Resources',
         title: 'ALO Benchmarking Assessment',
-        challenge: 'Learning practices were fragmented and inconsistent across disciplines. Limited alignment on learning needs, roles and responsibilities, and strategic direction.',
-        did: ['Assessed the Technical Academy using the Adaptive Learning Organization (ALO) model','Conducted surveys, focus groups, and stakeholder feedback sessions','Benchmarked maturity across key capabilities — Sense, Decide, Evolve'],
-        outcome: 'Identified maturity level between fragmented and cohesive. Highlighted key improvement areas: data & analytics, learning strategy, governance and roles. Provided foundation for continuous improvement planning and future roadmap development.'
+        challenge: 'Learning practices were **fragmented and inconsistent** across disciplines. Limited alignment on **learning needs, roles, and strategic direction**.',
+        did: ['Assessed the Technical Academy using the **Adaptive Learning Organization (ALO) model**','Conducted **surveys, focus groups, and stakeholder feedback** sessions','Benchmarked maturity across **Sense, Decide, Evolve** capabilities','Identified **maturity level between fragmented and cohesive**'],
+        outcome: 'Highlighted key improvement areas: **data & analytics, learning strategy, governance and roles**. Provided foundation for **continuous improvement planning and future roadmap development**.',
+        metrics: [{ v: '3 lenses', l: 'Sense/Decide/Evolve' }, { v: 'Maturity', l: 'Baseline' }, { v: 'Roadmap', l: 'Foundation' }]
       },
       {
         client: 'Siemens Energy', industry: 'Energy & Resources',
         title: 'New Hire Training Transformation Business Case',
-        challenge: 'Highly variable and site-specific training approaches. Limited standardization across content, delivery, and infrastructure. Difficulty scaling training to meet rapid growth needs.',
-        did: ['Conducted current-state assessment across multiple sites','Identified gaps across the training value chain','Developed a clearly defined future vision, prioritized transformation recommendations, phased roadmap and business case'],
-        outcome: 'Defined 10 key initiatives to mature training capability. Enabled shift toward a standardized, scalable training model and structured learning journeys. Created a clear investment roadmap to support global scale and consistency.'
+        challenge: '**Highly variable and site-specific** training approaches. **Limited standardization** across content, delivery, and infrastructure. Difficulty **scaling training** to meet rapid growth needs.',
+        did: ['Conducted **current-state assessment** across multiple sites','Identified **gaps across the training value chain**','Developed a **future vision** and prioritized transformation recommendations','Built a **phased implementation roadmap and business case**'],
+        outcome: 'Defined **10 key initiatives** to mature training capability. Enabled shift toward a **standardized, scalable training model** and structured learning journeys. Created a **clear investment roadmap** to support global scale.',
+        metrics: [{ v: '10 initiatives', l: 'Roadmap' }, { v: 'Multi-site', l: 'Scope' }, { v: 'Standardized', l: 'Future-state' }]
       }
     ]
   },
@@ -5034,19 +5338,35 @@ const OFFERING_DETAILS = {
       'More focused and easier-to-maintain learning pathways supporting proficiency-based development',
       'LMS-ready journey structure supported by tools, templates, and role clarity'
     ],
-    stories: [{
-      client: 'Qatar Airways', industry: 'Aviation',
-      title: 'Qatar Airways Sales and Business Finance Learning Journeys',
-      challenge: 'Qatar Airways needed a more structured way to help Sales and Business Finance employees build role-relevant capability, ramp up faster, and feel supported through their learning journey. Salespeople were under pressure to meet targets and sometimes relying on discounts to close deals — pointing to a deeper need for stronger product knowledge, consultative selling confidence, and commercial understanding. Onboarding also needed more structure for new joiners, lateral movers, and experienced hires.',
-      did: ['Reviewed the catalogue and mapped resources to skills, roles, proficiency levels','Curated onboarding journeys (plug-and-play for new hires, lateral movers, experienced hires) and upskilling journeys','Built blended experiences: buddy meetings, mentor conversations, manager check-ins, peer learning, expert Q&A, shadowing, self-assessments','Developed RACIs, manager/buddy/mentor guides, and launch/adoption guidance','Delivered LMS-ready journey structure'],
-      outcome: 'Moved learning from a list of courses to an experience that builds confidence, belonging, performance readiness, and continuous development. Sales pathway directly supported the business challenge behind target achievement — building consultative selling, customer focus, negotiation, market understanding, and commercial confidence.'
-    }]
+    stories: [
+      {
+        client: 'Qatar Airways', industry: 'Aviation',
+        title: 'Sales & Business Finance Learning Journeys',
+        challenge: 'Sales and Business Finance employees needed a **structured way to build role-relevant capability** and ramp up faster. Salespeople were under pressure to meet targets and **sometimes relying on discounts** — pointing to a deeper need for **product knowledge, consultative selling, and commercial understanding**. Onboarding lacked differentiation for **new joiners, lateral movers, and experienced hires**.',
+        did: ['Reviewed the catalogue and **mapped resources to skills, roles, and proficiency levels**','Curated **onboarding journeys** (plug-and-play for 3 learner profiles) and **upskilling journeys**','Built **blended experiences** — buddy meetings, mentor conversations, manager check-ins, peer learning, expert Q&A, shadowing, self-assessments','Developed **RACIs and enablement guides** for managers, buddies, mentors, coaches','Delivered **LMS-ready journey structure** with launch/adoption guidance'],
+        outcome: 'Moved learning from "a list of courses" to **"an experience that builds confidence, belonging, and performance readiness"**. The Sales pathway directly supported the business challenge behind target achievement — building **consultative selling, customer focus, negotiation, and commercial confidence**.',
+        metrics: [{ v: '3 profiles', l: 'Onboarding paths' }, { v: 'Blended', l: 'Experience' }, { v: '2 functions', l: 'Scope' }]
+      },
+      {
+        client: 'Aviation Commercial', industry: 'Aviation',
+        title: 'Proficiency-Based Capability Pathways',
+        challenge: 'A commercial function had a **deep content library but no clear sequencing**. Learners were unsure what to take first, what mattered for their role, or how learning connected to **performance expectations**.',
+        did: ['Created **proficiency tiers** — foundational, proficient, advanced','Curated **pathways aligned to role and tenure**','Layered in **practice activities and on-the-job application**','Defined **manager and mentor touchpoints** for support'],
+        outcome: 'Replaced a content catalogue with a **purposeful, role-aligned learning model**. Learners knew **where to begin and how to progress**. Managers had a clear role in **supporting development beyond completion**.',
+        metrics: [{ v: '3 tiers', l: 'Proficiency' }, { v: 'Role-aligned', l: 'Pathways' }, { v: 'Manager-led', l: 'Reinforcement' }]
+      }
+    ]
   }
 };
 
 function _splitSentences(text, n) {
   const parts = String(text).split(/(?<=\.)\s+/);
   return { head: parts.slice(0, n).join(' '), rest: parts.slice(n).join(' ') };
+}
+
+// Simple **bold** markdown → <strong> renderer, safe for text
+function _md(text) {
+  return String(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 }
 
 function _outcomeHook(outcomeText) {
@@ -5062,7 +5382,6 @@ function openOffering(key) {
   const d = OFFERING_DETAILS[key];
   if (!o || !d) return;
 
-  const [featured, ...rest] = d.stories;
   const chal = _splitSentences(d.challenge, 2);
   const what = _splitSentences(d.whatWeDo, 2);
 
@@ -5079,14 +5398,14 @@ function openOffering(key) {
       <div class="off-ed-col">
         <section class="off-ed-card">
           <h2>Where this comes from</h2>
-          <p>${chal.head}</p>
-          ${chal.rest ? `<details><summary>Read more</summary><p>${chal.rest}</p></details>` : ''}
+          <p>${_md(chal.head)}</p>
+          ${chal.rest ? `<details><summary>Read more</summary><p>${_md(chal.rest)}</p></details>` : ''}
         </section>
 
         <section class="off-ed-card">
           <h2>How we do it</h2>
-          <p>${what.head}</p>
-          ${what.rest ? `<details><summary>Read more</summary><p>${what.rest}</p></details>` : ''}
+          <p>${_md(what.head)}</p>
+          ${what.rest ? `<details><summary>Read more</summary><p>${_md(what.rest)}</p></details>` : ''}
         </section>
 
         <section class="off-ed-card">
@@ -5095,7 +5414,7 @@ function openOffering(key) {
             ${d.process.map((p, i) => `
               <li title="${p.d.replace(/"/g,'&quot;')}">
                 <span class="off-ed-step-num">${String(i+1).padStart(2,'0')}</span>
-                <span class="off-ed-step-name">${p.t}</span>
+                <span class="off-ed-step-name">${_md(p.t)}</span>
               </li>
             `).join('')}
           </ol>
@@ -5103,48 +5422,33 @@ function openOffering(key) {
         </section>
       </div>
 
-      <!-- RIGHT: Outcomes + Case study -->
+      <!-- RIGHT: Outcomes + Case studies -->
       <div class="off-ed-col">
         <section class="off-ed-card off-ed-card-accent">
           <h2>What changes</h2>
           <ul class="off-ed-outcomes-compact">
-            ${d.outcomes.slice(0, 5).map(out => `<li>${out}</li>`).join('')}
+            ${d.outcomes.slice(0, 5).map(out => `<li>${_md(out)}</li>`).join('')}
           </ul>
         </section>
 
-        <section class="off-ed-card off-ed-card-case">
-          <div class="off-ed-case-eyebrow">Case in point · ${featured.industry}</div>
-          <div class="off-ed-case-client">${featured.client}</div>
-          <blockquote class="off-ed-pullquote-compact">${_outcomeHook(featured.outcome)}</blockquote>
-          <details>
-            <summary>Full case study</summary>
-            <div class="off-ed-case-full">
-              <div class="off-ed-case-title-inline">${featured.title}</div>
-              <p><strong>Situation —</strong> ${featured.challenge}</p>
-              <p><strong>What we did —</strong> ${featured.did.join(' · ')}</p>
-              <p class="off-ed-case-outcome"><strong>Outcome —</strong> ${featured.outcome}</p>
-            </div>
-          </details>
+        <section class="off-ed-cases">
+          <div class="off-ed-cases-head">
+            <h2>Client stories</h2>
+            <span class="off-ed-cases-count">${d.stories.length} case${d.stories.length>1?'s':''}</span>
+          </div>
+          <div class="off-ed-cases-grid">
+            ${d.stories.map((s, i) => `
+              <div class="off-ed-case-card">
+                <div class="off-ed-case-card-head">
+                  <span class="off-ed-case-card-industry">${s.industry}</span>
+                  <span class="off-ed-case-card-client">${s.client}</span>
+                </div>
+                <div class="off-ed-case-card-hook">${_outcomeHook(s.outcome)}</div>
+                <button class="off-ed-case-card-cta" onclick="openCaseStudy('${key}', ${i})">Read full case →</button>
+              </div>
+            `).join('')}
+          </div>
         </section>
-
-        ${rest.length ? `
-          <section class="off-ed-card">
-            <h2>Also done for</h2>
-            <div class="off-ed-also-compact">
-              ${rest.map(s => `
-                <details class="off-ed-also-item-compact">
-                  <summary>
-                    <span class="off-ed-also-client-compact">${s.client}</span>
-                    <span class="off-ed-also-arrow">+</span>
-                  </summary>
-                  <div class="off-ed-also-body-compact">
-                    <p>${_outcomeHook(s.outcome)}</p>
-                  </div>
-                </details>
-              `).join('')}
-            </div>
-          </section>
-        ` : ''}
       </div>
     </div>
 
@@ -5152,6 +5456,11 @@ function openOffering(key) {
       <a class="off-ed-link" onclick="nav('offerings')">← All offerings</a>
       <a class="off-ed-link off-ed-link-primary" onclick="nav('live')">Run the discovery diagnostic →</a>
     </footer>
+
+    <!-- Case study modal -->
+    <div id="case-modal" class="case-modal" onclick="if(event.target===this)closeCaseStudy()">
+      <div class="case-modal-inner" id="case-modal-inner"></div>
+    </div>
   `;
 
   showPage('page-offering-detail');
@@ -5161,6 +5470,71 @@ function openOffering(key) {
   const histKey = 'offering:' + key;
   if (_navHistory[_navHistory.length-1] !== histKey) _navHistory.push(histKey);
   _updateBackBtn();
+}
+
+function openCaseStudy(offeringKey, storyIdx) {
+  const d = OFFERING_DETAILS[offeringKey];
+  if (!d || !d.stories[storyIdx]) return;
+  const s = d.stories[storyIdx];
+  const o = DIAG_OFFERINGS[offeringKey];
+
+  const inner = document.getElementById('case-modal-inner');
+  inner.innerHTML = `
+    <button class="case-modal-close" onclick="closeCaseStudy()" aria-label="Close">×</button>
+    <div class="case-modal-header">
+      <div class="case-modal-meta">
+        <span class="case-modal-industry">${s.industry}</span>
+        <span class="case-modal-offering">${o ? o.name : ''}</span>
+      </div>
+      <h2 class="case-modal-client">${s.client}</h2>
+      <div class="case-modal-title">${s.title}</div>
+    </div>
+
+    ${s.metrics ? `
+      <div class="case-modal-metrics">
+        ${s.metrics.map(m => `
+          <div class="case-modal-metric">
+            <div class="case-modal-metric-v">${m.v}</div>
+            <div class="case-modal-metric-l">${m.l}</div>
+          </div>
+        `).join('')}
+      </div>
+    ` : ''}
+
+    <div class="case-modal-pullquote">${_outcomeHook(s.outcome)}</div>
+
+    <div class="case-modal-body">
+      <section class="case-modal-section">
+        <h3>The situation</h3>
+        <p>${_md(s.challenge)}</p>
+      </section>
+
+      <section class="case-modal-section">
+        <h3>What we did</h3>
+        <ol class="case-modal-actions">
+          ${s.did.map(x => `<li>${_md(x)}</li>`).join('')}
+        </ol>
+      </section>
+
+      <section class="case-modal-section case-modal-outcome">
+        <h3>The outcome</h3>
+        <p>${_md(s.outcome)}</p>
+      </section>
+    </div>
+
+    <div class="case-modal-footer">
+      <button class="off-ed-link" onclick="closeCaseStudy()">← Back to offering</button>
+      <button class="off-ed-link off-ed-link-primary" onclick="nav('live')">Run the diagnostic →</button>
+    </div>
+  `;
+  document.getElementById('case-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCaseStudy() {
+  const m = document.getElementById('case-modal');
+  if (m) m.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 // ============ INDUSTRY DATA ============
@@ -6481,9 +6855,13 @@ renderIndustryGrid();
 renderCDDirectory();
 setTopNav('home'); // start on Home
 
-// Keyboard: Esc returns Home from anywhere
+// Keyboard: Esc closes case modal first, else returns Home
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') nav('home');
+  if (e.key === 'Escape') {
+    const m = document.getElementById('case-modal');
+    if (m && m.classList.contains('open')) { closeCaseStudy(); return; }
+    nav('home');
+  }
 });
 </script>
 
