@@ -100,14 +100,19 @@ function openOffering(key) {
           </div>
           <div class="off-ed-cases-grid">
             ${d.stories.map((s, i) => `
-              <div class="off-ed-case-card">
-                <div class="off-ed-case-card-head">
+              <article class="off-ed-case-card" onclick="openCaseStudy('${key}', ${i})">
+                <div class="off-ed-case-card-meta">
+                  <span class="off-ed-case-card-num">Case ${String(i+1).padStart(2,'0')}</span>
+                  <span class="off-ed-case-card-divider"></span>
                   <span class="off-ed-case-card-industry">${s.industry}</span>
-                  <span class="off-ed-case-card-client">${s.client}</span>
                 </div>
-                <div class="off-ed-case-card-hook">${_md(_outcomeHook(s.outcome))}</div>
-                <button class="off-ed-case-card-cta" onclick="openCaseStudy('${key}', ${i})">Read full case →</button>
-              </div>
+                <h3 class="off-ed-case-card-client">${s.client}</h3>
+                <blockquote class="off-ed-case-card-hook">${_md(_outcomeHook(s.outcome))}</blockquote>
+                <div class="off-ed-case-card-foot">
+                  <span class="off-ed-case-card-title">${s.title}</span>
+                  <span class="off-ed-case-card-cta">Read full case →</span>
+                </div>
+              </article>
             `).join('')}
           </div>
         </section>
