@@ -1774,6 +1774,271 @@
   }
   .ind-card:hover .ind-foot .ind-open { color: var(--accent); transform: translateX(3px); }
 
+  /* ===== Offering landing page — editorial, magazine-style ===== */
+  .off-page { padding: 56px 0 64px; background: var(--paper); }
+  .off-ed-header {
+    max-width: 760px;
+    margin: 0 auto 48px;
+    padding: 0 var(--gutter);
+  }
+  .off-ed-cluster {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .off-ed-title {
+    font-size: clamp(36px, 5.5vw, 64px);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+  .off-ed-lede {
+    font-size: clamp(17px, 1.6vw, 22px);
+    color: var(--ink-soft);
+    line-height: 1.45;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    max-width: 50ch;
+    margin: 0;
+  }
+
+  .off-ed-body { max-width: 720px; margin: 0 auto; padding: 0 var(--gutter); }
+  .off-ed-main { font-size: 16px; line-height: 1.7; color: var(--ink-soft); }
+
+  .off-ed-section { margin-bottom: 56px; }
+  .off-ed-section h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .off-ed-section > p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .off-ed-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: estep;
+  }
+  .off-ed-steps li {
+    counter-increment: estep;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 4px 0;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--grey-100);
+  }
+  .off-ed-steps li:last-child { border-bottom: none; }
+  .off-ed-step-num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--grey-400);
+    letter-spacing: 0.12em;
+    padding-top: 4px;
+  }
+  .off-ed-steps li h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .off-ed-steps li p {
+    font-size: 14px;
+    color: var(--grey-600);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .off-ed-outcomes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .off-ed-outcomes li {
+    padding: 12px 0 12px 24px;
+    border-bottom: 1px solid var(--grey-100);
+    position: relative;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .off-ed-outcomes li:last-child { border-bottom: none; }
+  .off-ed-outcomes li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 22px;
+    width: 12px; height: 1px;
+    background: var(--accent);
+  }
+
+  .off-ed-rule {
+    border: none;
+    border-top: 1px solid var(--grey-200);
+    margin: 64px 0 56px;
+    width: 80px;
+    margin-left: 0;
+  }
+
+  .off-ed-section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .off-ed-case-title {
+    font-size: clamp(24px, 2.8vw, 34px) !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.025em !important;
+    line-height: 1.1 !important;
+    color: var(--ink) !important;
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    text-transform: none !important;
+  }
+  .off-ed-case-meta {
+    font-size: 13px;
+    color: var(--grey-600);
+    margin-bottom: 28px;
+  }
+  .off-ed-pullquote {
+    margin: 0 0 36px;
+    padding: 6px 0 6px 22px;
+    border-left: 2px solid var(--accent);
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.45;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    font-style: normal;
+  }
+  .off-ed-case-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .off-ed-mini-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey-600);
+    margin-bottom: 10px;
+  }
+  .off-ed-case-detail p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .off-ed-case-detail ul {
+    padding: 0; margin: 0; list-style: none;
+  }
+  .off-ed-case-detail ul li {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .off-ed-case-detail ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 11px;
+    width: 8px; height: 1px;
+    background: var(--grey-400);
+  }
+
+  .off-ed-also { display: flex; flex-direction: column; gap: 0; }
+  .off-ed-also-item {
+    border-bottom: 1px solid var(--grey-200);
+  }
+  .off-ed-also-item:first-child { border-top: 1px solid var(--grey-200); }
+  .off-ed-also-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 0;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 24px;
+    transition: color .15s;
+  }
+  .off-ed-also-item summary::-webkit-details-marker { display: none; }
+  .off-ed-also-item summary::after {
+    content: '+';
+    color: var(--grey-400);
+    font-weight: 300;
+    font-size: 18px;
+    transition: transform .2s, color .2s;
+  }
+  .off-ed-also-item[open] summary::after { content: '−'; color: var(--accent); }
+  .off-ed-also-client {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .off-ed-also-title {
+    flex: 1;
+    font-size: 13.5px;
+    color: var(--grey-600);
+    margin-left: 24px;
+    font-style: italic;
+  }
+  .off-ed-also-body {
+    padding: 0 0 22px;
+  }
+  .off-ed-also-body p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0 0 10px;
+  }
+  .off-ed-also-body strong { font-weight: 600; color: var(--ink); }
+  .off-ed-also-outcome { color: var(--ink) !important; }
+  .off-ed-also-outcome strong { color: var(--accent); }
+
+  .off-ed-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    margin-top: 16px;
+    border-top: 1px solid var(--grey-200);
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .off-ed-link {
+    font-size: 14px;
+    color: var(--grey-600);
+    cursor: pointer;
+    transition: color .15s;
+    font-weight: 500;
+  }
+  .off-ed-link:hover { color: var(--ink); }
+  .off-ed-link-primary {
+    color: var(--accent);
+  }
+  .off-ed-link-primary:hover { color: var(--accent-deep); }
+
   /* ===== Offering landing page — pragmatic, scannable, expand-on-demand ===== */
 
   /* Challenge / What we do — compact summaries with details expander */
@@ -2280,20 +2545,9 @@
   <div class="footer"><div class="wrap footer-inner"><span>NIIT Consulting &amp; Advisory  ·  Sales &amp; Engagement Hub</span><span>v0.4</span></div></div>
 </div>
 
-<!-- ===================== OFFERING DETAIL — landing page ===================== -->
+<!-- ===================== OFFERING DETAIL — editorial landing page ===================== -->
 <div id="page-offering-detail" class="page-section hidden">
-  <section class="app-hero">
-    <div class="wrap">
-      <div class="app-hero-inner">
-        <div>
-          <span class="app-hero-eyebrow" id="off-cluster"></span>
-          <h1 class="app-hero-title" id="off-name"></h1>
-          <p class="app-hero-sub" id="off-definition"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="page" style="padding-top: 24px;">
+  <section class="off-page">
     <div class="wrap" id="offering-detail-body"></div>
   </section>
 </div>
@@ -4583,116 +4837,97 @@ function openOffering(key) {
   const d = OFFERING_DETAILS[key];
   if (!o || !d) return;
 
-  document.getElementById('off-cluster').textContent = o.cluster;
-  document.getElementById('off-name').textContent = o.name;
-  document.getElementById('off-definition').textContent = o.outcome;
-
-  const chal = _splitSentences(d.challenge, 1);
-  const what = _splitSentences(d.whatWeDo, 1);
+  const [featured, ...rest] = d.stories;
 
   const body = document.getElementById('offering-detail-body');
   body.innerHTML = `
-    <!-- Challenge / What we do — compact two-column with expander -->
-    <div class="off-row">
-      <details class="off-pill">
-        <summary>
-          <span class="off-pill-label">The challenge</span>
-          <span class="off-pill-summary">${chal.head}</span>
-          ${chal.rest ? '<span class="off-pill-more">More ↓</span>' : ''}
-        </summary>
-        ${chal.rest ? `<div class="off-pill-rest">${chal.rest}</div>` : ''}
-      </details>
-      <details class="off-pill off-pill-accent">
-        <summary>
-          <span class="off-pill-label">What we do</span>
-          <span class="off-pill-summary">${what.head}</span>
-          ${what.rest ? '<span class="off-pill-more">More ↓</span>' : ''}
-        </summary>
-        ${what.rest ? `<div class="off-pill-rest">${what.rest}</div>` : ''}
-      </details>
-    </div>
+    <header class="off-ed-header">
+      <div class="off-ed-cluster">${o.cluster}</div>
+      <h1 class="off-ed-title">${o.name}</h1>
+      <p class="off-ed-lede">${o.outcome}</p>
+    </header>
 
-    <!-- Process — horizontal timeline, names only, hover for description -->
-    <div class="off-section-tight">
-      <div class="off-section-head">
-        <span class="off-section-label">Process</span>
-        <span class="off-section-meta">${d.process.length} phases · hover for detail</span>
-      </div>
-      <div class="off-timeline">
-        ${d.process.map((p, i) => `
-          <div class="off-tl-step" tabindex="0">
-            <div class="off-tl-num">${String(i+1).padStart(2,'0')}</div>
-            <div class="off-tl-name">${p.t}</div>
-            <div class="off-tl-tip">${p.d}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
+    <div class="off-ed-body">
+      <article class="off-ed-main">
 
-    <!-- Outcomes — short chips, top 4 highlighted -->
-    <div class="off-section-tight">
-      <div class="off-section-head">
-        <span class="off-section-label">What clients see</span>
-        <span class="off-section-meta">${d.outcomes.length} outcomes</span>
-      </div>
-      <div class="off-outcome-grid">
-        ${d.outcomes.slice(0, 4).map((out, i) => `
-          <div class="off-outcome-chip">
-            <div class="off-outcome-num">${String(i+1).padStart(2,'0')}</div>
-            <div class="off-outcome-text">${out}</div>
-          </div>
-        `).join('')}
-      </div>
-      ${d.outcomes.length > 4 ? `
-        <details class="off-outcome-extra">
-          <summary>+ ${d.outcomes.length - 4} more outcomes</summary>
-          <ul>${d.outcomes.slice(4).map(out => `<li>${out}</li>`).join('')}</ul>
-        </details>
-      ` : ''}
-    </div>
+        <section class="off-ed-section">
+          <h2>Where this comes from</h2>
+          <p>${d.challenge}</p>
+        </section>
 
-    <!-- Client stories — collapsed cards, click to expand -->
-    <div class="off-section-tight">
-      <div class="off-section-head">
-        <span class="off-section-label">Client stories</span>
-        <span class="off-section-meta">${d.stories.length} case${d.stories.length>1?'s':''}</span>
-      </div>
-      <div class="off-stories-v2">
-        ${d.stories.map((s, i) => `
-          <details class="off-story-v2" ${i === 0 ? 'open' : ''}>
-            <summary>
-              <div class="off-story-v2-meta">
-                <span class="off-story-v2-industry">${s.industry}</span>
-                <span class="off-story-v2-client">${s.client}</span>
-              </div>
-              <div class="off-story-v2-hook">${_outcomeHook(s.outcome)}</div>
-              <span class="off-story-v2-toggle">↓</span>
-            </summary>
-            <div class="off-story-v2-body">
-              <div class="off-story-v2-title">${s.title}</div>
-              <div class="off-story-v2-cols">
+        <section class="off-ed-section">
+          <h2>How we do it</h2>
+          <p>${d.whatWeDo}</p>
+        </section>
+
+        <section class="off-ed-section">
+          <h2>The work, step by step</h2>
+          <ol class="off-ed-steps">
+            ${d.process.map((p, i) => `
+              <li>
+                <span class="off-ed-step-num">${String(i+1).padStart(2,'0')}</span>
                 <div>
-                  <div class="off-story-v2-label">Challenge</div>
-                  <p>${s.challenge}</p>
+                  <h3>${p.t}</h3>
+                  <p>${p.d}</p>
                 </div>
-                <div>
-                  <div class="off-story-v2-label">What we did</div>
-                  <ul>${s.did.map(x => `<li>${x}</li>`).join('')}</ul>
-                </div>
-                <div class="off-story-v2-outcome">
-                  <div class="off-story-v2-label">Outcome</div>
-                  <p>${s.outcome}</p>
-                </div>
-              </div>
+              </li>
+            `).join('')}
+          </ol>
+        </section>
+
+        <section class="off-ed-section">
+          <h2>What changes</h2>
+          <ul class="off-ed-outcomes">
+            ${d.outcomes.map(out => `<li>${out}</li>`).join('')}
+          </ul>
+        </section>
+
+        <hr class="off-ed-rule" />
+
+        <section class="off-ed-section">
+          <div class="off-ed-section-eyebrow">Case in point</div>
+          <h2 class="off-ed-case-title">${featured.title}</h2>
+          <div class="off-ed-case-meta">${featured.client} · ${featured.industry}</div>
+          <blockquote class="off-ed-pullquote">${featured.outcome}</blockquote>
+
+          <div class="off-ed-case-detail">
+            <div>
+              <div class="off-ed-mini-label">The situation</div>
+              <p>${featured.challenge}</p>
             </div>
-          </details>
-        `).join('')}
-      </div>
-    </div>
+            <div>
+              <div class="off-ed-mini-label">What we did</div>
+              <ul>${featured.did.map(x => `<li>${x}</li>`).join('')}</ul>
+            </div>
+          </div>
+        </section>
 
-    <div style="display:flex; gap:10px; margin-top: 24px;">
-      <button class="ind-btn-secondary" onclick="nav('offerings')">← Back to Storefront</button>
-      <button class="ind-btn-primary" onclick="nav('live')">Start the discovery diagnostic →</button>
+        ${rest.length ? `
+          <section class="off-ed-section">
+            <div class="off-ed-section-eyebrow">Also done for</div>
+            <div class="off-ed-also">
+              ${rest.map(s => `
+                <details class="off-ed-also-item">
+                  <summary>
+                    <span class="off-ed-also-client">${s.client}</span>
+                    <span class="off-ed-also-title">${s.title}</span>
+                  </summary>
+                  <div class="off-ed-also-body">
+                    <p><strong>Situation.</strong> ${s.challenge}</p>
+                    <p><strong>What we did.</strong> ${s.did.join('. ')}.</p>
+                    <p class="off-ed-also-outcome"><strong>Outcome.</strong> ${s.outcome}</p>
+                  </div>
+                </details>
+              `).join('')}
+            </div>
+          </section>
+        ` : ''}
+
+        <footer class="off-ed-footer">
+          <a class="off-ed-link" onclick="nav('offerings')">← All offerings</a>
+          <a class="off-ed-link off-ed-link-primary" onclick="nav('live')">Run the discovery diagnostic →</a>
+        </footer>
+      </article>
     </div>
   `;
 
