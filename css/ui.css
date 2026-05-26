@@ -118,16 +118,16 @@
   .v2-divider-label { font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--grey-600); white-space:nowrap; }
   .v2-divider-line { flex:1; height:1px; background:var(--grey-200); }
 
-  .v2-secondary-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  @media (max-width: 880px) { .v2-secondary-grid { grid-template-columns: repeat(2, 1fr); } }
+  .v2-secondary-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 880px) { .v2-secondary-grid { grid-template-columns: 1fr; } }
   .v2-card {
     background: var(--paper-pure);
     border: 1px solid var(--grey-200);
-    padding: 22px 22px 20px;
+    padding: 32px 32px 28px;
     cursor: pointer;
     transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .25s, box-shadow .35s;
-    display: flex; flex-direction: column; gap: 10px;
-    min-height: 156px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 200px;
     position: relative;
     overflow: hidden;
   }
@@ -152,7 +152,7 @@
     font-feature-settings: "tnum";
   }
   .v2-card-title {
-    font-size: 19px;
+    font-size: 24px;
     font-weight: 500;
     letter-spacing: -0.02em;
     color: var(--ink);
@@ -160,9 +160,9 @@
     line-height: 1.2;
   }
   .v2-card-desc {
-    font-size: 12.5px;
+    font-size: 14px;
     color: var(--grey-600);
-    line-height: 1.55;
+    line-height: 1.6;
     margin-top: auto;
     font-weight: 400;
   }
@@ -887,5 +887,3 @@
     transition: color .2s, transform .2s;
   }
   .ind-card:hover .ind-foot .ind-open { color: var(--accent); transform: translateX(3px); }
-
-  
