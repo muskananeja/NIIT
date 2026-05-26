@@ -884,6 +884,6 @@
     letter-spacing: 0.04em;
     text-transform: none;
     font-size: 12px;
-    transition: color .2s, transform .2s;
+    transition: color .2s, transform .2s; /*comment*/
   }
   .ind-card:hover .ind-foot .ind-open { color: var(--accent); transform: translateX(3px); }
